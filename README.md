@@ -12,7 +12,7 @@ can get some cheap Microcontrollers, which provide almost the same capabilities.
 This project has been implemented as Arduino Library and runs on ESP32 processors. 
 
 ## Further information
-Further information can be found im by Blogs
+Further information can be found in my Blogs
 - [Overview](https://www.pschatzmann.ch/home/2020/09/24/the-synthesis-toolkit-skt-library-for-the-arduino-esp32/)
 - [Sound without Files](https://www.pschatzmann.ch/home/2020/09/26/the-synthesis-toolkit-stk-w-o-files/)
 - [Using Midi](https://www.pschatzmann.ch/home/2020/09/28/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-midi/) 
