@@ -25,6 +25,8 @@
 /***************************************************/
 
 #include "InetWvIn.h"
+#ifdef STK_MUTEXT_SUPPORTED
+
 #include <sstream>
 
 namespace stk {
@@ -36,8 +38,9 @@ extern "C" THREAD_RETURN THREAD_TYPE inputThread( void * ptr )
   while ( !info->finished ) {
     ((InetWvIn *) info->object)->receive();
   }
-
-  return 0;
+  #if THREAD_RETURN != void
+    return 0;
+  #endif
 }
 
 InetWvIn :: InetWvIn( unsigned long bufferFrames, unsigned int nBuffers )
@@ -318,3 +321,5 @@ StkFrames& InetWvIn :: tick( StkFrames& frames, unsigned int channel )
 }
 
 } // stk namespace
+
+#endif

@@ -10,11 +10,9 @@ AR = ar -rsc
 RM = /bin/rm
 LN = /bin/ln
 OBJECT_PATH = @object_path@
-prefix = @prefix@
-exec_prefix = @exec_prefix@
-bindir = @bindir@
-libdir = @libdir@
-includedir = @includedir@
+LIBDIR = @libdir@
+PREFIX = @prefix@
+INCLUDEDIR = @includedir@
 vpath %.o $(OBJECT_PATH)
 
 OBJECTS	=	Stk.o Generator.o Noise.o Blit.o BlitSaw.o BlitSquare.o Granulate.o \
@@ -50,7 +48,6 @@ DEFS     = @CPPFLAGS@
 DEFS    += @byte_order@
 CFLAGS   = @CXXFLAGS@
 CFLAGS  += $(INCLUDE) -Iinclude -fPIC
-LDFLAGS  = @LDFLAGS@
 LIBS     = @LIBS@
 
 REALTIME = @realtime@
@@ -96,13 +93,13 @@ $(SHAREDLIB) : $(OBJECTS)
 	$(LN) -s @sharedname@ $(SHAREDLIB)
 
 install-headers:
-	install -d $(DESTDIR)$(includedir)/stk
-	cp -R ../include/*.h $(DESTDIR)$(includedir)/stk
+	install -d $(DESTDIR)$(PREFIX)$(INCLUDEDIR)/stk
+	cp -R ../include/*.h $(DESTDIR)$(PREFIX)$(INCLUDEDIR)/stk
 
 install: $(SHAREDLIB) install-headers
-	install -d $(DESTDIR)$(libdir)
-	install -m 644 @sharedname@ $(DESTDIR)$(libdir)
-	ln -sf @sharedname@ $(DESTDIR)$(libdir)/$(SHAREDLIB)
+	install -d $(DESTDIR)$(PREFIX)$(LIBDIR)
+	install -m 644 @sharedname@ $(DESTDIR)$(PREFIX)$(LIBDIR)
+	ln -sf @sharedname@ $(DESTDIR)$(PREFIX)$(LIBDIR)/$(SHAREDLIB)
 
 
 $(OBJECTS) : Stk.h

@@ -28,6 +28,12 @@
 
 #include "Mandolin.h"
 #include "SKINImsg.h"
+#include "ArdConfig.h"
+
+extern const unsigned char mand1_raw[],mand2_raw[],mand3_raw[],mand4_raw[],mand5_raw[],mand6_raw[],mand7_raw[],mand8_raw[],
+                    mand9_raw[],mand10_raw[],mand11_raw[];
+extern unsigned int mand1_raw_len,mand2_raw_len,mand3_raw_len,mand4_raw_len,mand5_raw_len,mand6_raw_len,mand7_raw_len,mand8_raw_len,
+                    mand9_raw_len,mand10_raw_len, mand11_raw_len;
 
 namespace stk {
 
@@ -37,6 +43,20 @@ Mandolin :: Mandolin( StkFloat lowestFrequency )
     oStream_ << "Mandolin::Mandolin: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
+
+  #ifdef __VFS__
+  MemoryFS::registerFile("mand1.raw", mand1_raw, mand1_raw_len);
+  MemoryFS::registerFile("mand2.raw", mand2_raw, mand2_raw_len);
+  MemoryFS::registerFile("mand3.raw", mand3_raw, mand3_raw_len);
+  MemoryFS::registerFile("mand4.raw", mand4_raw, mand4_raw_len);
+  MemoryFS::registerFile("mand5.raw", mand5_raw, mand5_raw_len);
+  MemoryFS::registerFile("mand6.raw", mand6_raw, mand6_raw_len);
+  MemoryFS::registerFile("mand7.raw", mand7_raw, mand7_raw_len);
+  MemoryFS::registerFile("mand8.raw", mand8_raw, mand8_raw_len);
+  MemoryFS::registerFile("mand9.raw", mand9_raw, mand9_raw_len);
+  MemoryFS::registerFile("mand10.raw", mand10_raw, mand10_raw_len);
+  MemoryFS::registerFile("mand11.raw", mand11_raw, mand11_raw_len);
+  #endif
 
   // Concatenate the STK rawwave path to the rawwave files
   soundfile_[0].openFile( (Stk::rawwavePath() + "mand1.raw").c_str(), true );

@@ -18,6 +18,8 @@
 */
 /***************************************************/
 
+#ifdef STK_MUTEXT_SUPPORTED
+
 #include "RtWvOut.h"
 #include <cstring>
 
@@ -211,3 +213,6 @@ void RtWvOut :: tick( const StkFrames& frames )
 }
 
 } // stk namespace
+
+//#endif
+#endif

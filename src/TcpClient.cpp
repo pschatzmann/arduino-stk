@@ -1,3 +1,4 @@
+
 /***************************************************/
 /*! \class TcpClient
     \brief STK TCP socket client class.
@@ -24,6 +25,7 @@
 /***************************************************/
 
 #include "TcpClient.h"
+#ifndef __NOIP__
 #include <cstring>
 #include <sstream>
 
@@ -103,3 +105,6 @@ int TcpClient :: readBuffer( void *buffer, long bufferSize, int flags )
 }
 
 } // stk namespace
+
+#endif
+

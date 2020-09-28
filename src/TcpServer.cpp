@@ -1,3 +1,4 @@
+
 /***************************************************/
 /*! \class TcpServer
     \brief STK TCP socket server class.
@@ -24,7 +25,7 @@
 /***************************************************/
 
 #include "TcpServer.h"
-
+#ifndef __NOIP__
 namespace stk {
 
 TcpServer :: TcpServer( int port )
@@ -97,3 +98,5 @@ int TcpServer :: readBuffer(void *buffer, long bufferSize, int flags )
 }
 
 } // stk namespace
+
+#endif

@@ -42,6 +42,7 @@
 // RtAudio: Version 5.1.0
 
 #include "RtAudio.h"
+#ifndef __NO_RT__
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
@@ -263,8 +264,10 @@ RtAudio :: RtAudio( RtAudio::Api api )
   // definition __RTAUDIO_DUMMY__ is automatically defined if no
   // API-specific definitions are passed to the compiler. But just in
   // case something weird happens, we'll thow an error.
+  #ifndef __NO_EXCEPTIONS__
   std::string errorText = "\nRtAudio: no compiled API support found ... critical error!!\n\n";
   throw( RtAudioError( errorText, RtAudioError::UNSPECIFIED ) );
+  #endif
 }
 
 RtAudio :: ~RtAudio()
@@ -9963,8 +9966,11 @@ void RtApi :: error( RtAudioError::Type type )
 
   if ( type == RtAudioError::WARNING && showWarnings_ == true )
     std::cerr << '\n' << errorText_ << "\n\n";
-  else if ( type != RtAudioError::WARNING )
+  else if ( type != RtAudioError::WARNING ) {
+    #ifndef __NO_EXCEPTIONS__
     throw( RtAudioError( errorText_, type ) );
+    #endif
+  }
 }
 
 void RtApi :: verifyStream()
@@ -10634,3 +10640,4 @@ void RtApi :: byteSwapBuffer( char *buffer, unsigned int samples, RtAudioFormat 
   //
   // vim: et sts=2 sw=2
 
+#endif // __NO_RT__

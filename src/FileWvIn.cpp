@@ -97,7 +97,8 @@ void FileWvIn :: openFile( std::string fileName, bool raw, bool doNormalize, boo
     int2floatscaling_ = false;
 
   // Load all or part of the data.
-  file_.read( data_, 0, int2floatscaling_ );
+  //file_.read( data_, 0, int2floatscaling_ );
+  fileRead( data_, 0, int2floatscaling_ );
 
   // Resize our lastFrame container.
   lastFrame_.resize( 1, file_.channels() );
@@ -113,6 +114,11 @@ void FileWvIn :: openFile( std::string fileName, bool raw, bool doNormalize, boo
 
   this->reset();
 }
+
+void FileWvIn :: fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize ){
+    file_.read( buffer, startFrame, doNormalize );
+}
+
 
 void FileWvIn :: reset(void)
 {
@@ -208,7 +214,8 @@ StkFloat FileWvIn :: tick( unsigned int channel )
       }
 
       // Load more data.
-      file_.read( data_, chunkPointer_, int2floatscaling_ );
+      //file_.read( data_, chunkPointer_, int2floatscaling_ );
+      fileRead( data_, chunkPointer_, int2floatscaling_ );
     }
 
     // Adjust index for the current buffer.

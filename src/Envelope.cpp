@@ -5,15 +5,13 @@
     This class implements a simple linear line envelope generator
     which is capable of ramping to an arbitrary target value by a
     specified \e rate.  It also responds to simple \e keyOn and \e
-    keyOff messages, ramping to a specified target (default = 1.0) on
-    keyOn and to a specified target (default = 0.0) on keyOff.
+    keyOff messages, ramping to 1.0 on keyOn and to 0.0 on keyOff.
 
     by Perry R. Cook and Gary P. Scavone, 1995--2019.
 */
 /***************************************************/
 
 #include "Envelope.h"
-#include <cmath>
 
 namespace stk {
 
@@ -66,8 +64,7 @@ void Envelope :: setTime( StkFloat time )
     handleError( StkError::WARNING ); return;
   }
 
-  //rate_ = 1.0 / ( time * Stk::sampleRate() );
-  rate_ = fabs(target_ - value_) / ( time * Stk::sampleRate() );
+  rate_ = 1.0 / ( time * Stk::sampleRate() );
 }
 
 void Envelope :: setTarget( StkFloat target )

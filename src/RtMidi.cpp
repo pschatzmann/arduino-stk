@@ -38,6 +38,8 @@
 /**********************************************************************/
 
 #include "RtMidi.h"
+#ifndef __NO_RT__
+
 #include <sstream>
 
 #if defined(__MACOSX_CORE__)
@@ -435,8 +437,10 @@ RTMIDI_DLL_PUBLIC RtMidiIn :: RtMidiIn( RtMidi::Api api, const std::string &clie
   // definition __RTMIDI_DUMMY__ is automatically defined if no
   // API-specific definitions are passed to the compiler. But just in
   // case something weird happens, we'll throw an error.
+  #ifndef __NO_EXCEPTIONS__
   std::string errorText = "RtMidiIn: no compiled API support found ... critical error!!";
   throw( RtMidiError( errorText, RtMidiError::UNSPECIFIED ) );
+  #endif
 }
 
 RtMidiIn :: ~RtMidiIn() throw()
@@ -501,9 +505,11 @@ RTMIDI_DLL_PUBLIC RtMidiOut :: RtMidiOut( RtMidi::Api api, const std::string &cl
   // It should not be possible to get here because the preprocessor
   // definition __RTMIDI_DUMMY__ is automatically defined if no
   // API-specific definitions are passed to the compiler. But just in
-  // case something weird happens, we'll thrown an error.
+  // case something weird happens, we'll thrown an error.#include "ArdConfig.h"
+  #ifndef __NO_EXCEPTIONS__
   std::string errorText = "RtMidiOut: no compiled API support found ... critical error!!";
   throw( RtMidiError( errorText, RtMidiError::UNSPECIFIED ) );
+  #endif
 }
 
 RtMidiOut :: ~RtMidiOut() throw()
@@ -553,8 +559,10 @@ void MidiApi :: error( RtMidiError::Type type, std::string errorString )
 #endif
   }
   else {
+    #ifndef __NO_EXCEPTIONS__
     std::cerr << '\n' << errorString << "\n\n";
     throw RtMidiError( errorString, type );
+    #endif
   }
 }
 
@@ -3443,3 +3451,4 @@ void MidiOutJack :: sendMessage( const unsigned char *message, size_t size )
 }
 
 #endif  // __UNIX_JACK__
+#endif // __NO_RT__

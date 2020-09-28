@@ -40,6 +40,23 @@ Granulate :: Granulate( unsigned int nVoices, std::string fileName, bool typeRaw
   this->setVoices( nVoices );
 }
 
+Granulate :: Granulate( unsigned int nVoices, MemoryFS &memoryFile)
+{
+  this->setGrainParameters(); // use default values
+  this->setRandomFactor();
+  gStretch_ = 0;
+  stretchCounter_ = 0;
+  this->openMemory( memoryFile);
+  this->setVoices( nVoices );
+}
+
+void Granulate :: openMemory(MemoryFS &memoryFile) {
+  data_.resize( memoryFile.getSize(), 1 );
+  memoryFile.fileRead( data_, 0, true );
+  lastFrame_.resize( 1, 1, 0.0 );
+  this->reset();
+}
+
 Granulate :: ~Granulate( void )
 {
 }
@@ -79,8 +96,9 @@ void Granulate :: setRandomFactor( StkFloat randomness )
 {
   if ( randomness < 0.0 ) gRandomFactor_ = 0.0;
   else if ( randomness > 1.0 ) gRandomFactor_ = 0.97;
-  else gRandomFactor_ = 0.97 * randomness;
-}
+
+  gRandomFactor_ = 0.97 * randomness;
+};
 
 void Granulate :: openFile( std::string fileName, bool typeRaw )
 {

@@ -33,16 +33,29 @@
 /***************************************************/
 
 #include "BeeThree.h"
+#include "ArdConfig.h"
+
+#ifdef __VFS__
+  extern unsigned char  *fwavblnk_raw, *sinewave_raw;
+  extern unsigned int fwavblnk_raw_len,sinewave_raw_len;
+#endif
 
 namespace stk {
 
 BeeThree :: BeeThree( void )
   : FM()
 {
-  // Concatenate the STK rawwave path to the rawwave files
-  for ( unsigned int i=0; i<3; i++ )
+  #ifdef __VFS__
+  for ( unsigned int i=0; i<3; i++ ){
+    waves_[i] = new MemoryLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), sinewave_raw,sinewave_raw_len );
+  }
+  waves_[3] = new MemoryLoop( (Stk::rawwavePath() + "fwavblnk.raw").c_str(), fwavblnk_raw,fwavblnk_raw_len );  
+  #else
+  for ( unsigned int i=0; i<3; i++ ){
     waves_[i] = new FileLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), true );
+  }
   waves_[3] = new FileLoop( (Stk::rawwavePath() + "fwavblnk.raw").c_str(), true );
+  #endif
 
   this->setRatio( 0, 0.999 );
   this->setRatio( 1, 1.997 );

@@ -220,7 +220,9 @@ void Stk :: handleError( std::string message, StkError::Type type )
       // Print error message before throwing.
       std::cerr << '\n' << message << '\n' << std::endl;
     }
+    #ifndef __NO_EXCEPTIONS__
     throw StkError(message, type);
+    #endif
   }
 }
 

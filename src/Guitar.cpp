@@ -67,7 +67,9 @@ void Guitar :: setBodyFile( std::string bodyfile )
 {
   bool fileLoaded = false;
   if ( bodyfile != "" ) {
+#ifndef __NO_EXCEPTIONS__
     try {
+#endif
       FileWvIn file( bodyfile );
   
       // Fill the StkFrames variable with the (possibly interpolated)
@@ -75,11 +77,13 @@ void Guitar :: setBodyFile( std::string bodyfile )
       excitation_.resize( (unsigned long) ( 0.5 + ( file.getSize() * Stk::sampleRate() / file.getFileRate() ) ) );
       file.tick( excitation_ );
       fileLoaded = true;
+#ifndef __NO_EXCEPTIONS__
     }
     catch ( StkError &error ) {
       oStream_ << "Guitar::setBodyFile: file error (" << error.getMessage() << ") ... using noise excitation.";
       handleError( StkError::WARNING );
     }
+#endif
   }
 
   if ( !fileLoaded ) {

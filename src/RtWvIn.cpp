@@ -18,6 +18,8 @@
     by Perry R. Cook and Gary P. Scavone, 1995--2019.
 */
 /***************************************************/
+#include "Mutex.h"
+#ifdef STK_MUTEXT_SUPPORTED
 
 #include "RtWvIn.h"
 #include <cstring>
@@ -202,3 +204,5 @@ StkFrames& RtWvIn :: tick( StkFrames& frames, unsigned int channel )
 }
 
 } // stk namespace
+
+#endif

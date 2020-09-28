@@ -18,6 +18,14 @@
 #include "Drummer.h"
 #include <cmath>
 
+#ifdef __VFS__
+extern const unsigned char dope_raw[], bassdrum_raw[], snardrum_raw[], tomlowdr_raw[], tommiddr_raw[],
+                      hihatcym_raw[], ridecymb_raw[], crashcym_raw[], cowbell1_raw[],tambourn_raw[]; 
+extern unsigned int dope_raw_len, bassdrum_raw_len, snardrum_raw_len, tomlowdr_raw_len, tommiddr_raw_len,
+                    hihatcym_raw_len,ridecymb_raw_len,crashcym_raw_len,cowbell1_raw_len,tambourn_raw_len;
+
+#endif
+
 namespace stk {
 
 // Not really General MIDI yet.
@@ -61,6 +69,20 @@ Drummer :: Drummer( void ) : Instrmnt()
   nSounding_ = 0;
   soundOrder_ = std::vector<int> (DRUM_POLYPHONY, -1);
   soundNumber_ = std::vector<int> (DRUM_POLYPHONY, -1);
+
+   #ifdef __VFS__
+  MemoryFS::registerFile("dope.raw",dope_raw,dope_raw_len);
+  MemoryFS::registerFile("bassdrum.raw",bassdrum_raw,bassdrum_raw_len);
+  MemoryFS::registerFile("snardrum.raw",snardrum_raw,snardrum_raw_len);
+  MemoryFS::registerFile("tomlowdr.raw",tomlowdr_raw,tomlowdr_raw_len);
+  MemoryFS::registerFile("tommiddr.raw",tommiddr_raw,tommiddr_raw_len);
+  MemoryFS::registerFile("hihatcym.raw",hihatcym_raw,hihatcym_raw_len);
+  MemoryFS::registerFile("ridecymb.raw",ridecymb_raw,ridecymb_raw_len);
+  MemoryFS::registerFile("crashcym.raw",crashcym_raw,crashcym_raw_len);
+  MemoryFS::registerFile("cowbell1.raw",cowbell1_raw,cowbell1_raw_len);
+  MemoryFS::registerFile("tambourn.raw",tambourn_raw,tambourn_raw_len);
+  #endif
+
 }
 
 Drummer :: ~Drummer( void )

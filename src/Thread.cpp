@@ -22,6 +22,8 @@
 
 #include "Thread.h"
 
+#ifdef THREAD_TYPE
+
 namespace stk {
 
 Thread :: Thread()
@@ -51,6 +53,21 @@ bool Thread :: start( THREAD_FUNCTION routine, void * ptr )
   thread_ = _beginthreadex(NULL, 0, routine, ptr, 0, &thread_id);
   if ( thread_ ) return true;
 
+#elif defined(__RTOS__)
+  BaseType_t xReturned = xTaskCreate(
+                routine,          /* Function that implements the task. */
+                "RTOS-STK-TASK",  /* Text name for the task. */
+                TASK_STACK_SIZE,  /* Stack size in words, not bytes. */
+                (void*)ptr,       /* Parameter passed into the task. */
+                tskIDLE_PRIORITY, /* Priority at which the task is created. */
+                &thread_ );       /* Used to pass out the created task's handle. */
+
+  if( xReturned == pdPASS ) {
+      /* The task was created.  Use the task's handle to delete the task. */
+      return true;
+  }
+
+
 #endif
   return false;
 }
@@ -67,6 +84,13 @@ bool Thread :: cancel()
 
   TerminateThread((HANDLE)thread_, 0);
   return true;
+
+#elif defined(__RTOS__)
+  if( thread_ != NULL ) {
+      vTaskDelete( thread_ );
+  }
+  return true;
+
 
 #endif
   return false;
@@ -104,3 +128,5 @@ void Thread :: testCancel(void)
 }
 
 } // stk namespace
+
+#endif

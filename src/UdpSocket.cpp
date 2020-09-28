@@ -1,3 +1,4 @@
+
 /***************************************************/
 /*! \class UdpSocket
     \brief STK UDP socket server/client class.
@@ -22,6 +23,8 @@
 /***************************************************/
 
 #include "UdpSocket.h"
+#ifndef __NOIP__
+
 #include <cstring>
 #include <sstream>
 
@@ -108,3 +111,7 @@ int UdpSocket :: writeBufferTo( const void *buffer, long bufferSize, int port, s
 }
 
 } // stk namespace
+
+#endif // __NOIP__
+
+

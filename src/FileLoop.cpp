@@ -66,7 +66,7 @@ void FileLoop :: openFile( std::string fileName, bool raw, bool doNormalize, boo
     int2floatscaling_ = false;
 
   // Load all or part of the data.
-  file_.read( data_, 0, int2floatscaling_ );
+  fileRead( data_, 0, int2floatscaling_ );
 
   if ( chunking_ ) { // If chunking, save the first sample frame for later.
     firstFrame_.resize( 1, data_.channels() );
@@ -129,6 +129,10 @@ void FileLoop :: addPhaseOffset( StkFloat angle )
   phaseOffset_ = fileSize_ * angle;
 }
 
+void FileLoop :: fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize ) {
+    file_.read( buffer, startFrame, doNormalize );
+}
+
 StkFloat FileLoop :: tick( unsigned int channel )
 {
 #if defined(_STK_DEBUG_)
@@ -177,7 +181,7 @@ StkFloat FileLoop :: tick( unsigned int channel )
       }
 
       // Load more data.
-      file_.read( data_, chunkPointer_, int2floatscaling_ );
+      fileRead( data_, chunkPointer_, int2floatscaling_ );
     }
 
     // Adjust index for the current buffer.

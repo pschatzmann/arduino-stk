@@ -37,6 +37,7 @@
 #include <cstring>
 #include <cmath>
 #include <cstdio>
+#include <fcntl.h>
 
 namespace stk {
 
@@ -135,12 +136,14 @@ void FileRead :: open( std::string fileName, bool typeRaw, unsigned int nChannel
 
 bool FileRead :: getRawInfo( const char *fileName, unsigned int nChannels, StkFormat format, StkFloat rate )
 {
-  // Use the system call "stat" to determine the file length.
+  // on the ESP8266 we get sysstat.c:12: undefined reference to `_stat_r'
   struct stat filestat;
+  // Use the system call "stat" to determine the file length.
   if ( stat(fileName, &filestat) == -1 ) {
     oStream_ << "FileRead: Could not stat RAW file (" << fileName << ").";
     return false;
   }
+
   if ( nChannels == 0 ) {
     oStream_ << "FileRead: number of channels can't be 0 (" << fileName << ").";
     return false;

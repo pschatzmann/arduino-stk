@@ -20,15 +20,32 @@
 
 #include "Moog.h"
 #include "SKINImsg.h"
+#include "ArdConfig.h"
+
+#ifdef __VFS__
+  extern unsigned char *mandpluk_raw, *impuls20_raw, *sinewave_raw;
+  extern unsigned int mandpluk_raw_len, impuls20_raw_len,sinewave_raw_len;
+#endif
 
 namespace stk {
 
+
 Moog :: Moog( void )
 {
+
+  #ifdef __VFS__
+  // Concatenate the STK rawwave path to the rawwave file
+  attacks_.push_back( new MemoryWvIn( (Stk::rawwavePath() + "mandpluk.raw").c_str(), mandpluk_raw,mandpluk_raw_len ) );
+  loops_.push_back ( new MemoryLoop( (Stk::rawwavePath() + "impuls20.raw").c_str(), impuls20_raw,impuls20_raw_len ) );
+  loops_.push_back ( new MemoryLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), sinewave_raw,sinewave_raw_len ) ); // vibrato
+  #else
   // Concatenate the STK rawwave path to the rawwave file
   attacks_.push_back( new FileWvIn( (Stk::rawwavePath() + "mandpluk.raw").c_str(), true ) );
   loops_.push_back ( new FileLoop( (Stk::rawwavePath() + "impuls20.raw").c_str(), true ) );
   loops_.push_back ( new FileLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), true ) ); // vibrato
+  #endif
+  
+ 
   loops_[1]->setFrequency( 6.122 );
 
   filters_[0].setTargets( 0.0, 0.7 );

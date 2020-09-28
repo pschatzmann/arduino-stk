@@ -30,11 +30,13 @@
 #include "SKINImsg.h"
 #include <cstring>
 #include <cmath>
+#include "ArdConfig.h"
 
 namespace stk {
 
 VoicForm :: VoicForm( void ) : Instrmnt()
 {
+
   // Concatenate the STK rawwave path to the rawwave file
   voiced_ = new SingWave( (Stk::rawwavePath() + "impuls20.raw").c_str(), true );
   voiced_->setGainRate( 0.001 );

@@ -1,3 +1,4 @@
+
 /***************************************************/
 /*! \class Mutex
     \brief STK mutex class.
@@ -10,8 +11,9 @@
     by Perry R. Cook and Gary P. Scavone, 1995--2019.
 */
 /***************************************************/
-
 #include "Mutex.h"
+#ifdef STK_MUTEXT_SUPPORTED
+#include "ArdConfig.h"
 
 namespace stk {
 
@@ -30,6 +32,10 @@ Mutex :: Mutex()
                            true,  // manual-reset
                            false, // non-signaled initially
                            NULL); // unnamed
+#elif defined(__RTOS__)
+
+     vSemaphoreCreateBinary( mutex_ );
+     condition_ = &mutex_;
 
 #endif 
 }
@@ -46,6 +52,9 @@ Mutex :: ~Mutex()
   DeleteCriticalSection(&mutex_);
   CloseHandle( condition_ );
 
+#elif defined(__RTOS__)
+  vSemaphoreDelete(mutex_);
+
 #endif 
 }
 
@@ -59,6 +68,10 @@ void Mutex :: lock()
 
   EnterCriticalSection(&mutex_);
 
+#elif defined(__RTOS__)
+
+  xSemaphoreTake( mutex_, ( TickType_t ) portMAX_DELAY ); 
+
 #endif 
 }
 
@@ -71,6 +84,10 @@ void Mutex :: unlock()
 #elif defined(__OS_WINDOWS__)
 
   LeaveCriticalSection(&mutex_);
+
+#elif defined(__RTOS__)
+
+  xSemaphoreGive( mutex_ );
 
 #endif 
 }
@@ -102,3 +119,5 @@ void Mutex :: signal()
 }
 
 } // stk namespace
+
+#endif 

@@ -32,13 +32,24 @@
 #include "SKINImsg.h"
 #include <cmath>
 
+
+#ifdef __VFS__
+extern const unsigned char marmstk1_raw[];
+extern unsigned int marmstk1_raw_len;
+#endif
+
 namespace stk {
 
 ModalBar :: ModalBar( void )
   : Modal()
 {
+  #ifdef __VFS__
+  wave_ = new MemoryWvIn( (Stk::rawwavePath() + "marmstk1.raw").c_str(), marmstk1_raw,marmstk1_raw_len );
+  #else
   // Concatenate the STK rawwave path to the rawwave file
   wave_ = new FileWvIn( (Stk::rawwavePath() + "marmstk1.raw").c_str(), true );
+  #endif
+
   wave_->setRate( 0.5 * 22050.0 / Stk::sampleRate() );
 
   // Set the resonances for preset 0 (marimba).

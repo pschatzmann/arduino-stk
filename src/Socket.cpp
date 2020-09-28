@@ -10,7 +10,7 @@
 /***************************************************/
 
 #include "Socket.h"
-
+#ifndef __NOIP__
 namespace stk {
 
 Socket :: Socket()
@@ -76,3 +76,6 @@ int Socket :: readBuffer(int socket, void *buffer, long bufferSize, int flags )
 }
 
 } // stk namespace
+
+#endif
+

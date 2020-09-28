@@ -1,3 +1,4 @@
+
 /***************************************************/
 /*! \class InetWvOut
     \brief STK internet streaming output class.
@@ -22,6 +23,8 @@
 /***************************************************/
 
 #include "InetWvOut.h"
+#ifdef STK_MUTEXT_SUPPORTED
+
 #include "TcpClient.h"
 #include "UdpSocket.h"
 #include <sstream>
@@ -229,3 +232,5 @@ void InetWvOut :: tick( const StkFrames& frames )
 }
 
 } // stk namespace
+
+#endif
