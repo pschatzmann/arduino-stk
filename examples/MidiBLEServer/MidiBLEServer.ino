@@ -19,6 +19,7 @@ StkFloat amplitude = 100; // 0 to 128
 
 void setup() {
   Serial.begin(115200);
+  
   voicer.addInstrument(&clarinet, 0);
   ble.start(voicer);
 }

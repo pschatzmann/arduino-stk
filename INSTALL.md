@@ -3,6 +3,14 @@ By Perry R. Cook and Gary P. Scavone, 1995-2019.
 
 The Synthesis ToolKit in C++ can be used in a variety of ways, depending on your particular needs.  Some people simply choose the classes they need for a particular project and copy those to their project directory.  Others like to compile and link to a library of object files.  STK was not designed with one particular style of use in mind.
 
+## Arduino
+Download the project as zip and install the file in the Arduino IDE via -> Sketch -> Include Library -> Add ZIP Library or execute the following command in the Arduino Library Folder
+
+```
+git clone https://github.com/pschatzmann/Arduino-STK.git
+```
+
+
 ## Unix systems and MinGW
 
 1. If you downloaded the software from the git repository, first run autoconf,

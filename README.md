@@ -31,15 +31,4 @@ git clone https://github.com/pschatzmann/Arduino-STK.git
 
 You can consult the ArdConig.h file for the available functionality for your processor!
 
-Standard Arduinos are not supported yet because the STK framwork is using the following (missing) classes which are not available
-in the Standard Arduino implementation:
-
-- std::vector
-- std::string
-- std::ostringstream
-- std::cout
-- std::queue
-
-I tried to compile the code with Mike Materas STL Library, but I unfortunatly there are some [open issues](https://github.com/arduino/ArduinoCore-avr/issues/287)
-
-
+If you to use the library on a Standard Arduino please check out [my related Blog](https://www.pschatzmann.ch/home/2020/09/29/the-synthesis-toolkit-stk-library-for-arduino-running-on-a-nano/)

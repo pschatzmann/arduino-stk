@@ -16,6 +16,7 @@ StkFloat amplitude = 100; // 0 to 128
 
 void setup() {
   Serial.begin(115200);
+  
   WiFi.begin(SSID, PWD);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print('.');

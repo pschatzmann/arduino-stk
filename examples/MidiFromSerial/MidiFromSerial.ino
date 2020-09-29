@@ -11,6 +11,7 @@ ArdMidiStreamIn in(Serial, handler);
 
 void setup() {
   Serial.begin(115200);
+  
   voicer.addInstrument(&clarinet);
 }
 

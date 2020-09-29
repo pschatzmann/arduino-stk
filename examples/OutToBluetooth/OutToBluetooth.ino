@@ -13,6 +13,7 @@ StkFloat amplitude = 100; // 0 to 128
 
 void setup() {
   Serial.begin(115200);
+  
   Stk::setSampleRate( 44100.0 );
   voicer.addInstrument(&clarinet);
 

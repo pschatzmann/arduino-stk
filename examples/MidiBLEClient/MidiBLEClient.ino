@@ -11,6 +11,8 @@ ArdMidiBleEventHandler handler(&voicer);
 ArdMidiBleServer ble("MidiServer", &handler);
 
 void setup() {
+  Serial.begin(115200);
+
   voicer.addInstrument(&clarinet, 0);
   ble.start(voicer);
 }

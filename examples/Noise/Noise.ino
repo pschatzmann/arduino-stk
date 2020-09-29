@@ -2,7 +2,7 @@
 using namespace stk;
 
 void setup() {
-  Serial.setup(115200);
+  Serial.begin(115200);
 
   StkFloat output;
   Noise noise;

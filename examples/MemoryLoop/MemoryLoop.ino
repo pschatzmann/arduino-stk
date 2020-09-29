@@ -12,6 +12,7 @@ ArdStreamOut output(Serial);
 
 void setup() {
   Serial.begin(115200);
+
   Stk::setSampleRate( 44100.0 );
   input.setFrequency( 440.0 );
 }

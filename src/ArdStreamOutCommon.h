@@ -15,7 +15,6 @@ namespace stk {
     \brief Abstract class for Output to Arduiono HardwareArdStream
 
     We are wrting the data to the indicated Ardino HardwareArdStream device.
-    SoftArdStream is not supported because it is too slow. 
 
     by Phil Schatzmann
 
