@@ -86,7 +86,7 @@ FM :: ~FM( void )
 void FM :: loadWaves( const char **filenames )
 {
   for (unsigned int i=0; i<nOperators_; i++ ) {
-    #ifdef __VFS__
+    #ifdef __RAW_ARRAYS__
     waves_[i] = new MemoryLoop( filenames[i] );
     #else
     waves_[i] = new FileLoop( filenames[i], true );

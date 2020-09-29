@@ -1,8 +1,8 @@
-#ifndef ARDMIDISTREAMIN_H
-#define ARDMIDISTREAMIN_H
-
 #include "ArdConfig.h"
 #ifdef __MIDI__
+
+#ifndef ARDMIDISTREAMIN_H
+#define ARDMIDISTREAMIN_H
 
 #include "ArdMidiCommon.h"
 #include "ArdMidiEventHandler.h"

@@ -2,10 +2,11 @@
 #define STK_SKINI_H
 
 #include "Stk.h"
+#ifndef __NO_FSTREAM__
+
 #include <vector>
 #include <string>
 #include <fstream>
-
 namespace stk {
 
 /***************************************************/
@@ -118,5 +119,5 @@ static const double Midi2Pitch[129] = {
 } // stk namespace
 
 #endif
-
+#endif
 

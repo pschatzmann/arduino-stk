@@ -16,6 +16,8 @@
 /**********************************************************************/
 
 #include "MidiFileIn.h"
+#ifndef __NO_FSTREAM__
+
 #include <cstring>
 #include <iostream>
 
@@ -351,3 +353,5 @@ bool MidiFileIn :: readVariableLength( unsigned long *value )
 } 
 
 } // stk namespace
+
+#endif // __NO_FSTREAM__

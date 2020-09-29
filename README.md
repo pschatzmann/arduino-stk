@@ -24,4 +24,22 @@ Download the project as zip and install the file in the Arduino IDE via -> Sketc
 git clone https://github.com/pschatzmann/Arduino-STK.git
 ```
 
+## Supported Processors
+
+- ESP32 - The deveopment and testing has been done with the ESP32 so this will be the most stable and complete platform. 
+- ESP8266 - I managed to have the code base compiling with the ESP8266 as well. This environment does not support Bluetooth. 
+
+You can consult the ArdConig.h file for the available functionality for your processor!
+
+Standard Arduinos are not supported yet because the STK framwork is using the following (missing) classes which are not available
+in the Standard Arduino implementation:
+
+- std::vector
+- std::string
+- std::ostringstream
+- std::cout
+- std::queue
+
+I tried to compile the code with Mike Materas STL Library, but I unfortunatly there are some [open issues](https://github.com/arduino/ArduinoCore-avr/issues/287)
+
 

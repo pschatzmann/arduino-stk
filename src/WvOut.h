@@ -73,8 +73,7 @@ inline StkFloat& WvOut :: clipTest( StkFloat& sample )
   if ( clip == true && clipping_ == false ) {
     // First occurrence of clipping since instantiation or reset.
     clipping_ = true;
-    oStream_ << "WvOut: data value(s) outside +-1.0 detected ... clamping at outer bound!";
-    handleError( StkError::WARNING );
+    handleError("WvOut: data value(s) outside +-1.0 detected ... clamping at outer bound!",  StkError::WARNING );
   }
 
   return sample;

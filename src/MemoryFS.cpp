@@ -1,6 +1,6 @@
 
 #include "MemoryFS.h"
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
 
 namespace stk {
 

@@ -2,6 +2,8 @@
 #define STK_MESSAGER_H
 
 #include "Stk.h"
+// deactivate this functionality if no fstreams are supported by the environment
+#ifndef __NO_FSTREAM__
 #include "Skini.h"
 #include <queue>
 
@@ -164,3 +166,5 @@ class Messager : public Stk
 } // stk namespace
 
 #endif
+
+#endif //__NO_FSTREAM__

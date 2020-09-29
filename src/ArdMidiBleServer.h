@@ -1,5 +1,5 @@
 #include "ArdConfig.h"
-#ifdef __MIDI__
+#ifdef __MIDI_BLE__
 #ifndef ARDMIDIBLESERVER_H
 #define ARDMIDIBLESERVER_H
 

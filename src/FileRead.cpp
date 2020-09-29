@@ -32,12 +32,15 @@
 /***************************************************/
 
 #include "FileRead.h"
+#ifndef __ARDUINO__
 #include <sys/stat.h>
 #include <sys/types.h>
+#endif
 #include <cstring>
 #include <cmath>
 #include <cstdio>
 #include <fcntl.h>
+
 
 namespace stk {
 
@@ -134,9 +137,15 @@ void FileRead :: open( std::string fileName, bool typeRaw, unsigned int nChannel
   handleError( StkError::FILE_ERROR );
 }
 
+
+
 bool FileRead :: getRawInfo( const char *fileName, unsigned int nChannels, StkFormat format, StkFloat rate )
 {
-  // on the ESP8266 we get sysstat.c:12: undefined reference to `_stat_r'
+#ifdef __NO_FSTREAM__
+  oStream_ << "FileRead: Not supported by ARDUINO (" << fileName << ").";
+  return false;
+#else
+
   struct stat filestat;
   // Use the system call "stat" to determine the file length.
   if ( stat(fileName, &filestat) == -1 ) {
@@ -175,6 +184,7 @@ bool FileRead :: getRawInfo( const char *fileName, unsigned int nChannels, StkFo
 #endif
 
   return true;
+#endif
 }
 
 bool FileRead :: getWavInfo( const char *fileName )

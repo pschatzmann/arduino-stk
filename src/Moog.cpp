@@ -22,7 +22,7 @@
 #include "SKINImsg.h"
 #include "ArdConfig.h"
 
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
   extern unsigned char *mandpluk_raw, *impuls20_raw, *sinewave_raw;
   extern unsigned int mandpluk_raw_len, impuls20_raw_len,sinewave_raw_len;
 #endif
@@ -33,7 +33,7 @@ namespace stk {
 Moog :: Moog( void )
 {
 
-  #ifdef __VFS__
+  #ifdef __RAW_ARRAYS__
   // Concatenate the STK rawwave path to the rawwave file
   attacks_.push_back( new MemoryWvIn( (Stk::rawwavePath() + "mandpluk.raw").c_str(), mandpluk_raw,mandpluk_raw_len ) );
   loops_.push_back ( new MemoryLoop( (Stk::rawwavePath() + "impuls20.raw").c_str(), impuls20_raw,impuls20_raw_len ) );

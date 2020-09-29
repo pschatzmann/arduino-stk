@@ -2,7 +2,7 @@
 #include "FileLoop.h"
 #include "MemoryFS.h"
 
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
 
 #ifndef STK_MEMORYLOOP_H
 #define STK_MEMORYLOOP_H
@@ -76,6 +76,13 @@ class MemoryLoop : public FileLoop {
     anyhow.
   */
   bool  isOpen(void );
+
+  //! Return the input file sample rate in Hz (not the data read rate).
+  /*!
+    STK RAW files have a sample rate of 22050 Hz
+  */
+  StkFloat  getFileRate( void );
+
 
 protected:
   virtual void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize );

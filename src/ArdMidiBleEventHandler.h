@@ -1,5 +1,5 @@
 #include "ArdConfig.h"
-#ifdef __BLE_MIDI__
+#ifdef __MIDI_BLE__
 #ifndef ARDMIDIBLEEVENTHANDLER_H
 #define ARDMIDIBLEEVENTHANDLER_H
 

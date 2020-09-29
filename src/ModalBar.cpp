@@ -33,7 +33,7 @@
 #include <cmath>
 
 
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
 extern const unsigned char marmstk1_raw[];
 extern unsigned int marmstk1_raw_len;
 #endif
@@ -43,7 +43,7 @@ namespace stk {
 ModalBar :: ModalBar( void )
   : Modal()
 {
-  #ifdef __VFS__
+  #ifdef __RAW_ARRAYS__
   wave_ = new MemoryWvIn( (Stk::rawwavePath() + "marmstk1.raw").c_str(), marmstk1_raw,marmstk1_raw_len );
   #else
   // Concatenate the STK rawwave path to the rawwave file

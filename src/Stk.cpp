@@ -206,23 +206,35 @@ void Stk :: handleError( const char *message, StkError::Type type )
 
 void Stk :: handleError( std::string message, StkError::Type type )
 {
+  #ifdef __ARDUINO__
+  std::ostream* out = &std::cout;
+  #else
+  std::ostream* out = &std::cerr;
+  #endif
+
+
   if ( type == StkError::WARNING || type == StkError::STATUS ) {
     if ( !showWarnings_ ) return;
-    std::cerr << '\n' << message << '\n' << std::endl;
+      *out << '\n' << message << '\n' << std::endl;
   }
   else if (type == StkError::DEBUG_PRINT) {
 #if defined(_STK_DEBUG_)
-    std::cerr << '\n' << message << '\n' << std::endl;
+    out << '\n' << message << '\n' << std::endl;
 #endif
   }
   else {
     if ( printErrors_ ) {
       // Print error message before throwing.
-      std::cerr << '\n' << message << '\n' << std::endl;
+      *out << '\n' << message << '\n' << std::endl;
+
+      #ifndef __NO_EXCEPTIONS__
+      // throwing exceptions might give compile errors in some environments
+      // we disable the trow and replace it with an assert(false) which will 
+      // cause the processor to restart
+        throw StkError(message, type);
+      #endif
+
     }
-    #ifndef __NO_EXCEPTIONS__
-    throw StkError(message, type);
-    #endif
   }
 }
 

@@ -24,6 +24,8 @@
 /***************************************************/
 
 #include "Skini.h"
+#ifndef __NO_FSTREAM__
+
 #include "SKINItbl.h"
 #include <cstdlib>
 #include <sstream>
@@ -226,3 +228,6 @@ std::string Skini :: whatsThisController( long number )
 }
 
 } // stk namespace
+
+#endif // __NO_FSTREAM__
+

@@ -11,7 +11,7 @@
 /***************************************************/
 
 #include "MemoryLoop.h"
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
 
 namespace stk {
 
@@ -116,6 +116,11 @@ void MemoryLoop :: closeFile( void ){
   fs_ptr->close();
   finished_ = true;
 }
+
+StkFloat MemoryLoop :: getFileRate( void )  { 
+  return 22050.0;
+}
+
 
 bool MemoryLoop :: isOpen( void ) { 
   return fs_ptr->isOpen();

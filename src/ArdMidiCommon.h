@@ -3,7 +3,7 @@
 #ifndef ARDMIDICOMMON_H
 #define ARDMIDICOMMON_H
 
-#ifdef __BLE_MIDI__
+#ifdef __MIDI_BLE__
 #include "sdkconfig.h"
 #include <freertos/FreeRTOS.h>
 #include <freertos/event_groups.h>
@@ -28,14 +28,17 @@
 #include "GeneralUtils.h"
 #include "esp_log.h"
 #include "BLE2902.h"
+
+#define MIDI_SERVICE_UUID        "03b80e5a-ede8-4b33-a751-6ce34ec4c700"
+#define MIDI_CHARACTERISTIC_UUID "7772e5db-3868-4112-a1a9-f2669d106bf3"
+
 #endif
+
 #include "Arduino.h"
 #include "Voicer.h"
 #include "ArdMidiEventHandler.h"
 
 
-#define MIDI_SERVICE_UUID        "03b80e5a-ede8-4b33-a751-6ce34ec4c700"
-#define MIDI_CHARACTERISTIC_UUID "7772e5db-3868-4112-a1a9-f2669d106bf3"
 
 namespace stk {
 

@@ -33,6 +33,8 @@
 /***************************************************/
 
 #include "Messager.h"
+#ifndef __NO_FSTREAM__
+
 #include <iostream>
 #include <algorithm>
 #include "SKINImsg.h"
@@ -433,3 +435,5 @@ THREAD_RETURN THREAD_TYPE socketHandler(void *ptr)
 
 } // stk namespace
 
+
+#endif // __NO_FSTREAM__

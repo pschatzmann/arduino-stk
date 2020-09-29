@@ -2,10 +2,11 @@
 #define STK_MIDIFILEIN_H
 
 #include "Stk.h"
+#ifndef __NO_FSTREAM__
 #include <string>
 #include <vector>
-#include <fstream>
 #include <sstream>
+#include <fstream>
 
 namespace stk {
 
@@ -132,4 +133,5 @@ class MidiFileIn : public Stk
 
 } // stk namespace
 
+#endif
 #endif

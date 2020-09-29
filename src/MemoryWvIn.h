@@ -3,7 +3,7 @@
 
 #include "FileWvIn.h"
 #include "MemoryFS.h"
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
 
 //#include <math.h>
 

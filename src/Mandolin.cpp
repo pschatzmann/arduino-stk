@@ -44,7 +44,7 @@ Mandolin :: Mandolin( StkFloat lowestFrequency )
     handleError( StkError::FUNCTION_ARGUMENT );
   }
 
-  #ifdef __VFS__
+  #ifdef __RAW_ARRAYS__
   MemoryFS::registerFile("mand1.raw", mand1_raw, mand1_raw_len);
   MemoryFS::registerFile("mand2.raw", mand2_raw, mand2_raw_len);
   MemoryFS::registerFile("mand3.raw", mand3_raw, mand3_raw_len);

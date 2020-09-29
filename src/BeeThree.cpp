@@ -35,7 +35,7 @@
 #include "BeeThree.h"
 #include "ArdConfig.h"
 
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
   extern unsigned char  *fwavblnk_raw, *sinewave_raw;
   extern unsigned int fwavblnk_raw_len,sinewave_raw_len;
 #endif
@@ -45,7 +45,7 @@ namespace stk {
 BeeThree :: BeeThree( void )
   : FM()
 {
-  #ifdef __VFS__
+  #ifdef __RAW_ARRAYS__
   for ( unsigned int i=0; i<3; i++ ){
     waves_[i] = new MemoryLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), sinewave_raw,sinewave_raw_len );
   }

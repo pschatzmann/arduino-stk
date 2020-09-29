@@ -18,7 +18,7 @@
 #include "Drummer.h"
 #include <cmath>
 
-#ifdef __VFS__
+#ifdef __RAW_ARRAYS__
 extern const unsigned char dope_raw[], bassdrum_raw[], snardrum_raw[], tomlowdr_raw[], tommiddr_raw[],
                       hihatcym_raw[], ridecymb_raw[], crashcym_raw[], cowbell1_raw[],tambourn_raw[]; 
 extern unsigned int dope_raw_len, bassdrum_raw_len, snardrum_raw_len, tomlowdr_raw_len, tommiddr_raw_len,
@@ -70,7 +70,7 @@ Drummer :: Drummer( void ) : Instrmnt()
   soundOrder_ = std::vector<int> (DRUM_POLYPHONY, -1);
   soundNumber_ = std::vector<int> (DRUM_POLYPHONY, -1);
 
-   #ifdef __VFS__
+   #ifdef __RAW_ARRAYS__
   MemoryFS::registerFile("dope.raw",dope_raw,dope_raw_len);
   MemoryFS::registerFile("bassdrum.raw",bassdrum_raw,bassdrum_raw_len);
   MemoryFS::registerFile("snardrum.raw",snardrum_raw,snardrum_raw_len);

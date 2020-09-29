@@ -7,8 +7,9 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
-
-//#include <cstdlib>
+#ifdef __ARDUINO__
+#include <cstdlib>
+#endif
 
 
 /*! \namespace stk
@@ -119,7 +120,14 @@ public:
   virtual ~StkError(void) {};
 
   //! Prints thrown error message to stderr.
-  virtual void printMessage(void) { std::cerr << '\n' << message_ << "\n\n"; }
+  virtual void printMessage(void) { 
+    #ifdef __ARDUINO__
+    std::ostream* out = &std::cout;
+    #else
+    std::ostream* out = &std::cerr;
+    #endif
+    *out << '\n' << message_ << "\n\n";
+  }
 
   //! Returns the thrown error message type.
   virtual const Type& getType(void) { return type_; }
