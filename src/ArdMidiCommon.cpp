@@ -5,6 +5,8 @@ namespace stk {
 
 ArdMidiCommon::ArdMidiCommon(){
      this->connectionStatus = Unconnected;
+     this->timestampLow = 0;
+     this->timestampHigh = 0;
  }
 
 void ArdMidiCommon :: setVoicer(Voicer &voicer) {
@@ -28,8 +30,8 @@ void ArdMidiCommon ::  updateTimestamp(MidiMessage *pMsg) {
             timestampHigh = 0;
         }
     }
-    pMsg->timestampHigh = 0b10000000 | timestampHigh;
-    pMsg->timestampHigh = 0b10000000 | timestampLow;
+    pMsg->timestampHigh = 0b10000000 + timestampHigh;
+    pMsg->timestampLow = 0b10000000 + timestampLow;
 }
 
 

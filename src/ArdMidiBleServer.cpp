@@ -19,44 +19,6 @@ void ArdMidiBleServer :: start() {
     pServer = BLEDevice::createServer();
     pServer->setCallbacks(new ArdMidiBleServerCallback(&connectionStatus));
 
-    // Create the BLE Service
-    BLEService *pService = pServer->createService(BLEUUID(MIDI_SERVICE_UUID));
-    // Create a BLE Characteristic
-    pCharacteristic = pService->createCharacteristic(
-                        BLEUUID(MIDI_CHARACTERISTIC_UUID),
-                        BLECharacteristic::PROPERTY_READ   |
-                        BLECharacteristic::PROPERTY_WRITE_NR  |
-                        BLECharacteristic::PROPERTY_NOTIFY |
-                        BLECharacteristic::PROPERTY_INDICATE
-                    );
-                    
-    pCharacteristic->setAccessPermissions(ESP_GATT_PERM_READ_ENCRYPTED | ESP_GATT_PERM_WRITE_ENCRYPTED);
-    pCharacteristic->addDescriptor(new BLE2902());
-
-    // Start the service
-    pService->start();
-
-    BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
-    pAdvertising->addServiceUUID(MIDI_SERVICE_UUID);
-    pAdvertising->setScanResponse(true);
-    pAdvertising->setMinPreferred(0x06);  // functions that help with iPhone connections issue
-    pAdvertising->setMinPreferred(0x12);
-    pAdvertising->start();
-
-    ESP_LOGD(APP_SERVER, "started");
-
-}
-
-void ArdMidiBleServer :: start(Voicer &voicer) {
-    setVoicer(voicer);
-
-    // Create the BLE Device
-    BLEDevice::init(this->name);
-
-    // Create the BLE Server
-    pServer = BLEDevice::createServer();
-    pServer->setCallbacks(new ArdMidiBleServerCallback(&connectionStatus));
-
     //BLEDevice::setEncryptionLevel((esp_ble_sec_act_t)ESP_LE_AUTH_REQ_SC_BOND);
 
     // Create the BLE Service
@@ -70,13 +32,18 @@ void ArdMidiBleServer :: start(Voicer &voicer) {
                         BLECharacteristic::PROPERTY_NOTIFY |
                         BLECharacteristic::PROPERTY_INDICATE
                     );
+
                     
-    if (this->pEventHandler == NULL){
-        this->pEventHandler =  new ArdMidiBleEventHandler(&voicer, &(this->receivingChannel));
+    if (this->pVoicer != nullptr) {                
+        if (this->pEventHandler == nullptr){
+            this->pEventHandler =  new ArdMidiBleEventHandler(pVoicer, &(this->receivingChannel));
+        }
+        pCharacteristic->setCallbacks(this->pEventHandler);
     }
-    pCharacteristic->setCallbacks(this->pEventHandler);
-    pCharacteristic->setAccessPermissions(ESP_GATT_PERM_READ_ENCRYPTED | ESP_GATT_PERM_WRITE_ENCRYPTED);
+
+    //pCharacteristic->setAccessPermissions(ESP_GATT_PERM_READ_ENCRYPTED | ESP_GATT_PERM_WRITE_ENCRYPTED);
     pCharacteristic->addDescriptor(new BLE2902());
+    pCharacteristic->setBroadcastProperty(true);
 
     // Start the service
     pService->start();
@@ -96,6 +63,12 @@ void ArdMidiBleServer :: start(Voicer &voicer) {
 
     ESP_LOGD(APP_SERVER, "started");
 
+}
+
+void ArdMidiBleServer :: start(Voicer &voicer) {
+	ESP_LOGD(APP_SERVER, "start");
+    setVoicer(voicer);
+    start();
 }
 
 void ArdMidiBleServer :: writeData(MidiMessage *pMsg, int len) {
@@ -120,10 +93,12 @@ ArdMidiBleServerCallback :: ArdMidiBleServerCallback(ConnectionStatus *pStatus){
     this->pConnectionStatus = pStatus;
 }
 void ArdMidiBleServerCallback :: onConnect(BLEServer* pServer) {
+	ESP_LOGD(APP_SERVER, "onConnect");
     *pConnectionStatus = Connected;
 };
 
 void ArdMidiBleServerCallback :: onDisconnect(BLEServer* pServer) {
+	ESP_LOGD(APP_SERVER, "onDisconnect");
     *pConnectionStatus = Disconnected;
 }
 

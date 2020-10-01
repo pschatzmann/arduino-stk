@@ -7,7 +7,6 @@
 
 using namespace stk;
 
-
 WiFiUDP udp;
 Clarinet clarinet(440);
 Voicer voicer;
@@ -33,10 +32,5 @@ void setup() {
 
 void loop() {
   in.loop();
-}```
-
-## BLE Server
-The MIDI BLE Server functionality is provided by the __ArdMidiBleServer__ class. Above you have already seen all relevant components and how they work together.
-
-### Sending of MIDI Messages over BLE
+}
 

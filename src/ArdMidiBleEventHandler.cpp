@@ -3,6 +3,8 @@
 
 namespace stk {
 
+char * APP_EVENT_HDLR = "ArdMidiBleEventHandler";
+
 ArdMidiBleEventHandler::ArdMidiBleEventHandler(Voicer *p_voicer, uint8_t *p_channel)
 : ArdMidiEventHandler(p_voicer, p_channel) {
 };
@@ -15,7 +17,7 @@ ArdMidiBleEventHandler::~ArdMidiBleEventHandler(){
  * @param [in] pCharacteristic The characteristic that is the source of the event.
  */
 void ArdMidiBleEventHandler::onRead(BLECharacteristic* pCharacteristic) {
-	//ESP_LOGD(APP, "onRead");
+	ESP_LOGD(APP_EVENT_HDLR, "onRead");
 } // onRead
 
 
@@ -24,8 +26,9 @@ void ArdMidiBleEventHandler::onRead(BLECharacteristic* pCharacteristic) {
  * @param [in] pCharacteristic The characteristic that is the source of the event.
  */
 void ArdMidiBleEventHandler::onWrite(BLECharacteristic* pCharacteristic) {
+	ESP_LOGD(APP_EVENT_HDLR, "onWrite");
   const char* str = pCharacteristic->getValue().c_str();
-  int len = strlen(str);
+  int len = pCharacteristic->getValue().length();
   parse((uint8_t*)str, len);
 } 
 

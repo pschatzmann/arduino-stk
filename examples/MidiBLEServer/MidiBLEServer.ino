@@ -10,18 +10,15 @@ Clarinet clarinet(440);
 ArdMidiBleEventHandler handler(&voicer);
 ArdMidiBleServer ble("MidiServer", &handler);
 
-using namespace stk;
-
-ArdMidiBleServer ble("MidiServer");
-
 StkFloat note = 64; // 0 to 128
 StkFloat amplitude = 100; // 0 to 128
 
 void setup() {
   Serial.begin(115200);
   
-  voicer.addInstrument(&clarinet, 0);
+  voicer.addInstrument(&clarinet, 1);
   ble.start(voicer);
+  ble.setDefaultSendingChannel(0);
 }
 
 void loop() {
@@ -36,4 +33,5 @@ void loop() {
     note = 30;
   }
 }
+
 
