@@ -5,6 +5,7 @@
 #define ARDMIDIEVENTHANDLER_H
 
 #include "Voicer.h"
+
 namespace stk {
 
 /***************************************************/
@@ -27,7 +28,7 @@ namespace stk {
 /***************************************************/
 class ArdMidiEventHandler  {
     public:
-        ArdMidiEventHandler(Voicer *voicer, uint8_t *p_channel = NULL );
+        ArdMidiEventHandler(Voicer *voicer, int *p_channel = NULL );
          ~ArdMidiEventHandler();
         void addInstrument(Instrmnt &instrument, int channel);
         void parse(uint8_t*  msg, uint8_t len);
@@ -39,7 +40,7 @@ class ArdMidiEventHandler  {
 
     protected:
         Voicer *p_voicer; 
-        uint8_t *p_channel;
+        int *p_channel;
 };
 
 

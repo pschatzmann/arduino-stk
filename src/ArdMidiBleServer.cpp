@@ -5,7 +5,8 @@ namespace stk {
 
 const char* APP_SERVER = "ArdMidiBleServer";
 
-ArdMidiBleServer::ArdMidiBleServer(char* name, ArdMidiBleEventHandler* pEventHandler){
+ArdMidiBleServer::ArdMidiBleServer(char* name, ArdMidiBleEventHandler* pEventHandler)
+ : ArdMidiCommon() {
      this->name = name;
      this->pEventHandler = pEventHandler;
      this->connectionStatus = Unconnected;
@@ -34,10 +35,12 @@ void ArdMidiBleServer :: start() {
                     );
 
                     
-    if (this->pVoicer != nullptr) {                
-        if (this->pEventHandler == nullptr){
+    if (this->pVoicer != NULL) {                
+        if (this->pEventHandler == NULL){
+            ESP_LOGD(APP_SERVER, "Creating new ArdMidiBleEventHandler for voicer");
             this->pEventHandler =  new ArdMidiBleEventHandler(pVoicer, &(this->receivingChannel));
         }
+        ESP_LOGD(APP_SERVER, "Setting callback for characteristic");
         pCharacteristic->setCallbacks(this->pEventHandler);
     }
 

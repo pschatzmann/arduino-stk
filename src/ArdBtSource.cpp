@@ -3,11 +3,14 @@
 
 namespace stk {
 
+char * APP_ArdBtSource = "ArdBtSource";
+
 // Used to make the voicer available to the callback
 Voicer *pArdBtSourceVoicer;
 
 //! Default Constructor
 ArdBtSource :: ArdBtSource( ) {
+    a2dp_source = new BluetoothA2DPSource();
 }
 
 //! Destructor
@@ -28,6 +31,9 @@ StkFloat&  clipTest( StkFloat& sample )
     }
     return sample;
 }
+
+bool hasSoundData;
+long logTime;
 
 //! Callback: we just get the ticks from the pVoicer converted to Int16
 int32_t get_stk_data(uint8_t *data, int32_t len) {
@@ -53,8 +59,18 @@ int32_t get_stk_data(uint8_t *data, int32_t len) {
           ptr++;
           // Channel 2
           *ptr = *(ptr-1);
+          if (*ptr!=0){
+            hasSoundData = true;
+          }
           ptr++;
     }
+
+    if (logTime < millis()){
+      logTime = millis()+5000;
+      ESP_LOGD(APP_ArdBtSource, "Playing %s sound!", hasSoundData ? "" : "no" );
+      hasSoundData = false;
+    }
+
     return len;
 }
 
@@ -62,15 +78,19 @@ void ArdBtSource :: start(char* name, Voicer &voicer) {
   this->pVoicer = &voicer;
   pArdBtSourceVoicer = &voicer;
 
-  if (a2dp_source != NULL) {
-    delete a2dp_source;
-  }
-  a2dp_source = new BluetoothA2DPSource();
   a2dp_source->startRaw(name, get_stk_data);
 }
 
 bool ArdBtSource :: isConnected(){
   return a2dp_source->isConnected();
+}
+
+void ArdBtSource :: setNVSInit(bool doInit){
+  a2dp_source->setNVSInit(doInit);
+}
+
+void ArdBtSource ::  setResetBLE(bool doInit){
+  a2dp_source->setResetBLE(doInit);
 }
 
 } // stk namespace

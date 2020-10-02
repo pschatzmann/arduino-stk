@@ -9,6 +9,7 @@
 #if defined(ESP32)    
     #define __RAW_ARRAYS__      // raw files as compilable c arrays
     #define __STREAMS__         // output to Ardiono Streams
+    #define __BT_A2DP__         // output to A2DP sink
     #define __MIDI__            // support Midi 
     #define __MIDI_BLE__        // support BLE 
     #define __RTOS__            // supports Free RTOS

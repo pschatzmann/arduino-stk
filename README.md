@@ -16,6 +16,7 @@ Further information can be found in my Blogs
 - [Overview](https://www.pschatzmann.ch/home/2020/09/24/the-synthesis-toolkit-skt-library-for-the-arduino-esp32/)
 - [Sound without Files](https://www.pschatzmann.ch/home/2020/09/26/the-synthesis-toolkit-stk-w-o-files/)
 - [Using Midi](https://www.pschatzmann.ch/home/2020/09/28/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-midi/) 
+- [Bluetooth Support](https://www.pschatzmann.ch/home/2020/10/02/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-bluetooth-support/)
 
 ## Installation
 Download the project as zip and install the file in the Arduino IDE via -> Sketch -> Include Library -> Add ZIP Library or execute the following command in the Arduino Library Folder

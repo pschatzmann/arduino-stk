@@ -17,7 +17,7 @@ void ArdMidiCommon :: setDefaultSendingChannel(int8_t channel) {
     this->sendingChannel = channel;
 }
 
-void ArdMidiCommon :: setFilterReceivingChannel(int8_t channel){
+void ArdMidiCommon :: setFilterReceivingChannel(int channel){
     this->receivingChannel = channel;
 }
 

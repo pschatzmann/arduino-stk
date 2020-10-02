@@ -75,7 +75,7 @@ class ArdMidiCommon {
         ArdMidiCommon();
 
         //! Activates a filter on receiving messages to the indicated channel
-        void setFilterReceivingChannel(int8_t channel);
+        void setFilterReceivingChannel(int channel);
 
         //! Sets the default channel for the sending commands. 
         void setDefaultSendingChannel(int8_t channel);
@@ -131,7 +131,7 @@ class ArdMidiCommon {
         ConnectionStatus connectionStatus;
         Voicer *pVoicer;
         MidiMessage outMessage;
-        uint8_t receivingChannel = -1;  
+        int receivingChannel = -1;  
         uint8_t sendingChannel = 0;  
         uint8_t timestampLow;
         uint8_t timestampHigh;

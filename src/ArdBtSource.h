@@ -1,6 +1,6 @@
 
 #include "Stk.h"
-#ifdef __ESP__
+#ifdef __BT_A2DP__
 
 #ifndef ARDBTSOURCE_H
 #define ARDBTSOURCE_H
@@ -9,6 +9,7 @@
 #include "ArdCommonOut.h"
 #include "BluetoothA2DPSource.h"
 #include "Voicer.h"
+#include "esp_log.h"
 
 namespace stk {
 
@@ -37,6 +38,13 @@ class ArdBtSource : public Stk
 
     //! Checks if this device is still connnected
     bool isConnected();
+
+    //! Defines if the Flash NVS should be reset on start
+    void setNVSInit(bool doInit);
+
+    //! Defines if the BLE should be reset on start
+    void setResetBLE(bool doInit);
+
 
   protected:
     Voicer *pVoicer;

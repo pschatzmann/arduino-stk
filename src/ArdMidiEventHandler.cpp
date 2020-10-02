@@ -9,7 +9,7 @@ const char* APP = "ArdMidiEventHandler";
 
 //ArdMidiEventHandler *self_ArdMidiEventHandler;
 
-ArdMidiEventHandler::ArdMidiEventHandler(Voicer *p_voicer, uint8_t *p_channel){
+ArdMidiEventHandler::ArdMidiEventHandler(Voicer *p_voicer, int *p_channel){
   this->p_voicer = p_voicer;
   this->p_channel = p_channel;
 
@@ -70,7 +70,8 @@ void ArdMidiEventHandler::parse(uint8_t* msg, uint8_t len){
 
 void ArdMidiEventHandler::onCommand(uint8_t channel, uint8_t status, uint8_t p1,uint8_t p2 ){
   ESP_LOGD(APP, "onCommand channel:%d, status:%d, p1:%d,  p2:%d", (int)channel, (int)status, (int)p1, (int)p2);
-  if (p_channel==NULL || *p_channel == -1 || *p_channel == channel) {
+  ESP_LOGD(APP, "onCommand filtered channel: %d ", *p_channel);
+  if (p_channel==NULL || *p_channel < 0 || *p_channel == channel) {
     switch (status) {
       case 0b1001:
         onNoteOn(channel, p1, p2);
@@ -92,10 +93,12 @@ void ArdMidiEventHandler::onCommand(uint8_t channel, uint8_t status, uint8_t p1,
 }
 
 void ArdMidiEventHandler::onNoteOn(uint8_t channel, uint8_t note, uint8_t velocity){
+    ESP_LOGD(APP, "noteOn note:%d, velocity:%d, channel:%d", (int)note, (int)velocity, (int)channel);
     p_voicer->noteOn(note, velocity, channel);
 };
 
 void ArdMidiEventHandler::onNoteOff(uint8_t channel, uint8_t note, uint8_t velocity){
+    ESP_LOGD(APP, "noteOff note:%d, velocity:%d, channel:%d", (int)note, (int)velocity, (int)channel);
     p_voicer->noteOff(note, velocity, channel);
 };
 void ArdMidiEventHandler::onControlChange(uint8_t channel, uint8_t controller, uint8_t value){

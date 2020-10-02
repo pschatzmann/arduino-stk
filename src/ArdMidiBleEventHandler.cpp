@@ -5,7 +5,7 @@ namespace stk {
 
 char * APP_EVENT_HDLR = "ArdMidiBleEventHandler";
 
-ArdMidiBleEventHandler::ArdMidiBleEventHandler(Voicer *p_voicer, uint8_t *p_channel)
+ArdMidiBleEventHandler::ArdMidiBleEventHandler(Voicer *p_voicer, int *p_channel)
 : ArdMidiEventHandler(p_voicer, p_channel) {
 };
 

@@ -7,6 +7,7 @@
 #include "Voicer.h"
 #include "ArdMidiEventHandler.h"
 #include "BLECharacteristic.h"
+#include "esp_log.h"
 
 namespace stk {
 
@@ -26,7 +27,7 @@ namespace stk {
 class ArdMidiBleEventHandler 
 : public BLECharacteristicCallbacks , public  ArdMidiEventHandler {
     public:
-        ArdMidiBleEventHandler(Voicer *voicer, uint8_t *p_channel = NULL );
+        ArdMidiBleEventHandler(Voicer *voicer, int *p_channel = NULL );
          ~ArdMidiBleEventHandler();
         void onRead(BLECharacteristic* pCharacteristic);
 	    void onWrite(BLECharacteristic* pCharacteristic);
