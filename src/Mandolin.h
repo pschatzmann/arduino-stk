@@ -91,8 +91,11 @@ class Mandolin : public Instrmnt
   protected:
 
   Twang strings_[2];
+#ifdef __RAW_ARRAYS__
+  MemoryWvIn soundfile_[12];
+#else
   FileWvIn soundfile_[12];
-
+#endif
   int mic_;
   StkFloat detuning_;
   StkFloat frequency_;

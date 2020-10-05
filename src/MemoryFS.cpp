@@ -93,16 +93,18 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
 int MemoryFS :: findByName(const char * path){
     int result = -1;
     if (registry!=NULL && path!=NULL){
-      for (int fd=0; fd<registry_last_entry; fd++){
+      for (int fd=0; fd<registry_last_entry-1; fd++){
           //ESP_LOGD(APP_VFS, "x%x, matching with %s", __func__, registry[fd].name);
-          if (strcmp(path, registry[fd].name)==0){
+          char  nameReg[] = registry[fd].name;
+          if (nameReg!= NULL && strcmp(path,nameReg) == 0){
               result = fd;
               break;
           }
       }
     }
-    return result;;
+    return result;
 }      
+
 
 VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, unsigned int size){
   const char *nameToLog = name==NULL?"":name;

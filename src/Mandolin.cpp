@@ -45,17 +45,17 @@ Mandolin :: Mandolin( StkFloat lowestFrequency )
   }
 
   #ifdef __RAW_ARRAYS__
-  MemoryFS::registerFile("mand1.raw", mand1_raw, mand1_raw_len);
-  MemoryFS::registerFile("mand2.raw", mand2_raw, mand2_raw_len);
-  MemoryFS::registerFile("mand3.raw", mand3_raw, mand3_raw_len);
-  MemoryFS::registerFile("mand4.raw", mand4_raw, mand4_raw_len);
-  MemoryFS::registerFile("mand5.raw", mand5_raw, mand5_raw_len);
-  MemoryFS::registerFile("mand6.raw", mand6_raw, mand6_raw_len);
-  MemoryFS::registerFile("mand7.raw", mand7_raw, mand7_raw_len);
-  MemoryFS::registerFile("mand8.raw", mand8_raw, mand8_raw_len);
-  MemoryFS::registerFile("mand9.raw", mand9_raw, mand9_raw_len);
-  MemoryFS::registerFile("mand10.raw", mand10_raw, mand10_raw_len);
-  MemoryFS::registerFile("mand11.raw", mand11_raw, mand11_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand1.raw").c_str(), mand1_raw, mand1_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand2.raw").c_str(), mand2_raw, mand2_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand3.raw").c_str(), mand3_raw, mand3_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand4.raw").c_str(), mand4_raw, mand4_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand5.raw").c_str(), mand5_raw, mand5_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand6.raw").c_str(), mand6_raw, mand6_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand7.raw").c_str(), mand7_raw, mand7_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand8.raw").c_str(), mand8_raw, mand8_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand9.raw").c_str(), mand9_raw, mand9_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand10.raw").c_str(), mand10_raw, mand10_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand11.raw").c_str(), mand11_raw, mand11_raw_len);
   #endif
 
   // Concatenate the STK rawwave path to the rawwave files
