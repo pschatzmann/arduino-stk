@@ -52,5 +52,6 @@
 // that you do not use the netowrk functionality provided by the STK framework
 // but that you use the Standard Arduino functionality instead. 
 #ifdef __RTOS__  
-    #include "FreeRTOS.h"
+//    #include "FreeRTOS.h"
+    #include "freertos/FreeRTOS.h"
 #endif
