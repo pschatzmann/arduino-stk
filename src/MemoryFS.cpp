@@ -95,7 +95,7 @@ int MemoryFS :: findByName(const char * path){
     if (registry!=NULL && path!=NULL){
       for (int fd=0; fd<registry_last_entry-1; fd++){
           //ESP_LOGD(APP_VFS, "x%x, matching with %s", __func__, registry[fd].name);
-          char  nameReg[] = registry[fd].name;
+          const char  *nameReg = registry[fd].name;
           if (nameReg!= NULL && strcmp(path,nameReg) == 0){
               result = fd;
               break;

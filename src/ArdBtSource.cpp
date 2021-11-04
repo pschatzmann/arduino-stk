@@ -78,19 +78,19 @@ void ArdBtSource :: start(char* name, Voicer &voicer) {
   this->pVoicer = &voicer;
   pArdBtSourceVoicer = &voicer;
 
-  a2dp_source->startRaw(name, get_stk_data);
+  a2dp_source->start_raw(name, get_stk_data);
 }
 
 bool ArdBtSource :: isConnected(){
-  return a2dp_source->isConnected();
+  return a2dp_source->is_connected();
 }
 
 void ArdBtSource :: setNVSInit(bool doInit){
-  a2dp_source->setNVSInit(doInit);
+  a2dp_source->set_nvs_init(doInit);
 }
 
 void ArdBtSource ::  setResetBLE(bool doInit){
-  a2dp_source->setResetBLE(doInit);
+  a2dp_source->set_reset_ble(doInit);
 }
 
 } // stk namespace
