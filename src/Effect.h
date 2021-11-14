@@ -36,6 +36,10 @@ class Effect : public Stk
   //! Set the mixture of input and "effected" levels in the output (0.0 = input only, 1.0 = effect only). 
   virtual void setEffectMix( StkFloat mix );
 
+  //! Support tick! (pschatzmann)
+  virtual StkFloat tick (StkFloat input, unsigned int channel=0)=0;
+
+
  protected:
 
   // Returns true if argument value is prime.
