@@ -97,7 +97,7 @@ inline StkFloat Filter :: phaseDelay( StkFloat frequency )
     handleError( StkError::WARNING ); return 0.0;
   }
 
-  StkFloat omegaT = 2 * PI * frequency / Stk::sampleRate();
+  StkFloat omegaT = 2 * STK_PI * frequency / Stk::sampleRate();
   StkFloat real = 0.0, imag = 0.0;
   for ( unsigned int i=0; i<b_.size(); i++ ) {
     real += b_[i] * std::cos( i * omegaT );
@@ -115,7 +115,7 @@ inline StkFloat Filter :: phaseDelay( StkFloat frequency )
   }
 
   phase -= std::atan2( imag, real );
-  phase = std::fmod( -phase, 2 * PI );
+  phase = std::fmod( -phase, 2 * STK_PI );
   return phase / omegaT;
 }
 

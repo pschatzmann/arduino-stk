@@ -41,7 +41,7 @@ const stk::StkFloat din = 0.0030;  // end correction
 const stk::StkFloat dout = 0.0063; // end correction
 const stk::StkFloat dm = din + dout;  // end correction of mouth
 const stk::StkFloat dd = 0.0035;   // acoustic distance between Q1 and Q2
-const stk::StkFloat rp = sqrt(Sp / stk::PI);
+const stk::StkFloat rp = sqrt(Sp / stk::STK_PI);
 const stk::StkFloat b = 0.4 * h;   // jet width
 
 // Calculation coefficients
@@ -82,7 +82,7 @@ Recorder :: Recorder()
 
   // Calculation coefficients ... would need to be recalculated if sample rate changes
   StkFloat T = 1.0 / Stk::sampleRate();
-  b1 = rho / (4.0 * PI * c0 * T * T);
+  b1 = rho / (4.0 * STK_PI * c0 * T * T);
   b3 = dm * Sp / (T * Sm * c0);
   b4 = rho * dout / (Sm * T);
 
@@ -163,7 +163,7 @@ void Recorder :: setBreathCutoff( StkFloat val )
   // The gain of this filter is quite high
   breathCutoff_ = val;
   StkFloat Q = 0.99;
-  StkFloat r = 2.0 * sin(PI * val / sampleRate());
+  StkFloat r = 2.0 * sin(STK_PI * val / sampleRate());
   StkFloat q = 1.0 - r * Q;
   StkFloat as[3] = { 1.0, r * r - q - 1, q };
   std::vector<StkFloat> b_turb(1, r*r);
@@ -280,7 +280,7 @@ StkFloat Recorder::tick( unsigned int )
 
   // Calculate coefficients for resonant filter
   StkFloat b_jet[3] = { b0_jet, 0, -b0_jet };
-  StkFloat a_jet[3] = { 1, -2 * r_jet * cos(2 * PI * fc_jet * T), r_jet * r_jet };
+  StkFloat a_jet[3] = { 1, -2 * r_jet * cos(2 * STK_PI * fc_jet * T), r_jet * r_jet };
   std::vector<StkFloat> b_jetcoeffs( &b_jet[0], &b_jet[0]+3 );
   std::vector<StkFloat> a_jetcoeffs( &a_jet[0], &a_jet[0]+3 );
   jetFilter_.setCoefficients( b_jetcoeffs, a_jetcoeffs );
@@ -322,7 +322,7 @@ StkFloat Recorder::tick( unsigned int )
 
   // Calculate transverse acoustic velocity
   StkFloat Q1d = Q1_ - 0.5 * b * H * Uj_;
-  StkFloat Vac = 2.0 / PI * Qp_ / Sm - 0.38 * Q1d / Sm;
+  StkFloat Vac = 2.0 / STK_PI * Qp_ / Sm - 0.38 * Q1d / Sm;
   jetDelay_.tick(Vac);
 
   // Calculate new jet delay line length

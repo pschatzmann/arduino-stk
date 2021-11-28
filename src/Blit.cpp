@@ -55,7 +55,7 @@ void Blit :: setFrequency( StkFloat frequency )
   }
 
   p_ = Stk::sampleRate() / frequency;
-  rate_ = PI / p_;
+  rate_ = STK_PI / p_;
   this->updateHarmonics();
 }
 

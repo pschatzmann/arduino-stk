@@ -55,13 +55,13 @@ class BlitSquare: public Generator
   /*!
     Set the phase of the signal, in the range 0 to 1.
   */
-  void setPhase( StkFloat phase ) { phase_ = PI * phase; };
+  void setPhase( StkFloat phase ) { phase_ = STK_PI * phase; };
 
   //! Get the current phase of the signal.
   /*!
     Get the phase of the signal, in the range [0 to 1.0).
   */
-  StkFloat getPhase() const { return phase_ / PI; };
+  StkFloat getPhase() const { return phase_ / STK_PI; };
 
   //! Set the impulse train rate in terms of a frequency in Hz.
   void setFrequency( StkFloat frequency );
@@ -126,7 +126,7 @@ inline StkFloat BlitSquare :: tick( void )
   StkFloat denominator = sin( phase_ );
   if ( fabs( denominator )  < std::numeric_limits<StkFloat>::epsilon() ) {
     // Inexact comparison safely distinguishes betwen *close to zero*, and *close to PI*.
-    if ( phase_ < 0.1f || phase_ > TWO_PI - 0.1f )
+    if ( phase_ < 0.1f || phase_ > STK_TWO_PI - 0.1f )
       lastBlitOutput_ = a_;
     else
       lastBlitOutput_ = -a_;
@@ -143,7 +143,7 @@ inline StkFloat BlitSquare :: tick( void )
   dcbState_ = lastBlitOutput_;
 
   phase_ += rate_;
-  if ( phase_ >= TWO_PI ) phase_ -= TWO_PI;
+  if ( phase_ >= STK_TWO_PI ) phase_ -= STK_TWO_PI;
 
 	return lastFrame_[0];
 }

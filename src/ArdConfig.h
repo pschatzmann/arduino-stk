@@ -1,3 +1,4 @@
+#pragma once
 /**
     ArdConfig.h
  
@@ -18,9 +19,6 @@
 //  Uncomment after installing https://github.com/pschatzmann/ESP32-A2DP
 //  #define __BT_A2DP__         // output to A2DP sink
 
-    #undef PI
-    #undef TWO_PI
-
 #elif defined(ESP8266)
     #define __RAW_ARRAYS__      
     #define __STREAMS__
@@ -29,8 +27,6 @@
     #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
 
     #include "FS.h"
-    #undef PI
-    #undef TWO_PI
     #undef round(x)
 
 #elif defined(ARDUINO)
@@ -42,10 +38,10 @@
     #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
     #define __NO_RT__           // no STK RT functions
 
-    #include <ArduinoSTL.h>
-
-    #undef PI
-    #undef TWO_PI
+    // Logging support
+    #define STK_ERROR_MSG_LEN 200
+    extern char stk_error_msg[STK_ERROR_MSG_LEN];
+    #define ESP_LOGD(APP,...) { snprintf(stk_error_msg, STK_ERROR_MSG_LEN, __VA_ARGS__); Serial.println(stk_error_msg); }
 
 #endif
 

@@ -69,7 +69,7 @@ void BlitSquare :: setFrequency( StkFloat frequency )
   // waveform at half the blit frequency.  Thus, we need to scale the
   // frequency value here by 0.5. (GPS, 2006).
   p_ = 0.5 * Stk::sampleRate() / frequency;
-  rate_ = PI / p_;
+  rate_ = STK_PI / p_;
   this->updateHarmonics();
 }
 

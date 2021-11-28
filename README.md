@@ -13,7 +13,7 @@ This project has been implemented as Arduino Library and runs on ESP32 processor
 
 ## Further information
 
-The oringial STK library is asking to include each used header file separately. For convinence I have added the StkAll.h which provides all header files.
+The oringial STK library is asking to include each used header file separately. For convinence I have added the StkAll.h which provides all header files. It also provides the related use namespace.
 
 Further information can be found in my Blogs
 - [Overview](https://www.pschatzmann.ch/home/2020/09/24/the-synthesis-toolkit-skt-library-for-the-arduino-esp32/)
@@ -23,6 +23,7 @@ Further information can be found in my Blogs
 
 
 ## Installation
+
 Download the project as zip and install the file in the Arduino IDE via -> Sketch -> Include Library -> Add ZIP Library or execute the following command in the Arduino Library Folder
 
 ```
@@ -32,7 +33,9 @@ git clone https://github.com/pschatzmann/Arduino-STK.git
 ## Supported Processors
 
 - ESP32 - The deveopment and testing has been done with the ESP32 so this will be the most stable and complete platform. 
-- ESP8266 - I managed to have the code base compiling with the ESP8266 as well. This environment does not support Bluetooth. 
+- I managed to have the code to compile with the following processors the as well:
+  - ESP8266
+  - RP2040
 
 You can consult the ArdConig.h file for the available functionality for your processor!
 

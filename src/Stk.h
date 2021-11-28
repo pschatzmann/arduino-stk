@@ -581,8 +581,9 @@ const unsigned int RT_BUFFER_SIZE = 512;
   #define RAWWAVE_PATH "../../rawwaves/"
 #endif
 
-const StkFloat PI           = 3.14159265358979;
-const StkFloat TWO_PI       = 2 * PI;
+const StkFloat STK_PI           = 3.14159265358979;
+const StkFloat STK_TWO_PI       = 2 * STK_PI;
+
 const StkFloat ONE_OVER_128 = 0.0078125;
 
 #if defined(__WINDOWS_DS__) || defined(__WINDOWS_ASIO__) || defined(__WINDOWS_MM__)

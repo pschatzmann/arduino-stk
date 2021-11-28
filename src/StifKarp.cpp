@@ -96,7 +96,7 @@ void StifKarp :: setStretch( StkFloat stretch )
     biquad_[i].setB0( coefficient );
     biquad_[i].setB2( 1.0 );
 
-    coefficient = -2.0 * temp * cos(TWO_PI * freq / Stk::sampleRate());
+    coefficient = -2.0 * temp * cos(STK_TWO_PI * freq / Stk::sampleRate());
     biquad_[i].setA1( coefficient );
     biquad_[i].setB1( coefficient );
 

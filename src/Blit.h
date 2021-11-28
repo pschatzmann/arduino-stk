@@ -46,13 +46,13 @@ class Blit: public Generator
   /*!
     Set the phase of the signal, in the range 0 to 1.
   */
-  void setPhase( StkFloat phase ) { phase_ = PI * phase; };
+  void setPhase( StkFloat phase ) { phase_ = STK_PI * phase; };
 
   //! Get the current phase of the signal.
   /*!
     Get the phase of the signal, in the range [0 to 1.0).
   */
-  StkFloat getPhase() const { return phase_ / PI; };
+  StkFloat getPhase() const { return phase_ / STK_PI; };
 
   //! Set the impulse train rate in terms of a frequency in Hz.
   void setFrequency( StkFloat frequency );
@@ -123,7 +123,7 @@ inline StkFloat Blit :: tick( void )
   }
 
   phase_ += rate_;
-  if ( phase_ >= PI ) phase_ -= PI;
+  if ( phase_ >= STK_PI ) phase_ -= STK_PI;
 
   lastFrame_[0] = tmp;
 	return lastFrame_[0];

@@ -199,7 +199,7 @@ void BandedWG :: setFrequency( StkFloat frequency )
     //	std::cerr << std::endl;
 
     // Set the bandpass filter resonances
-    radius = 1.0 - PI * 32 / Stk::sampleRate(); //frequency_ * modes_[i] / Stk::sampleRate()/32;
+    radius = 1.0 - STK_PI * 32 / Stk::sampleRate(); //frequency_ * modes_[i] / Stk::sampleRate()/32;
     if ( radius < 0.0 ) radius = 0.0;
     bandpass_[i].setResonance(frequency * modes_[i], radius, true);
 

@@ -55,7 +55,7 @@ void BlitSaw :: setFrequency( StkFloat frequency )
 
   p_ = Stk::sampleRate() / frequency;
   C2_ = 1 / p_;
-  rate_ = PI * C2_;
+  rate_ = STK_PI * C2_;
   this->updateHarmonics();
 }
 

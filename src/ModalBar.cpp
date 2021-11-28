@@ -83,7 +83,7 @@ void ModalBar :: setStrikePosition( StkFloat position )
   strikePosition_ = position;
 
   // Hack only first three modes.
-  StkFloat temp2 = position * PI;
+  StkFloat temp2 = position * STK_PI;
   StkFloat temp = sin(temp2);                                       
   this->setModeGain(0, 0.12 * temp);
 

@@ -74,8 +74,8 @@ BlowHole :: BlowHole( StkFloat lowestFrequency )
   double r_rh = 0.0015;    // register vent radius
   te = 1.4 * r_rh;         // effective length of the open hole
   double xi = 0.0;         // series resistance term
-  double zeta = 347.23 + 2*PI*pow(rb,2)*xi/1.1769;
-  double psi = 2*PI*pow(rb,2)*te / (PI*pow(r_rh,2));
+  double zeta = 347.23 + 2*STK_PI*pow(rb,2)*xi/1.1769;
+  double psi = 2*STK_PI*pow(rb,2)*te / (STK_PI*pow(r_rh,2));
   StkFloat rhCoeff = (zeta - 2 * Stk::sampleRate() * psi) / (zeta + 2 * Stk::sampleRate() * psi);
   rhGain_ = -347.23 / (zeta + 2 * Stk::sampleRate() * psi);
   vent_.setA1( rhCoeff );

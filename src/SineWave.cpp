@@ -27,7 +27,7 @@ SineWave :: SineWave( void )
     table_.resize( TABLE_SIZE + 1, 1 );
     StkFloat temp = 1.0 / TABLE_SIZE;
     for ( unsigned long i=0; i<=TABLE_SIZE; i++ )
-      table_[i] = sin( TWO_PI * i * temp );
+      table_[i] = sin( STK_TWO_PI * i * temp );
   }
 
   Stk::addSampleRateAlert( this );

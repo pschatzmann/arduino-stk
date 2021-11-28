@@ -119,7 +119,7 @@ inline StkFloat BlitSaw :: tick( void )
   state_ = tmp * 0.995;
 
   phase_ += rate_;
-  if ( phase_ >= PI ) phase_ -= PI;
+  if ( phase_ >= STK_PI ) phase_ -= STK_PI;
     
   lastFrame_[0] = tmp;
 	return lastFrame_[0];
