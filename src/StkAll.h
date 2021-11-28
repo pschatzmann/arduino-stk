@@ -123,3 +123,5 @@
 #include "SKINImsg.h"
 #include "SKINItbl.h"
 #endif
+
+using namespace stk;
