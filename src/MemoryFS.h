@@ -18,8 +18,8 @@
 #include "pgmspace.h"
 #elif defined(ESP8266)
 #include "pgmspace.h"
-#elif defined(ARDUINO)
-#include "pgmspace.h"
+#elif defined(ARDUINO) && __has_include(<pgmspace.h>) 
+#include <pgmspace.h>
 #endif
 
 #define VFS_INC_SIZE 10
