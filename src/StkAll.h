@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Stk.h"
 #include "Asymp.h"
 #include "BandedWG.h"
