@@ -33,3 +33,7 @@ git clone https://github.com/pschatzmann/Arduino-STK.git
 You can consult the ArdConig.h file for the available functionality for your processor!
 
 If you to use the library on a Standard Arduino please check out [my related Blog](https://www.pschatzmann.ch/home/2020/09/29/the-synthesis-toolkit-stk-library-for-arduino-running-on-a-nano/)
+
+## Optional Libraries
+
+If you want to use the Audio output to Bluetooth, you need to install the [ESP32-A2DP library](https://github.com/pschatzmann/ESP32-A2DP) and activate the functionality in [ArdConfig.h](src/ArdConfig.h)!

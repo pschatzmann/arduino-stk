@@ -1,3 +1,6 @@
+
+// install https://github.com/pschatzmann/ESP32-A2DP
+// and activate __BT_A2DP__ in ArdConfig.h
 #include "ArdBtSource.h"
 #include "ArdMidiCommon.h"
 #include "Clarinet.h"
