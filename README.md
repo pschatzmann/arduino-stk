@@ -12,11 +12,15 @@ can get some cheap Microcontrollers, which provide almost the same capabilities.
 This project has been implemented as Arduino Library and runs on ESP32 processors. 
 
 ## Further information
+
+The oringial STK library is asking to include each used header file separately. For convinence I have added the StkAll.h which provides all header files.
+
 Further information can be found in my Blogs
 - [Overview](https://www.pschatzmann.ch/home/2020/09/24/the-synthesis-toolkit-skt-library-for-the-arduino-esp32/)
 - [Sound without Files](https://www.pschatzmann.ch/home/2020/09/26/the-synthesis-toolkit-stk-w-o-files/)
 - [Using Midi](https://www.pschatzmann.ch/home/2020/09/28/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-midi/) 
 - [Bluetooth Support](https://www.pschatzmann.ch/home/2020/10/02/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-bluetooth-support/)
+
 
 ## Installation
 Download the project as zip and install the file in the Arduino IDE via -> Sketch -> Include Library -> Add ZIP Library or execute the following command in the Arduino Library Folder
