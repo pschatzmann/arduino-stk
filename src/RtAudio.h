@@ -1,5 +1,5 @@
 /************************************************************************/
-/*! \class RtAudio
+/*! \class stk::RtAudio
     \brief Realtime audio i/o C++ classes.
 
     RtAudio provides a common API (Application Programming Interface)
@@ -211,7 +211,7 @@ typedef int (*RtAudioCallback)( void *outputBuffer, void *inputBuffer,
                                 void *userData );
 
 /************************************************************************/
-/*! \class RtAudioError
+/*! \class stk::RtAudioError
     \brief Exception handling class for RtAudio.
 
     The RtAudioError class is quite simple but it does allow errors to be

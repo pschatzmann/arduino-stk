@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FileWvOut
+/*! \class stk::FileWvOut
     \brief STK audio file output class.
 
     This class inherits from WvOut.  It provides a "tick-level"

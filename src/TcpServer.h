@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class TcpServer
+/*! \class stk::TcpServer
     \brief STK TCP socket server class.
 
     This class provides a uniform cross-platform TCP socket server

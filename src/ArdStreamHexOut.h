@@ -4,12 +4,12 @@
 #ifndef STK_ArdStream_HEX_OUT_H
 #define STK_ArdStream_HEX_OUT_H
 
-#include "ArdStreamOutCommon.h"
+#include "ArdStreamOut.h"
 #include "arduino.h"
 
 namespace stk {
 /***************************************************/
-/*! \class ArdStreamHexOut
+/*! \class stk::ArdStreamHexOut
     \brief Output int32 data to Arduiono HardwareArdStream
 
     We are wrting the data to the indicated Ardino HardwareArdStream device.
@@ -19,13 +19,12 @@ namespace stk {
 
 */
 /***************************************************/
-class ArdStreamHexOut: public ArdStreamOutCommon {
+class ArdStreamHexOut: public ArdStreamOut {
     public:
-        ArdStreamHexOut(Stream &stream,unsigned samples=6);
-        
+        ArdStreamHexOut(Print &stream,unsigned channels=1);
     protected:
-        void writeBuffer(unsigned long len);
-
+        virtual void write(int16_t value) override;
+    
 };
 
 }; //stk

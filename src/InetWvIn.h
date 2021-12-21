@@ -13,7 +13,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class InetWvIn
+/*! \class stk::InetWvIn
     \brief STK internet streaming input class.
 
     This Wvin subclass reads streamed audio data over a network via a

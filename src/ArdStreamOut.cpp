@@ -1,35 +1,40 @@
 /**
- * Write the data to the indicated ArdStream interface in a way that is suited for the ArdStream Plotter
- * 
+ *  Write the data to the indicated ArdStream interface
 */
 
 #include "ArdStreamOut.h"
-#ifdef ARDSTREAMOUT_H
+#ifdef ARDSTREAMOUTCOMMON_H
 
 namespace stk {
 
-ArdStreamOut::ArdStreamOut(Stream &stream, unsigned samples, unsigned channels)
-: ArdStreamOutCommon(stream, samples, channels) {
+ArdStreamOut::ArdStreamOut(Print &stream,  unsigned channels)
+: ArdCommonOut(channels) {
+    this->pStream = &stream;
+    this->byteCount = sizeof(int16_t)*nChannels;
 }
 
-void ArdStreamOut :: writeData( unsigned long frames )
-{
-  unsigned long sample = 0;;  // 
-  for (unsigned long f=0l; f<frames;f++){
-      for (int c=0; c<nChannels;c++) {
-        this->clipTest( data_[sample] );
-        pStream->print(data_[sample]);
-        sample++;
-      }
-      pStream->println();
-  }
+ArdStreamOut::ArdStreamOut(Print *stream,  unsigned channels)
+: ArdCommonOut(channels) {
+    this->pStream = stream;
+    this->byteCount = sizeof(int16_t)*nChannels;
 }
 
-// not used
-void ArdStreamOut::writeBuffer(unsigned long len){
+// convert sample to int16
+void ArdStreamOut::write(StkFloat value) {
+    write(static_cast<int16_t>(value*32766));
 }
+
+// output to stream in request number of channels
+void ArdStreamOut::write(int16_t value) {
+    int16_t buffer[nChannels];
+    for (int j=0;j<nChannels;j++){
+        buffer[j]=value;
+    }
+    this->pStream->write((const char *)buffer, byteCount);
+};
 
 
 }; //stk
 
 #endif
+

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Rhodey
+/*! \class stk::Rhodey
     \brief STK Fender Rhodes electric piano FM
            synthesis instrument.
 

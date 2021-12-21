@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Filter
+/*! \class stk::Filter
     \brief STK abstract filter class.
 
     This class provides limited common functionality for STK digital

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class JetTable
+/*! \class stk::JetTable
     \brief STK jet table class.
 
     This class implements a flue jet non-linear

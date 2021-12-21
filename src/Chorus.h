@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Chorus
+/*! \class stk::Chorus
     \brief STK chorus effect class.
 
     This class implements a chorus effect.  It takes a monophonic

@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class InetWvOut
+/*! \class stk::InetWvOut
     \brief STK internet streaming output class.
 
     This WvOut subclass can stream data over a network via a TCP or

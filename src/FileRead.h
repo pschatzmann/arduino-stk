@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FileRead
+/*! \class stk::FileRead
     \brief STK audio file input class.
 
     This class provides input support for various

@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Moog
+/*! \class stk::Moog
     \brief STK moog-like swept filter sampling synthesis class.
 
     This instrument uses one attack wave, one

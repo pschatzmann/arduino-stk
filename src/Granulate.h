@@ -10,7 +10,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Granulate
+/*! \class stk::Granulate
     \brief STK granular synthesis class.
 
     This class implements a real-time granular synthesis algorithm

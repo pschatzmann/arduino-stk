@@ -8,7 +8,7 @@
 namespace stk {
 
 /***********************************************************************/
-/*! \class FreeVerb
+/*! \class stk::FreeVerb
     \brief Jezar at Dreampoint's FreeVerb, implemented in STK.
 
     Freeverb is a free and open-source Schroeder reverberator

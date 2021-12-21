@@ -9,16 +9,14 @@
 
 namespace stk {
 
-ArdStreamHexOut::ArdStreamHexOut(Stream &stream, unsigned samples)
-: ArdStreamOutCommon(stream, samples, 1) {
+ArdStreamHexOut::ArdStreamHexOut(Print &stream, unsigned channels)
+: ArdStreamOutCommon(stream, channels) {
 }
 
-void ArdStreamHexOut::writeBuffer(unsigned long len){
-    for (int j=0;j<len;j++){
+void ArdStreamOutCommon::write(int16_t value) {
+    for (int j=0;j<nChannels;j++){
         pStream->print(buffer_[j] , HEX);
-        pStream->print(" ");
     }
-    pStream->println();
 }
 
 }; //stk

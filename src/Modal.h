@@ -13,7 +13,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Modal
+/*! \class stk::Modal
     \brief STK resonance model abstract base class.
 
     This class contains an excitation wavetable,

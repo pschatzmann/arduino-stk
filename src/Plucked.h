@@ -10,7 +10,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Plucked
+/*! \class stk::Plucked
     \brief STK basic plucked string class.
 
     This class implements a simple plucked string

@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BlitSaw
+/*! \class stk::BlitSaw
     \brief STK band-limited sawtooth wave class.
 
     This class generates a band-limited sawtooth waveform using a

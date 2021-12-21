@@ -41,8 +41,6 @@
 #include "Guitar.h"
 #include "HevyMetl.h"
 #include "Iir.h"
-#include "InetWvIn.h"
-#include "InetWvOut.h"
 #include "Instrmnt.h"
 #include "JCRev.h"
 #include "JetTable.h"
@@ -85,8 +83,6 @@
 #include "Sphere.h"
 #include "StifKarp.h"
 #include "TapDelay.h"
-#include "TcpClient.h"
-#include "TcpServer.h"
 #include "Thread.h"
 #include "TubeBell.h"
 #include "Twang.h"
@@ -105,17 +101,8 @@
 #include "ArdCommonOut.h"
 #include "ArdConfig.h"
 #include "ArdI2SOut.h"
-#include "ArdMidiBleClient.h"
-#include "ArdMidiBleEventHandler.h"
-#include "ArdMidiBleServer.h"
-#include "ArdMidiCommon.h"
-#include "ArdMidiEventHandler.h"
-#include "ArdMidiStreamIn.h"
-#include "ArdMidiStreamOut.h"
-#include "ArdStreamBinaryOut.h"
 #include "ArdStreamHexOut.h"
 #include "ArdStreamOut.h"
-#include "ArdStreamOutCommon.h"
 #include "ArdUdp.h"
 #else
 #include "RtAudio.h"
@@ -126,4 +113,12 @@
 #include "SKINItbl.h"
 #endif
 
+// load ArdStkMidiAction which is dependent on MIDI library
+#if defined(ARDUINO) && defined(__MIDI__)
+#include "ArdStkMidiAction.h"
+#endif
+
+// define namespace
+#ifdef ARDUINO
 using namespace stk;
+#endif

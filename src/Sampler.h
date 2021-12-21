@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Sampler
+/*! \class stk::Sampler
     \brief STK sampling synthesis abstract base class.
 
     This instrument provides an ADSR envelope, a one-pole filter, and

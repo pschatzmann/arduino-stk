@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FileWrite
+/*! \class stk::FileWrite
     \brief STK audio file output class.
 
     This class provides output support for various

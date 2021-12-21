@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Cubic
+/*! \class stk::Cubic
     \brief STK cubic non-linearity class.
 
     This class implements the cubic non-linearity

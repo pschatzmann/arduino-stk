@@ -21,7 +21,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Stk
+/*! \class stk::Stk
     \brief STK base class
 
     Nearly all STK classes inherit from this class.
@@ -256,7 +256,7 @@ protected:
 
 
 /***************************************************/
-/*! \class StkFrames
+/*! \class stk::StkFrames
     \brief An STK class to handle vectorized audio data.
 
     This class can hold single- or multi-channel audio data.  The data

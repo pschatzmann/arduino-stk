@@ -11,15 +11,21 @@ can get some cheap Microcontrollers, which provide almost the same capabilities.
 
 This project has been implemented as Arduino Library and runs on ESP32 processors. 
 
-## Further information
+## Getting Help
 
-The oringial STK library is asking to include each used header file separately. For convinence I have added the StkAll.h which provides all header files. It also provides the related use namespace.
+Here is the link to the [generated class documentation](/html/index.html).
 
 Further information can be found in my Blogs
+
 - [Overview](https://www.pschatzmann.ch/home/2020/09/24/the-synthesis-toolkit-skt-library-for-the-arduino-esp32/)
 - [Sound without Files](https://www.pschatzmann.ch/home/2020/09/26/the-synthesis-toolkit-stk-w-o-files/)
 - [Using Midi](https://www.pschatzmann.ch/home/2020/09/28/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-midi/) 
 - [Bluetooth Support](https://www.pschatzmann.ch/home/2020/10/02/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-bluetooth-support/)
+
+## Namespaces
+
+The library uses the namespace __stk__: This is autamatically defined if you start your sketch with 
+```#import "StkAll.h"```. If you use individual imports instead, you need to set the namespace with ```using namespace stk;```
 
 
 ## Installation
@@ -30,6 +36,14 @@ Download the project as zip and install the file in the Arduino IDE via -> Sketc
 git clone https://github.com/pschatzmann/Arduino-STK.git
 ```
 
+
+## Additinal Libraries
+
+If you want to use the Midi integration please install the related [arduino-midi](https://github.com/pschatzmann/arduino-midi) library. You find additional examples in this project.
+
+If you want to use the Audio Output to Bluetooth, you need to install the [ESP32-A2DP library](https://github.com/pschatzmann/ESP32-A2DP) and activate the functionality in [ArdConfig.h](src/ArdConfig.h)!
+
+
 ## Supported Processors
 
 - ESP32 - The deveopment and testing has been done with the ESP32 so this will be the most stable and complete platform. 
@@ -39,8 +53,4 @@ git clone https://github.com/pschatzmann/Arduino-STK.git
 
 You can consult the ArdConig.h file for the available functionality for your processor!
 
-If you to use the library on a Standard Arduino please check out [my related Blog](https://www.pschatzmann.ch/home/2020/09/29/the-synthesis-toolkit-stk-library-for-arduino-running-on-a-nano/)
-
-## Optional Libraries
-
-If you want to use the Audio output to Bluetooth, you need to install the [ESP32-A2DP library](https://github.com/pschatzmann/ESP32-A2DP) and activate the functionality in [ArdConfig.h](src/ArdConfig.h)!
+If you to use the library on an other Arduino platform please check out [my related Blog](https://www.pschatzmann.ch/home/2020/09/29/the-synthesis-toolkit-stk-library-for-arduino-running-on-a-nano/)

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class DelayL
+/*! \class stk::DelayL
     \brief STK linear interpolating delay line class.
 
     This class implements a fractional-length digital delay-line using

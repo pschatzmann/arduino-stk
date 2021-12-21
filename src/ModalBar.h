@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class ModalBar
+/*! \class stk::ModalBar
     \brief STK resonant bar instrument class.
 
     This class implements a number of different

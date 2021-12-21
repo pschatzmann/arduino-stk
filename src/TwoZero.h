@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class TwoZero
+/*! \class stk::TwoZero
     \brief STK two-zero filter class.
 
     This class implements a two-zero digital filter.  A method is

@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Drummer
+/*! \class stk::Drummer
     \brief STK drum sample player class.
 
     This class implements a drum sampling

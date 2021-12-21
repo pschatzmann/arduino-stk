@@ -80,6 +80,9 @@
         "memory_resource": "cpp",
         "ranges": "cpp",
         "stop_token": "cpp",
-        "math": "cpp"
+        "math": "cpp",
+        "types": "cpp",
+        "unordered_set": "cpp",
+        "mixinvector": "cpp"
     }
 }

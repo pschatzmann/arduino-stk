@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class TapDelay
+/*! \class stk::TapDelay
     \brief STK non-interpolating tapped delay line class.
 
     This class implements a non-interpolating digital delay-line with

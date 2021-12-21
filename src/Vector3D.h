@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Vector3D
+/*! \class stk::Vector3D
     \brief STK 3D vector class.
 
     This class implements a three-dimensional vector.

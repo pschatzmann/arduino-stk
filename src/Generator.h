@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Generator
+/*! \class stk::Generator
     \brief STK abstract unit generator parent class.
 
     This class provides limited common functionality for STK unit

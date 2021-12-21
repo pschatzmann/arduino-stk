@@ -12,7 +12,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Saxofony
+/*! \class stk::Saxofony
     \brief STK faux conical bore reed instrument class.
 
     This class implements a "hybrid" digital

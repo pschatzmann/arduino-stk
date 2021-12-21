@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BeeThree
+/*! \class stk::BeeThree
     \brief STK Hammond-oid organ FM synthesis instrument.
 
     This class implements a simple 4 operator

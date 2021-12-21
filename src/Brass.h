@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Brass
+/*! \class stk::Brass
     \brief STK simple brass instrument class.
 
     This class implements a simple brass instrument

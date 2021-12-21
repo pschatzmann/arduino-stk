@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Recorder
+/*! \class stk::Recorder
     \brief A recorder / flute physical model.
 
     This class implements a physical model of a recorder / 

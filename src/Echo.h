@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Echo
+/*! \class stk::Echo
     \brief STK echo effect class.
 
     This class implements an echo effect.

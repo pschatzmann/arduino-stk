@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FM
+/*! \class stk::FM
     \brief STK abstract FM synthesis base class.
 
     This class controls an arbitrary number of

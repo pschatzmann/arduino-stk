@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class TwoPole
+/*! \class stk::TwoPole
     \brief STK two-pole filter class.
 
     This class implements a two-pole digital filter.  A method is

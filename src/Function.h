@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Function
+/*! \class stk::Function
     \brief STK abstract function parent class.
 
     This class provides common functionality for STK classes that

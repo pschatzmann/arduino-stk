@@ -10,7 +10,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Drone
+/*! \class stk::Drone
     \brief STK "drone" plucked string model.
 
     This class implements a simple plucked string

@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class PRCRev
+/*! \class stk::PRCRev
     \brief Perry's simple reverberator class.
 
     This class takes a monophonic input signal and produces a stereo

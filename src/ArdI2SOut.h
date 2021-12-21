@@ -1,9 +1,10 @@
-#include "Stk.h"
-#ifdef __ESP__
+#include "ArdConfig.h"
+#ifdef __I2S__
 
 #ifndef ARDI2SOUT_H
 #define ARDI2SOUT_H
 
+#include "Stk.h"
 #include "WvOut.h"
 #include "ArdCommonOut.h"
 #ifdef ESP32
@@ -15,7 +16,6 @@
 
 #define SAMPLE_RATE     (36000)
 #define I2S_NUM         (0)
-#define PI              (3.14159265)
 #define I2S_BCK_IO      (GPIO_NUM_13)
 #define I2S_WS_IO       (GPIO_NUM_15)
 #define I2S_DO_IO       (GPIO_NUM_21)
@@ -48,7 +48,7 @@ static i2s_pin_config_t default_pin_config = {
 namespace stk {
 
 /***************************************************/
-/*! \class ArdI2SOut
+/*! \class stk::ArdI2SOut
     \brief Output of sound to the I2S pins of the
     ESP32.
 
@@ -68,17 +68,20 @@ namespace stk {
 
 class ArdI2SOut: public ArdCommonOut {
     public:
-        ArdI2SOut(i2s_port_t i2s_number, unsigned sample_per_cycle=512, unsigned channels=1);
-        void setup();
+        ArdI2SOut(unsigned channels=1, i2s_port_t i2s_number=(i2s_port_t)0);
+        void begin();
         void setPinConfig(i2s_pin_config_t& pin_config);
         void setI2SConfig(i2s_config_t& i2s_config);
 
-    protected:
-        void writeBuffer(unsigned long len);
-   
+    protected:   
+        int byteCount;
         i2s_config_t& i2s_config=default_i2s_config;
         i2s_pin_config_t& pin_config = default_pin_config;
         i2s_port_t i2s_number;
+        bool active = false;
+
+        virtual void write(StkFloat value) override;
+        virtual void write(int16_t value) override;
 
 };
 

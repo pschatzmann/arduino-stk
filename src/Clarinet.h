@@ -12,7 +12,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Clarinet
+/*! \class stk::Clarinet
     \brief STK clarinet physical model class.
 
     This class implements a simple clarinet

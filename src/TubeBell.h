@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class TubeBell
+/*! \class stk::TubeBell
     \brief STK tubular bell (orchestral chime) FM
            synthesis instrument.
 

@@ -8,7 +8,7 @@ const unsigned long TABLE_SIZE = 2048;
 namespace stk {
 
 /***************************************************/
-/*! \class SineWave
+/*! \class stk::SineWave
     \brief STK sinusoid oscillator class.
 
     This class computes and saves a static sine "table" that can be

@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class ADSR
+/*! \class stk::ADSR
     \brief STK ADSR envelope class.
 
     This class implements a traditional ADSR (Attack, Decay, Sustain,

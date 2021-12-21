@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class LentPitShift
+/*! \class stk::LentPitShift
     \brief Pitch shifter effect class based on the Lent algorithm.
 
     This class implements a pitch shifter using pitch 

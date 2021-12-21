@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class StifKarp
+/*! \class stk::StifKarp
     \brief STK plucked stiff string instrument.
 
     This class implements a simple plucked string

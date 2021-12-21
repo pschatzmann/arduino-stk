@@ -12,7 +12,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BlowBotl
+/*! \class stk::BlowBotl
     \brief STK blown bottle instrument class.
 
     This class implements a helmholtz resonator

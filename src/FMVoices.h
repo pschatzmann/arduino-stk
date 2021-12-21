@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FMVoices
+/*! \class stk::FMVoices
     \brief STK singing FM synthesis instrument.
 
     This class implements 3 carriers and a common

@@ -12,7 +12,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class VoicForm
+/*! \class stk::VoicForm
     \brief Four formant synthesis instrument.
 
     This instrument contains an excitation singing

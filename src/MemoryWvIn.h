@@ -10,7 +10,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class MemoryWvIn
+/*! \class stk::MemoryWvIn
     \brief STK audio input class from Memory
 
     Class which simulates the FileWvIn class so that it can

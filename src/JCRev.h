@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class JCRev
+/*! \class stk::JCRev
     \brief John Chowning's reverberator class.
 
     This class takes a monophonic input signal and

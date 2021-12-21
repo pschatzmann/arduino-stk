@@ -35,7 +35,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Mutex
+/*! \class stk::Mutex
     \brief STK mutex class.
 
     This class provides a uniform interface for

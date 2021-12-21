@@ -10,7 +10,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Skini
+/*! \class stk::Skini
     \brief STK SKINI parsing class
 
     This class parses SKINI formatted text

@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Effect
+/*! \class stk::Effect
     \brief STK abstract effects parent class.
 
     This class provides common functionality for STK effects

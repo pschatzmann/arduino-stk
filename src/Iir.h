@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Iir
+/*! \class stk::Iir
     \brief STK general infinite impulse response filter class.
 
     This class provides a generic digital filter structure that can be

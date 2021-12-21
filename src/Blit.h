@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Blit
+/*! \class stk::Blit
     \brief STK band-limited impulse train class.
 
     This class generates a band-limited impulse train using a

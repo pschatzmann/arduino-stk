@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Tabla
+/*! \class stk::Tabla
     \brief STK tabla drum class.
 
     This class implements a drum sampling synthesizer using FileWvIn

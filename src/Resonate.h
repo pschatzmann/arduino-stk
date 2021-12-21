@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Resonate
+/*! \class stk::Resonate
     \brief STK noise driven formant filter.
 
     This instrument contains a noise source, which

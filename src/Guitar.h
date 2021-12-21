@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Guitar
+/*! \class stk::Guitar
     \brief STK guitar model class.
 
     This class implements a guitar model with an arbitrary number of

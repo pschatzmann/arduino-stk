@@ -1,16 +1,18 @@
 #include "ArdI2SOut.h"
 #ifdef ARDI2SOUT_H
+#include "ArdStkLogger.h"
 
 #define BITS_PER_BYTE 8
 
 namespace stk {
 
 
-ArdI2SOut::ArdI2SOut(i2s_port_t i2s_number, unsigned packetFrames, unsigned nChannels)  
-: ArdCommonOut(packetFrames, nChannels)
+ArdI2SOut::ArdI2SOut(unsigned nChannels, i2s_port_t i2s_number)  
+: ArdCommonOut(nChannels)
 {
     setI2SConfig(default_i2s_config);
     setPinConfig(default_pin_config);
+    byteCount = sizeof(int16_t) * nChannels;
 }
 
 
@@ -22,7 +24,7 @@ void ArdI2SOut::setPinConfig(i2s_pin_config_t& pin_config) {
     this->pin_config = pin_config;
 }
 
-void ArdI2SOut::setup(){
+void ArdI2SOut::begin(){
     // update sample rate
     i2s_config.bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT;
     i2s_config.sample_rate = Stk::sampleRate() ;
@@ -31,12 +33,29 @@ void ArdI2SOut::setup(){
     i2s_driver_install(i2s_number, &i2s_config, 0, NULL);
     i2s_set_clk(i2s_number, i2s_config.sample_rate, i2s_config.bits_per_sample, I2S_CHANNEL_MONO);
     i2s_set_pin(this->i2s_number, &pin_config);
+    active = true;
 }
 
 
-void ArdI2SOut :: writeBuffer(unsigned long len) {
-  i2s_write_bytes(i2s_number, (const char *)buffer_, len, portMAX_DELAY);
+// convert sample to int16
+void ArdI2SOut::write(StkFloat value) {
+    if (active){
+        write(static_cast<int16_t>(value*32766));
+    }
 }
+
+// output to stream in request number of channels
+void ArdI2SOut::write(int16_t value) {
+    int16_t buffer[nChannels];
+    for (int j=0;j<nChannels;j++){
+        buffer[j]=value;
+    }
+    size_t written;
+    i2s_write(i2s_number, (const char *)buffer, byteCount, &written, portMAX_DELAY);
+    if (byteCount!=written){
+        STK_LOGE("i2s_write error: requested %zu - but only %zu bytew written", byteCount, written );
+    }
+};
 
 
 }; //STK

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Delay
+/*! \class stk::Delay
     \brief STK non-interpolating delay line class.
 
     This class implements a non-interpolating digital delay-line.  If

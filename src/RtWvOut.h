@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class RtWvOut
+/*! \class stk::RtWvOut
     \brief STK realtime audio (blocking) output class.
 
     This class provides a simplified interface to RtAudio for realtime

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Fir
+/*! \class stk::Fir
     \brief STK general finite impulse response filter class.
 
     This class provides a generic digital filter structure that can be

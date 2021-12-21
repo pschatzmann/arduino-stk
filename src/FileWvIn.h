@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FileWvIn
+/*! \class stk::FileWvIn
     \brief STK audio file input class.
 
     This class inherits from WvIn.  It provides a "tick-level"

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class TcpClient
+/*! \class stk::TcpClient
     \brief STK TCP socket client class.
 
     This class provides a uniform cross-platform TCP socket client

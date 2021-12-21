@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Twang
+/*! \class stk::Twang
     \brief STK enhanced plucked string class.
 
     This class implements an enhanced plucked-string

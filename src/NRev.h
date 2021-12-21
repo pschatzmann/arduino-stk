@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class NRev
+/*! \class stk::NRev
     \brief CCRMA's NRev reverberator class.
 
     This class takes a monophonic input signal and produces a stereo

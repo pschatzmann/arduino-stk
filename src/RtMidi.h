@@ -1,5 +1,5 @@
 /**********************************************************************/
-/*! \class RtMidi
+/*! \class stk::RtMidi
     \brief An abstract base class for realtime MIDI input/output.
 
     This class implements some common functionality for the realtime
@@ -69,7 +69,7 @@
 #include <vector>
 
 /************************************************************************/
-/*! \class RtMidiError
+/*! \class stk::RtMidiError
     \brief Exception handling class for RtMidi.
 
     The RtMidiError class is quite simple but it does allow errors to be
@@ -219,7 +219,7 @@ class RTMIDI_DLL_PUBLIC RtMidi
 };
 
 /**********************************************************************/
-/*! \class RtMidiIn
+/*! \class stk::RtMidiIn
     \brief A realtime MIDI input class.
 
     This class provides a common, platform-independent API for
@@ -379,7 +379,7 @@ class RTMIDI_DLL_PUBLIC RtMidiIn : public RtMidi
 };
 
 /**********************************************************************/
-/*! \class RtMidiOut
+/*! \class stk::RtMidiOut
     \brief A realtime MIDI output class.
 
     This class provides a common, platform-independent API for MIDI

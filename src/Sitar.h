@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Sitar
+/*! \class stk::Sitar
     \brief STK sitar string model class.
 
     This class implements a sitar plucked string

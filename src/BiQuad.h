@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BiQuad
+/*! \class stk::BiQuad
     \brief STK biquad (two-pole, two-zero) filter class.
 
     This class implements a two-pole, two-zero digital filter.

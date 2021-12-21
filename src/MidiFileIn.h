@@ -11,7 +11,7 @@
 namespace stk {
 
 /**********************************************************************/
-/*! \class MidiFileIn
+/*! \class stk::MidiFileIn
     \brief A standard MIDI file reading/parsing class.
 
     This class can be used to read events from a standard MIDI file.

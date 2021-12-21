@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Mandolin
+/*! \class stk::Mandolin
     \brief STK mandolin instrument model class.
 
     This class uses two "twang" models and "commuted

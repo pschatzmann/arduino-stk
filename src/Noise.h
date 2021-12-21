@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Noise
+/*! \class stk::Noise
     \brief STK noise generator.
 
     Generic random number generation using the

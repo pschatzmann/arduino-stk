@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class SingWave
+/*! \class stk::SingWave
     \brief STK "singing" looped soundfile class.
 
     This class loops a specified soundfile and modulates it both

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class HevyMetl
+/*! \class stk::HevyMetl
     \brief STK heavy metal FM synthesis instrument.
 
     This class implements 3 cascade operators with

@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class MemoryLoop
+/*! \class stk::MemoryLoop
     \brief STK looping / oscillator class using a simple
    memory array as input.
 

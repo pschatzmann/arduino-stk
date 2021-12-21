@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Envelope
+/*! \class stk::Envelope
     \brief STK linear line envelope class.
 
     This class implements a simple linear line envelope generator

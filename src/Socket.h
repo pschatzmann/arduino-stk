@@ -33,7 +33,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Socket
+/*! \class stk::Socket
     \brief STK internet socket abstract base class.
 
     This class provides common functionality for TCP and UDP internet

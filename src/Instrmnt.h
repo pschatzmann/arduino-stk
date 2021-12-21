@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Instrmnt
+/*! \class stk::Instrmnt
   \brief STK instrument abstract base class.
 
   This class provides a common interface for

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FormSwep
+/*! \class stk::FormSwep
     \brief STK sweepable formant filter class.
 
     This class implements a formant (resonance) which can be "swept"

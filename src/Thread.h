@@ -34,7 +34,7 @@
 #endif
 
 /***************************************************/
-/*! \class Thread
+/*! \class stk::Thread
     \brief STK thread class.
 
     This class provides a uniform interface for cross-platform

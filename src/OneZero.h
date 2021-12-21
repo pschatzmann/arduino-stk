@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class OneZero
+/*! \class stk::OneZero
   \brief STK one-zero filter class.
 
   This class implements a one-zero digital filter.  A method is

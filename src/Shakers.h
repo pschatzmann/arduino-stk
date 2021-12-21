@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Shakers
+/*! \class stk::Shakers
     \brief PhISEM and PhOLIES class.
 
     PhISEM (Physically Informed Stochastic Event Modeling) is an

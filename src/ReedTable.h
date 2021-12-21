@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class ReedTable
+/*! \class stk::ReedTable
     \brief STK reed table class.
 
     This class implements a simple one breakpoint,

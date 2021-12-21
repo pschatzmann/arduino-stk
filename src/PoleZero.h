@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class PoleZero
+/*! \class stk::PoleZero
     \brief STK one-pole, one-zero filter class.
 
     This class implements a one-pole, one-zero digital filter.  A

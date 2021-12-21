@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BowTable
+/*! \class stk::BowTable
     \brief STK bowed string table class.
 
     This class implements a simple bowed string

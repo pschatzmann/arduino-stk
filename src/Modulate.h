@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Modulate
+/*! \class stk::Modulate
     \brief STK periodic/random modulator.
 
     This class combines random and periodic

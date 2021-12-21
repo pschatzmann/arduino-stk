@@ -8,10 +8,10 @@
 
 namespace stk {
 /***************************************************/
-/*! \class ArdCommonOut
+/*! \class stk::ArdCommonOut
     \brief STK Common Output for Arduiono
 
-    Common Implementation of Output of int32 data to different 
+    Common Implementation of Output of int16 data to different 
     devices used by Arduino
 
     by Phil Schatzmann
@@ -23,7 +23,7 @@ class ArdCommonOut : public WvOut
 {
  public:
   //! Default constructor ... 
-  ArdCommonOut( unsigned long packetFrames = 1024, unsigned int nChannels = 1 );
+  ArdCommonOut( unsigned int nChannels = 1 );
 
   //! Class destructor.
   ~ArdCommonOut();
@@ -51,20 +51,9 @@ class ArdCommonOut : public WvOut
 
  protected:
 
-  virtual void incrementFrame( void );
+  virtual void write(StkFloat value)  = 0;
+  virtual void write(int16_t value) = 0;
 
-  // Write a buffer of length frames via the socket connection.
-  virtual void writeData( unsigned long frames );
-
-   // Writes the buffer to the device
-  virtual void writeBuffer(unsigned long len) = 0;
-
-  char *buffer_ = NULL; 
-  unsigned long bufferFrames_;
-  unsigned long bufferBytes_;
-  unsigned long bufferIndex_;
-  unsigned long dataBytes_;
-  unsigned long iData_;
   unsigned int nChannels;
 };
 

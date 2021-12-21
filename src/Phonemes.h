@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Phonemes
+/*! \class stk::Phonemes
     \brief STK phonemes table.
 
     This class does nothing other than declare a

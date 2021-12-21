@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class ArdUdp
+/*! \class stk::ArdUdp
     \brief Simple UDP wrapper class which sends all 
     packages to the same destination.
 

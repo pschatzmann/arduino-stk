@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Voicer
+/*! \class stk::Voicer
     \brief STK voice manager class.
 
     This class can be used to manage a group of STK instrument

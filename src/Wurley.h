@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Wurley
+/*! \class stk::Wurley
     \brief STK Wurlitzer electric piano FM
            synthesis instrument.
 

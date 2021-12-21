@@ -13,7 +13,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Flute
+/*! \class stk::Flute
     \brief STK flute physical model class.
 
     This class implements a simple flute

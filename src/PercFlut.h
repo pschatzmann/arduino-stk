@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class PercFlut
+/*! \class stk::PercFlut
     \brief STK percussive flute FM synthesis instrument.
 
     This class implements algorithm 4 of the TX81Z.

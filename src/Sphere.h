@@ -7,7 +7,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Sphere
+/*! \class stk::Sphere
     \brief STK sphere class.
 
     This class implements a spherical ball with

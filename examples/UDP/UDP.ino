@@ -1,9 +1,5 @@
-#include "SineWave.h"
-#include "ArdStreamOut.h"
-#include "WiFi.h" // ESP32 WiFi include
-#include "ArdUdp.h" 
 
-using namespace stk;
+#include "StkAll.h"
 
 SineWave input;
 IPAddress ip(192, 168, 1, 35);

@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class FileLoop
+/*! \class stk::FileLoop
     \brief STK file looping / oscillator class.
 
     This class provides audio file looping functionality.  Any audio

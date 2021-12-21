@@ -11,7 +11,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Simple
+/*! \class stk::Simple
     \brief STK wavetable/noise instrument.
 
     This class combines a looped wave, a

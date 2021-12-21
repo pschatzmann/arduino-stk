@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class DelayA
+/*! \class stk::DelayA
     \brief STK allpass interpolating delay line class.
 
     This class implements a fractional-length digital delay-line using

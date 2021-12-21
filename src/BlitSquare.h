@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BlitSquare
+/*! \class stk::BlitSquare
     \brief STK band-limited square wave class.
 
     This class generates a band-limited square wave signal.  It is

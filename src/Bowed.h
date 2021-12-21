@@ -12,7 +12,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Bowed
+/*! \class stk::Bowed
     \brief STK bowed string instrument class.
 
     This class implements a bowed string model, a

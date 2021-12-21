@@ -23,7 +23,9 @@
 #endif
 
 #define VFS_INC_SIZE 10
+#ifndef MIN
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
+#endif
 
 namespace stk {
 
@@ -36,7 +38,7 @@ struct VFS_FD {
 };
 
 /***************************************************/
-/*! \class MemoryFS
+/*! \class stk::MemoryFS
     \brief STK in memory File
     An instance is representing an individual memory array which
     can be registered with a file name.

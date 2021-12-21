@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class OnePole
+/*! \class stk::OnePole
     \brief STK one-pole filter class.
 
     This class implements a one-pole digital filter.  A method is

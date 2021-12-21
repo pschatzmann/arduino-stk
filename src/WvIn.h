@@ -6,7 +6,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class WvIn
+/*! \class stk::WvIn
     \brief STK audio input abstract base class.
 
     This class provides common functionality for a variety of audio

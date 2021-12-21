@@ -12,7 +12,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class Whistle
+/*! \class stk::Whistle
     \brief STK police/referee whistle instrument class.
 
     This class implements a hybrid physical/spectral

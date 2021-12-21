@@ -13,7 +13,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class BlowHole
+/*! \class stk::BlowHole
     \brief STK clarinet physical model with one
            register hole and one tonehole.
 

@@ -14,7 +14,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class ArdBtSource
+/*! \class stk::ArdBtSource
     \brief ESP32 Output to Bluetooth
 
     Implementation of a A2DP Bluetooth Source for the ESP32

@@ -9,7 +9,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class UdpSocket
+/*! \class stk::UdpSocket
     \brief STK UDP socket server/client class.
 
     This class provides a uniform cross-platform UDP socket

@@ -8,7 +8,7 @@
 namespace stk {
 
 /***************************************************/
-/*! \class VoicDrum
+/*! \class stk::VoicDrum
     \brief STK vocal drum sample player class.
 
     This class implements a drum sampling synthesizer using FileWvIn
