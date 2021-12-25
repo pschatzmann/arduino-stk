@@ -103,6 +103,7 @@
 #include "ArdI2SOut.h"
 #include "ArdStreamHexOut.h"
 #include "ArdStreamOut.h"
+#include "ArdStreamTextOut.h"
 #include "ArdUdp.h"
 #else
 #include "RtAudio.h"

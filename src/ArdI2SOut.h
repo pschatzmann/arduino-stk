@@ -14,7 +14,7 @@
 #include "I2S.h"
 #endif
 
-#define SAMPLE_RATE     (36000)
+#define SAMPLE_RATE     ((int)stk::SRATE)
 #define I2S_NUM         (0)
 #define I2S_BCK_IO      (GPIO_NUM_13)
 #define I2S_WS_IO       (GPIO_NUM_15)
@@ -27,9 +27,9 @@ typedef int (*RtESPAudioCallback)( void *outputBuffer,
                                 void *userData );
 
  static i2s_config_t default_i2s_config = {
-    .mode = (i2s_mode_t) (I2S_MODE_MASTER | I2S_MODE_TX | I2S_MODE_DAC_BUILT_IN),
+    .mode = (i2s_mode_t) (I2S_MODE_MASTER | I2S_MODE_TX),
     .sample_rate = SAMPLE_RATE, // corrected by info from bluetooth
-    .bits_per_sample = (i2s_bits_per_sample_t) sizeof(stk::StkFloat), 
+    .bits_per_sample = (i2s_bits_per_sample_t) 16, 
     .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
     .communication_format = I2S_COMM_FORMAT_I2S_MSB,
     .intr_alloc_flags = 0, // default interrupt priority
