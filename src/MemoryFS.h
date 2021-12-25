@@ -4,14 +4,6 @@
 #define MEMORYFS_H
 
 #include "Stk.h"
-//#include "Arduino.h"
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <unistd.h>
-//#include <string.h>
-//#include <stdint.h>
-//#include <stdbool.h>
-//#include <vector> 
 #if defined(ESP32)
 #include "esp_system.h"
 #include "esp32-hal-log.h"
