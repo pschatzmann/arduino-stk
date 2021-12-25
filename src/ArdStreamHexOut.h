@@ -5,7 +5,7 @@
 #define STK_ArdStream_HEX_OUT_H
 
 #include "ArdStreamOut.h"
-#include "arduino.h"
+#include "Print.h"
 
 namespace stk {
 /***************************************************/

@@ -6,7 +6,7 @@
 
 #include "WvOut.h"
 #include "ArdStreamOut.h"
-#include "arduino.h"
+#include "Print.h"
 
 namespace stk {
 /***************************************************/
