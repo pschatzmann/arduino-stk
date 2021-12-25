@@ -53,7 +53,7 @@
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classstk_1_1ArdCommonOut.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classstk_1_1ArdCommonOut.html">ArdCommonOut</a> : <span class="keyword">public</span> <a class="code" href="classstk_1_1WvOut.html">WvOut</a></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classstk_1_1ArdCommonOut.html#a19fc515a40b2fd9679f7ea8deb72027e">   26</a></span>&#160;  <a class="code" href="classstk_1_1ArdCommonOut.html#a19fc515a40b2fd9679f7ea8deb72027e">ArdCommonOut</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> packetFrames = 1024, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nChannels = 1 );</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classstk_1_1ArdCommonOut.html#a26e83f17431cbcb0de6796879092fe32">   26</a></span>&#160;  <a class="code" href="classstk_1_1ArdCommonOut.html#a26e83f17431cbcb0de6796879092fe32">ArdCommonOut</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nChannels = 1 );</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classstk_1_1ArdCommonOut.html#a17871bafd477ce0e0e23e7124cfcdd8f">   29</a></span>&#160;  <a class="code" href="classstk_1_1ArdCommonOut.html#a17871bafd477ce0e0e23e7124cfcdd8f">~ArdCommonOut</a>();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
@@ -66,30 +66,19 @@
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> incrementFrame( <span class="keywordtype">void</span> );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="comment">// Write a buffer of length frames via the socket connection.</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> writeData( <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> frames );</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;   <span class="comment">// Writes the buffer to the device</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> writeBuffer(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> len) = 0;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StkFloat value)  = 0;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(int16_t value) = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nChannels;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;} <span class="comment">// stk namespace</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordtype">char</span> *buffer_ = NULL; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> bufferFrames_;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> bufferBytes_;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> bufferIndex_;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> dataBytes_;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> iData_;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nChannels;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;} <span class="comment">// stk namespace</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassstk_1_1ArdCommonOut_html"><div class="ttname"><a href="classstk_1_1ArdCommonOut.html">stk::ArdCommonOut</a></div><div class="ttdoc">STK Common Output for Arduiono.</div><div class="ttdef"><b>Definition:</b> ArdCommonOut.h:23</div></div>
 <div class="ttc" id="aclassstk_1_1ArdCommonOut_html_a17871bafd477ce0e0e23e7124cfcdd8f"><div class="ttname"><a href="classstk_1_1ArdCommonOut.html#a17871bafd477ce0e0e23e7124cfcdd8f">stk::ArdCommonOut::~ArdCommonOut</a></div><div class="ttdeci">~ArdCommonOut()</div><div class="ttdoc">Class destructor.</div></div>
-<div class="ttc" id="aclassstk_1_1ArdCommonOut_html_a19fc515a40b2fd9679f7ea8deb72027e"><div class="ttname"><a href="classstk_1_1ArdCommonOut.html#a19fc515a40b2fd9679f7ea8deb72027e">stk::ArdCommonOut::ArdCommonOut</a></div><div class="ttdeci">ArdCommonOut(unsigned long packetFrames=1024, unsigned int nChannels=1)</div><div class="ttdoc">Default constructor ...</div></div>
+<div class="ttc" id="aclassstk_1_1ArdCommonOut_html_a26e83f17431cbcb0de6796879092fe32"><div class="ttname"><a href="classstk_1_1ArdCommonOut.html#a26e83f17431cbcb0de6796879092fe32">stk::ArdCommonOut::ArdCommonOut</a></div><div class="ttdeci">ArdCommonOut(unsigned int nChannels=1)</div><div class="ttdoc">Default constructor ...</div></div>
 <div class="ttc" id="aclassstk_1_1ArdCommonOut_html_a3cca2bcc2a56ee2772d921435a3d7647"><div class="ttname"><a href="classstk_1_1ArdCommonOut.html#a3cca2bcc2a56ee2772d921435a3d7647">stk::ArdCommonOut::tick</a></div><div class="ttdeci">virtual void tick(const StkFloat sample)</div><div class="ttdoc">Output a single sample to all channels in a sample frame.</div></div>
 <div class="ttc" id="aclassstk_1_1ArdCommonOut_html_a99725848b3c58bcbf6d18241f9ca559b"><div class="ttname"><a href="classstk_1_1ArdCommonOut.html#a99725848b3c58bcbf6d18241f9ca559b">stk::ArdCommonOut::tick</a></div><div class="ttdeci">virtual void tick(const StkFrames &amp;frames)</div><div class="ttdoc">Output the StkFrames data.</div></div>
 <div class="ttc" id="aclassstk_1_1StkFrames_html"><div class="ttname"><a href="classstk_1_1StkFrames.html">stk::StkFrames</a></div><div class="ttdoc">An STK class to handle vectorized audio data.</div><div class="ttdef"><b>Definition:</b> Stk.h:287</div></div>

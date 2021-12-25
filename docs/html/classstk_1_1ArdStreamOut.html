@@ -41,30 +41,30 @@
 </div><!--header-->
 <div class="contents">
 
-<p>Output int16 data to Arduiono HardwareArdStream.  
+<p>Abstract class for Output to Arduiono HardwareArdStream.  
  <a href="classstk_1_1ArdStreamOut.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="ArdStreamBinaryOut_8h_source.html">ArdStreamBinaryOut.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ArdStreamOut_8h_source.html">ArdStreamOut.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for stk::ArdStreamOut:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classstk_1_1ArdStreamOut.png" usemap="#stk::ArdStreamOut_map" alt=""/>
   <map id="stk::ArdStreamOut_map" name="stk::ArdStreamOut_map">
-<area href="classstk_1_1ArdStreamOutCommon.html" title="Abstract class for Output to Arduiono HardwareArdStream." alt="stk::ArdStreamOutCommon" shape="rect" coords="0,168,161,192"/>
-<area href="classstk_1_1ArdCommonOut.html" title="STK Common Output for Arduiono." alt="stk::ArdCommonOut" shape="rect" coords="0,112,161,136"/>
-<area href="classstk_1_1WvOut.html" title="STK audio output abstract base class." alt="stk::WvOut" shape="rect" coords="0,56,161,80"/>
-<area href="classstk_1_1Stk.html" title="STK base class." alt="stk::Stk" shape="rect" coords="0,0,161,24"/>
+<area href="classstk_1_1ArdCommonOut.html" title="STK Common Output for Arduiono." alt="stk::ArdCommonOut" shape="rect" coords="0,112,135,136"/>
+<area href="classstk_1_1WvOut.html" title="STK audio output abstract base class." alt="stk::WvOut" shape="rect" coords="0,56,135,80"/>
+<area href="classstk_1_1Stk.html" title="STK base class." alt="stk::Stk" shape="rect" coords="0,0,135,24"/>
+<area href="classstk_1_1ArdStreamHexOut.html" title="Output int32 data to Arduiono HardwareArdStream." alt="stk::ArdStreamHexOut" shape="rect" coords="0,224,135,248"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_classstk_1_1ArdCommonOut"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classstk_1_1ArdCommonOut')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classstk_1_1ArdCommonOut.html">stk::ArdCommonOut</a></td></tr>
-<tr class="memitem:a19fc515a40b2fd9679f7ea8deb72027e inherit pub_methods_classstk_1_1ArdCommonOut"><td class="memItemLeft" align="right" valign="top"><a id="a19fc515a40b2fd9679f7ea8deb72027e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstk_1_1ArdCommonOut.html#a19fc515a40b2fd9679f7ea8deb72027e">ArdCommonOut</a> (unsigned long packetFrames=1024, unsigned int nChannels=1)</td></tr>
-<tr class="memdesc:a19fc515a40b2fd9679f7ea8deb72027e inherit pub_methods_classstk_1_1ArdCommonOut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor ... <br /></td></tr>
-<tr class="separator:a19fc515a40b2fd9679f7ea8deb72027e inherit pub_methods_classstk_1_1ArdCommonOut"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26e83f17431cbcb0de6796879092fe32 inherit pub_methods_classstk_1_1ArdCommonOut"><td class="memItemLeft" align="right" valign="top"><a id="a26e83f17431cbcb0de6796879092fe32"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstk_1_1ArdCommonOut.html#a26e83f17431cbcb0de6796879092fe32">ArdCommonOut</a> (unsigned int nChannels=1)</td></tr>
+<tr class="memdesc:a26e83f17431cbcb0de6796879092fe32 inherit pub_methods_classstk_1_1ArdCommonOut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor ... <br /></td></tr>
+<tr class="separator:a26e83f17431cbcb0de6796879092fe32 inherit pub_methods_classstk_1_1ArdCommonOut"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17871bafd477ce0e0e23e7124cfcdd8f inherit pub_methods_classstk_1_1ArdCommonOut"><td class="memItemLeft" align="right" valign="top"><a id="a17871bafd477ce0e0e23e7124cfcdd8f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstk_1_1ArdCommonOut.html#a17871bafd477ce0e0e23e7124cfcdd8f">~ArdCommonOut</a> ()</td></tr>
 <tr class="memdesc:a17871bafd477ce0e0e23e7124cfcdd8f inherit pub_methods_classstk_1_1ArdCommonOut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br /></td></tr>
@@ -196,9 +196,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:aeda2a39a7c29a2cb7d571d331ef077b0 inherit pro_methods_classstk_1_1Stk"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Output int16 data to Arduiono HardwareArdStream. </p>
-<p>Output (of as is data) to Arduiono HardwareArdStream.</p>
-<p>We are wrting the data to the indicated Ardino HardwareArdStream device. SoftArdStream is not supported because it is too slow.</p>
+<div class="textblock"><p>Abstract class for Output to Arduiono HardwareArdStream. </p>
+<p>Output int16 data Arduino Stream.</p>
+<p>We are wrting the data to the indicated Ardino HardwareArdStream device. If the channel is &gt;1 we repeat the output multiple times until all channels have been filled (with the same output value)</p>
+<p>by Phil Schatzmann</p>
+<p>We are wrting the data as text</p>
 <p>by Phil Schatzmann </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="ArdStreamOut_8h_source.html">ArdStreamOut.h</a></li>
