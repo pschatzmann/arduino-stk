@@ -113,7 +113,7 @@ ALWAYS_DETAILED_SEC    = NO
 # members were ordinary class members. Constructors, destructors and assignment 
 # operators of the base classes will not be shown.
 
-INLINE_INHERITED_MEMB  = NO
+INLINE_INHERITED_MEMB  = YES
 
 # If the FULL_PATH_NAMES tag is set to YES then Doxygen will prepend the full 
 # path before files name in the file list and in the header files. If set 
@@ -1184,7 +1184,7 @@ EXT_LINKS_IN_WINDOW    = NO
 FORMULA_FONTSIZE       = 10
 
 # Use the FORMULA_TRANPARENT tag to determine whether or not the images 
-# generated for formulas are transparent PNGs. Transparent PNGs are 
+# generated for formulas are transparent PNGs. TransINLINE_INHERITED_MEMB PNGs are 
 # not supported properly for IE 6.0, but are supported on all modern browsers. 
 # Note that when changing this option you need to delete any form_*.png files 
 # in the HTML output before the changes have effect.
