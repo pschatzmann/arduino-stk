@@ -21,11 +21,12 @@
 
 #elif defined(ESP8266)
 //  #define __MIDI__            // support Midi 
-    #define __I2S__
+//  #define __I2S__
     #define __RAW_ARRAYS__      
     #define __STREAMS__
     #define __NO_EXCEPTIONS__   // comment out exceptions
     #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
+    #define __NO_RT__           // no STK RT functions
 
     #include "FS.h"
     #undef round
