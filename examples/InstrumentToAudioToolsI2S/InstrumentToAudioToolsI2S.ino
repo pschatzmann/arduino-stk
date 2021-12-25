@@ -7,7 +7,7 @@ Clarinet clarinet(440);
 Voicer voicer;
 int note = 50; // starting midi note
 int group = 0;
-float amplitude = 128;
+float amplitude = 64;
 
 void setup() {
   Serial.begin(115200);
