@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "hash_map": "cpp",
+        "array": "cpp",
+        "hashtable": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "mixinvector": "cpp"
+    }
+}

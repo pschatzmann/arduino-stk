@@ -1,11 +1,12 @@
 #include "StkAll.h"
 
-ArdI2SOut output;
+I2SStream i2s;
+
 Clarinet clarinet(440);
 Voicer voicer;
-int note = 90; // starting midi note
+int note = 50; // starting midi note
 int group = 0;
-float noteAmplitude = 128;
+float amplitude = 128;
 
 void setup() {
   Serial.begin(115200);
@@ -25,16 +26,17 @@ void setup() {
 
 void loop() {
   note += rand() % 10 - 5; // generate some random offset
+  Serial.println(note);
 
   // play note
-  voicer.noteOn( note, noteAmplitude, group);
+  voicer.noteOn( note, amplitude, group);
   long endTime = millis()+1000;
   while (millis()<endTime){
       output.tick( voicer.tick() );
   }
 
   // stop playing
-  voicer.noteOff( note,noteAmplitude, group);
+  voicer.noteOff( note,amplitude, group);
   endTime = millis()+100;
   while (millis()<endTime){
       output.tick( voicer.tick() );
