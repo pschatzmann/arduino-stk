@@ -10,7 +10,7 @@
 
 namespace stk {
 /***************************************************/
-/*! \class stk::ArdStreamOut
+/*! \class stk::ArdStreamTextOut
     \brief Output int16 data Arduino Stream
 
     We are wrting the data as text
