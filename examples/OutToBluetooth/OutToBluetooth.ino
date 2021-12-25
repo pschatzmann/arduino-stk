@@ -1,12 +1,7 @@
 
 // install https://github.com/pschatzmann/ESP32-A2DP
 // and activate __BT_A2DP__ in ArdConfig.h
-#include "ArdBtSource.h"
-#include "ArdMidiCommon.h"
-#include "Clarinet.h"
-#include "Voicer.h"
-
-using namespace stk;
+#include "StkAll.h"
 
 Clarinet clarinet(440);
 Voicer voicer;
@@ -24,7 +19,7 @@ void setup() {
 }
 
 void loop() {
-  if (bt.isConnected()) {
+  if (bt.is_connected()) {
     Serial.print("playing ");
     Serial.println(++note);
 

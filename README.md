@@ -36,6 +36,8 @@ git clone https://github.com/pschatzmann/Arduino-STK.git
 
 If you want to use the Midi integration please install the related [arduino-midi](https://github.com/pschatzmann/arduino-midi) library. You find additional examples in this project.
 
+To output the sound in a consistent way I recommend to use my [Arduino Audio Tools](https://github.com/pschatzmann/arduino-audio-tools).
+
 If you want to use the Audio Output to Bluetooth, you need to install the [ESP32-A2DP library](https://github.com/pschatzmann/ESP32-A2DP) and activate the functionality in [ArdConfig.h](src/ArdConfig.h)!
 
 
