@@ -15,12 +15,7 @@ This project has been implemented as Arduino Library and runs on ESP32 processor
 
 Here is the link to the [generated class documentation](https://pschatzmann.github.io/Arduino-STK/html/index.html).
 
-Further information can be found in [the Wiki](https://github.com/pschatzmann/Arduino-STK/wiki) and in my Blogs
-
-- [Overview](https://www.pschatzmann.ch/home/2020/09/24/the-synthesis-toolkit-skt-library-for-the-arduino-esp32/)
-- [Sound without Files](https://www.pschatzmann.ch/home/2020/09/26/the-synthesis-toolkit-stk-w-o-files/)
-- [Using Midi](https://www.pschatzmann.ch/home/2020/09/28/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-midi/) 
-- [Bluetooth Support](https://www.pschatzmann.ch/home/2020/10/02/the-synthesis-toolkit-skt-library-for-the-arduino-esp32-bluetooth-support/)
+Further information can be found in [the Wiki](https://github.com/pschatzmann/Arduino-STK/wiki) and in [my Blogs](https://www.pschatzmann.ch/home/tag/stk/)
 
 ## Namespaces
 
