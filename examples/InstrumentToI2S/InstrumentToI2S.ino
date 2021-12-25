@@ -12,7 +12,7 @@ void setup() {
       .data_in_num = I2S_PIN_NO_CHANGE
   };
 
-  output.setPins(my_pin_config);
+  output.setPinConfig(my_pin_config);
   output.begin();
   Serial.begin(115200);
 }
