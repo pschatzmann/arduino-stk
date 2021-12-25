@@ -28,7 +28,7 @@
     #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
 
     #include "FS.h"
-    #undef round(x)
+    #undef round
 
 #elif defined(ARDUINO)
 //  #define __MIDI__            // support Midi 

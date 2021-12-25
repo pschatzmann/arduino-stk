@@ -11,7 +11,7 @@
 #include "driver/i2s.h"
 #endif
 #ifdef ESP8266
-#include "i2s.h"
+#include "I2S.h"
 #endif
 
 #define SAMPLE_RATE     (36000)
