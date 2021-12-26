@@ -1,6 +1,7 @@
 #pragma once
 #include "ArdConfig.h"
 
+#include "ArdStkLogger.h"
 #include "MidiAction.h"
 #include "Voicer.h"
 
@@ -28,26 +29,32 @@ class StkMidiAction : public midi::MidiAction {
         }
 
         virtual void addInstrument( Instrmnt *instrument, int group=0 ){
+            STK_LOGI(__PRETTY_FUNCTION__);
             voicer_obj.addInstrument(instrument, group);
         }
 
         virtual void removeInstrument( Instrmnt *instrument ){
+            STK_LOGI(__PRETTY_FUNCTION__);
             voicer_obj.removeInstrument(instrument);
         }
 
         virtual void onNoteOn(uint8_t channel, uint8_t note, uint8_t velocity=87) {
+            STK_LOGI(__PRETTY_FUNCTION__);
             voicer_obj.noteOn(note, velocity, channel);
         }
 
         virtual void onNoteOff(uint8_t channel, uint8_t note, uint8_t velocity=87) {
+            STK_LOGI(__PRETTY_FUNCTION__);
             voicer_obj.noteOff(note, velocity, channel);
         }
 
         virtual void onControlChange(uint8_t channel, uint8_t controller, uint8_t value) {
+            STK_LOGI(__PRETTY_FUNCTION__);
             voicer_obj.controlChange(controller,(StkFloat) value, channel);
         }
 
         virtual void onPitchBend(uint8_t channel, uint8_t value) {
+            STK_LOGI(__PRETTY_FUNCTION__);
             voicer_obj.pitchBend(value, channel);
         }
 
