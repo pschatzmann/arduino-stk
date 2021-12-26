@@ -1,5 +1,5 @@
 /**
- * @file MidiFromSerial.ino
+ * @file MidiSerial.ino
  * @author Phil Schatzmann
  * @brief Example of handling midi input over a serial stream - The sound generation requires arduino-stk
  * 

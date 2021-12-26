@@ -14,7 +14,7 @@ void setup() {
 
   voicer.addInstrument(&clarinet, group);
   
-  auto cfg = i2s.defaultConfig();
+  auto cfg = i2s.defaultConfig(TX_MODE);
   cfg.bits_per_sample = 16;
   cfg.sample_rate = Stk::sampleRate();
   cfg.channels = 1;
