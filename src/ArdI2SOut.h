@@ -15,11 +15,13 @@
 #endif
 
 #define SAMPLE_RATE     ((int)stk::SRATE)
-#define I2S_NUM         (0)
 #define I2S_BCK_IO      (GPIO_NUM_13)
 #define I2S_WS_IO       (GPIO_NUM_15)
 #define I2S_DO_IO       (GPIO_NUM_21)
 #define I2S_DI_IO       (-1)
+#ifndef I2S_NUM
+#define I2S_NUM         (0)
+#endif
 
 
 typedef int (*RtESPAudioCallback)( void *outputBuffer, 
@@ -31,7 +33,7 @@ typedef int (*RtESPAudioCallback)( void *outputBuffer,
     .sample_rate = SAMPLE_RATE, // corrected by info from bluetooth
     .bits_per_sample = (i2s_bits_per_sample_t) 16, 
     .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
-    .communication_format = I2S_COMM_FORMAT_I2S_MSB,
+    .communication_format = I2S_COMM_FORMAT_STAND_I2S,
     .intr_alloc_flags = 0, // default interrupt priority
     .dma_buf_count = 8,
     .dma_buf_len = 64,

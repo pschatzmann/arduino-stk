@@ -21,7 +21,7 @@ endif()
 file(GLOB_RECURSE SRC_LIST_C CONFIGURE_DEPENDS  "${PROJECT_SOURCE_DIR}/src/*.cpp" )
 
 # define libraries
-add_library (arduino_stk ${SRC_LIST_C})
+add_library (arduino_stk STATIC ${SRC_LIST_C})
 
 target_compile_definitions(arduino_stk PUBLIC -DIS_DESKTOP )
 
