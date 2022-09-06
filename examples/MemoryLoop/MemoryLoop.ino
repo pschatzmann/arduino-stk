@@ -5,7 +5,7 @@
 using namespace stk;
 
 extern const unsigned char sinewave_raw[];
-extern const unsigned int sinewave_raw_len;
+extern unsigned int sinewave_raw_len;
 
 MemoryLoop input(new MemoryFS(sinewave_raw, sinewave_raw_len));
 ArdStreamOut output(Serial);

@@ -18,13 +18,13 @@
 #include "Drummer.h"
 #include <cmath>
 
-#ifdef __RAW_ARRAYS__
-extern const unsigned char dope_raw[], bassdrum_raw[], snardrum_raw[], tomlowdr_raw[], tommiddr_raw[],
-                      hihatcym_raw[], ridecymb_raw[], crashcym_raw[], cowbell1_raw[],tambourn_raw[]; 
-extern unsigned int dope_raw_len, bassdrum_raw_len, snardrum_raw_len, tomlowdr_raw_len, tommiddr_raw_len,
-                    hihatcym_raw_len,ridecymb_raw_len,crashcym_raw_len,cowbell1_raw_len,tambourn_raw_len;
+// #ifdef __RAW_ARRAYS__
+// extern const unsigned char dope_raw[], bassdrum_raw[], snardrum_raw[], tomlowdr_raw[], tommiddr_raw[],
+//                       hihatcym_raw[], ridecymb_raw[], crashcym_raw[], cowbell1_raw[],tambourn_raw[]; 
+// extern unsigned int dope_raw_len, bassdrum_raw_len, snardrum_raw_len, tomlowdr_raw_len, tommiddr_raw_len,
+//                     hihatcym_raw_len,ridecymb_raw_len,crashcym_raw_len,cowbell1_raw_len,tambourn_raw_len;
 
-#endif
+// #endif
 
 namespace stk {
 

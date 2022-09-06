@@ -30,10 +30,10 @@
 #include "SKINImsg.h"
 #include "ArdConfig.h"
 
-extern const unsigned char mand1_raw[],mand2_raw[],mand3_raw[],mand4_raw[],mand5_raw[],mand6_raw[],mand7_raw[],mand8_raw[],
-                    mand9_raw[],mand10_raw[],mand11_raw[];
-extern unsigned int mand1_raw_len,mand2_raw_len,mand3_raw_len,mand4_raw_len,mand5_raw_len,mand6_raw_len,mand7_raw_len,mand8_raw_len,
-                    mand9_raw_len,mand10_raw_len, mand11_raw_len;
+// extern const unsigned char mand1_raw[],mand2_raw[],mand3_raw[],mand4_raw[],mand5_raw[],mand6_raw[],mand7_raw[],mand8_raw[],
+//                     mand9_raw[],mand10_raw[],mand11_raw[];
+// extern unsigned int mand1_raw_len,mand2_raw_len,mand3_raw_len,mand4_raw_len,mand5_raw_len,mand6_raw_len,mand7_raw_len,mand8_raw_len,
+//                     mand9_raw_len,mand10_raw_len, mand11_raw_len;
 
 namespace stk {
 

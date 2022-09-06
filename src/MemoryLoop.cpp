@@ -11,6 +11,8 @@
 /***************************************************/
 
 #include "MemoryLoop.h"
+#include "ArdStkLogger.h"
+
 #ifdef __RAW_ARRAYS__
 
 namespace stk {
@@ -19,6 +21,15 @@ MemoryLoop :: MemoryLoop(unsigned long chunkSize){
   chunkSize_ = chunkSize;
   Stk::addSampleRateAlert( this );
 }
+
+MemoryLoop ::  MemoryLoop(const char* fileName, unsigned long chunkSize){
+  chunkSize_ = chunkSize;
+  bool ok = fs_ptr->open(fileName, chunkSize);
+  if (!ok){
+    STK_LOGE("Could not find file: %s", fileName);
+  }
+}
+
 
 MemoryLoop :: MemoryLoop(const char* fileName,  const unsigned char *data, size_t size, unsigned long chunkSize ){
   chunkSize_ = chunkSize;

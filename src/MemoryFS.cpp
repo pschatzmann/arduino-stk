@@ -1,5 +1,7 @@
 
 #include "MemoryFS.h"
+#include "ArdStkLogger.h"
+
 #ifdef __RAW_ARRAYS__
 
 namespace stk {

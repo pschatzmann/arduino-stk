@@ -67,3 +67,7 @@
 #ifdef __RTOS__  
     #include "freertos/FreeRTOS.h"
 #endif
+
+#ifdef __RAW_ARRAYS__
+#include "raw/all.h"
+#endif

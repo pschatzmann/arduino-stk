@@ -33,10 +33,10 @@
 #include <cmath>
 
 
-#ifdef __RAW_ARRAYS__
-extern const unsigned char marmstk1_raw[];
-extern unsigned int marmstk1_raw_len;
-#endif
+// #ifdef __RAW_ARRAYS__
+// extern const unsigned char *marmstk1_raw;
+// extern unsigned int marmstk1_raw_len;
+// #endif
 
 namespace stk {
 

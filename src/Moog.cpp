@@ -22,10 +22,10 @@
 #include "SKINImsg.h"
 #include "ArdConfig.h"
 
-#ifdef __RAW_ARRAYS__
-  extern unsigned char *mandpluk_raw, *impuls20_raw, *sinewave_raw;
-  extern unsigned int mandpluk_raw_len, impuls20_raw_len,sinewave_raw_len;
-#endif
+// #ifdef __RAW_ARRAYS__
+//   extern const unsigned char *mandpluk_raw, *impuls20_raw, *sinewave_raw;
+//   extern const unsigned int mandpluk_raw_len, impuls20_raw_len,sinewave_raw_len;
+// #endif
 
 namespace stk {
 

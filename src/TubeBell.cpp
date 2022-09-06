@@ -33,10 +33,10 @@
 #include "TubeBell.h"
 #include "ArdConfig.h"
 
-#ifdef __RAW_ARRAYS__
-  extern unsigned char *fwavblnk_raw, *sinewave_raw;
-  extern unsigned int fwavblnk_raw_len,sinewave_raw_len;
-#endif
+// #ifdef __RAW_ARRAYS__
+//   extern const unsigned char *fwavblnk_raw, *sinewave_raw;
+//   extern const unsigned int fwavblnk_raw_len,sinewave_raw_len;
+// #endif
 
 namespace stk {
 
