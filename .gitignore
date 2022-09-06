@@ -5,6 +5,10 @@
 
 .DS_Store
 
+# visual stusio code 
+
+.vscode/
+
 # c.f. http://www.westwind.com/reference/os-x/invisibles.html
 
 .Trashes
@@ -197,3 +201,5 @@ projects/*/*.pdb
 projects/*/*.vcxproj.user
 projects/*/Release/
 projects/*/Debug/
+.vscode/settings.json
+.vscode/settings.json
