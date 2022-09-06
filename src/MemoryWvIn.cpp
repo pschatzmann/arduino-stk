@@ -11,7 +11,7 @@ MemoryWvIn :: MemoryWvIn(unsigned long chunkSize){
   Stk::addSampleRateAlert( this );
 }
 
-MemoryWvIn :: MemoryWvIn(const char* name, const unsigned char* raw, unsigned int size,unsigned long chunkSize){
+MemoryWvIn :: MemoryWvIn(const char* name, const unsigned char* raw, size_t size,unsigned long chunkSize){
   chunkSize_ = chunkSize;
   Stk::addSampleRateAlert( this );
   fs.registerFile(name,raw, size);

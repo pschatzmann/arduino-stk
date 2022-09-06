@@ -23,7 +23,7 @@ void stk_log(StkLogLevel_t level, const char* fmt ...) {
     vsprintf(log_buffer+9, fmt, arg);
     va_end(arg);
     strcat(log_buffer, "\n");
-    printf(log_buffer);
+    printf("%s",log_buffer);
   }
 }
 

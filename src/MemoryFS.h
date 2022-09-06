@@ -8,6 +8,8 @@
 #include "esp_system.h"
 #include "esp32-hal-log.h"
 #include "pgmspace.h"
+#elif defined(IS_DESKTOP)
+# define memcpy_P memcpy
 #elif defined(ESP8266)
 #include "pgmspace.h"
 #elif defined(ARDUINO) && __has_include(<pgmspace.h>) 

@@ -39,7 +39,6 @@ public:
   */
   MemoryWvIn(const char* fileName,  const unsigned char *data, size_t size, unsigned long chunkSize=256);
 
-
   //! Overloaded constructor for file input.
   /*!
     The file must have been registed before
