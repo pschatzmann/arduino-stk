@@ -5,15 +5,17 @@
 
 #include "Stk.h"
 #if defined(ESP32)
-#include "esp_system.h"
-#include "esp32-hal-log.h"
-#include "pgmspace.h"
+#  include "esp_system.h"
+#  include "esp32-hal-log.h"
+#   include "pgmspace.h"
 #elif defined(IS_DESKTOP)
-# define memcpy_P memcpy
+#  ifndef memcpy_P
+#   define memcpy_P memcpy
+#  endif
 #elif defined(ESP8266)
-#include "pgmspace.h"
+#  include "pgmspace.h"
 #elif defined(ARDUINO) && __has_include(<pgmspace.h>) 
-#include <pgmspace.h>
+#  include <pgmspace.h>
 #endif
 
 #define VFS_INC_SIZE 10

@@ -1,6 +1,8 @@
+#include "Arduino.h"
 #include "StkAll.h"
 
-ArdStreamOut output(Serial);
+ArdStreamTextOut output(Serial);
+//BeeThree instrument;
 Clarinet instrument(440);
 int note = 90; // starting midi note
 

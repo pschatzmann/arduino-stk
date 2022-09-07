@@ -98,6 +98,9 @@ protected:
 
 inline StkFloat SineWave :: tick( void )
 {
+  // Prevent that we crash if we call tick if it has not been set up yet
+  if (table_.size()==0) return 0.0;
+
   // Check limits of time address ... if necessary, recalculate modulo
   // TABLE_SIZE.
   while ( time_ < 0.0 )
