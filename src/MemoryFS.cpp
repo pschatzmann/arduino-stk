@@ -9,14 +9,14 @@ namespace stk {
 const char *APP_VFS ="MemoryFS";
 
 // Support for file registration
-static VFS_FD *registry = NULL;
+static VFS_FD *registry = nullptr;
 static int registry_size=0;
 static int registry_last_entry=0;
 
 MemoryFS :: MemoryFS(const unsigned char *raw, unsigned int size, int bytesPerSample, bool swapBytes) {
-  if (raw!=NULL){
-    fd = registerFile(NULL, raw, size);
-    if (fd != NULL){
+  if (raw!=nullptr){
+    fd = registerFile(nullptr, raw, size);
+    if (fd != nullptr){
         fd->is_open = true;
         this->fileSize_ = fd->size / bytesPerSample;
         this->current_pos_ = 0;
@@ -29,11 +29,28 @@ MemoryFS :: MemoryFS(const char* fileName) {
   open(fileName);
 }
 
+
 bool MemoryFS :: open(const char* fileName, int bytesPerSample) {
     bool result = false;
     int idx = findByName(fileName);
+
+    if (idx==-1){
+      STK_LOGE("file %s not registered - idx: %d", fileName, idx);
+      while(true); // stop
+    }
+
+    if (registry==nullptr){
+      STK_LOGE("Could not open %s - registry is null", fileName);
+      while(true); // stop
+    }
+
+    if (idx>=registry_size){
+      STK_LOGE("Could not open %s - Invalid idx: %d",fileName, idx);
+      while(true); // stop
+    }
+
     if (idx>=0){
-        fd = &(registry[idx]);
+        fd = registry+idx;
         fd->is_open = true;
         this->fileSize_ = fd->size / bytesPerSample;
         this->current_pos_ = 0;
@@ -52,7 +69,7 @@ size_t MemoryFS :: getSize(){
 }
 
 bool MemoryFS :: isOpen() {
-  return fd==NULL ? false : fd->is_open;
+  return fd==nullptr ? false : fd->is_open;
 }
 
 void MemoryFS :: close(){
@@ -94,11 +111,11 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
 
 int MemoryFS :: findByName(const char * path){
     int result = -1;
-    if (registry!=NULL && path!=NULL){
+    if (registry!=nullptr && path!=nullptr){
       for (int fd=0; fd<registry_last_entry-1; fd++){
           //ESP_LOGD(APP_VFS, "x%x, matching with %s", __func__, registry[fd].name);
           const char  *nameReg = registry[fd].name;
-          if (nameReg!= NULL && strcmp(path,nameReg) == 0){
+          if (nameReg!= nullptr && strcmp(path,nameReg) == 0){
               result = fd;
               break;
           }
@@ -109,16 +126,16 @@ int MemoryFS :: findByName(const char * path){
 
 
 VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, unsigned int size){
-  const char *nameToLog = name==NULL?"":name;
+  const char *nameToLog = name==nullptr?"":name;
   // extend registry if it is not big enough
   //ESP_LOGD(APP_VFS, "x%x, file %s registration requested with size: %d ", __func__, nameToLog, size );
-  VFS_FD * result = NULL;
-  if (registry==NULL || registry_last_entry >= registry_size){
+  VFS_FD * result = nullptr;
+  if (registry==nullptr || registry_last_entry >= registry_size){
       VFS_FD *tmp = registry;
       registry_size+=VFS_INC_SIZE;
       //ESP_LOGD(APP_VFS, "x%x, Increasing registry to size: %d ", __func__, registry_size);
       registry = new VFS_FD[registry_size];
-      if (tmp!=NULL) {
+      if (tmp!=nullptr) {
           std::memcpy(registry, tmp, (registry_last_entry-1)*sizeof(VFS_FD) );
           delete[] tmp;
       }
@@ -127,7 +144,7 @@ VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, un
   // add only new files
   int idx = findByName(name);
   if (idx==-1) {
-      if (name!=NULL) {
+      if (name!=nullptr) {
         registry[registry_last_entry].name = strdup(name);
       }
       registry[registry_last_entry].data = raw;

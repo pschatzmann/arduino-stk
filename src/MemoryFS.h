@@ -72,7 +72,7 @@ class MemoryFS {
 
     protected:
         static int findByName(const char * path);
-        VFS_FD *fd;
+        VFS_FD *fd = nullptr;
         long  fileSize_;
         bool swapBytes;
 };

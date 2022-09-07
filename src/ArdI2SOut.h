@@ -23,6 +23,10 @@
 #define I2S_NUM         (0)
 #endif
 
+#if ESP_IDF_VERSION_MAJOR < 4 && !defined(I2S_COMM_FORMAT_STAND_I2S)
+# define I2S_COMM_FORMAT_STAND_I2S (I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_MSB)
+#endif
+
 
 typedef int (*RtESPAudioCallback)( void *outputBuffer, 
                                 unsigned int nFrames,
