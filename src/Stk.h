@@ -578,6 +578,9 @@ const unsigned int RT_BUFFER_SIZE = 512;
 // move the rawwaves directory to a different location in your file
 // system, you will need to set this path definition appropriately.
 #if !defined(RAWWAVE_PATH)
+#ifdef ESP32
+  #define RAWWAVE_PATH "/sdcard/rawwaves/"
+#else
   #define RAWWAVE_PATH "../../rawwaves/"
 #endif
 
