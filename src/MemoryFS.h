@@ -26,12 +26,9 @@
 namespace stk {
 
 //! Simulated File Descriptor of registered virtual "Memory" files
-struct VFS_FD {
-  const char *name;
-  const unsigned char *data;
-  size_t size; // in bytes
-  bool is_open;
-};
+struct VFS_FD;
+extern VFS_FD **registry;
+extern int registry_last_entry;
 
 /***************************************************/
 /*! \class stk::MemoryFS
@@ -57,7 +54,7 @@ class MemoryFS {
         //! opens the indicated file
         bool open(const char* fileName, int bytesPerSample=2);
         //! Returns a descriptor with additional information
-        VFS_FD* getFD();
+        //VFS_FD* getFD();
         //! Determines the size (in samples)
         size_t getSize(); 
         //! sets to open flag to false
@@ -71,10 +68,13 @@ class MemoryFS {
 
 
     protected:
-        static int findByName(const char * path);
-        VFS_FD *fd = nullptr;
-        long  fileSize_;
-        bool swapBytes;
+        long  fileSize_ = 0;;
+        int16_t *data_ = nullptr;
+        bool swapBytes = false;
+        bool is_open = false;
+        //volatile VFS_FD* p_fd = nullptr;
+
+        static VFS_FD* findByName(const char * path);
 };
 
 }

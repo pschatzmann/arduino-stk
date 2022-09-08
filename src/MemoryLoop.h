@@ -38,9 +38,6 @@ class MemoryLoop : public FileLoop {
   //! Class constructor that opens a specified file. The file must have been registered
   MemoryLoop(const char* fileName, unsigned long chunkSize=256);
 
-  //! Class constructor that uses a MemoryFS
-  MemoryLoop(MemoryFS *data, unsigned long chunkSize=256);
-
   //! Class destructor.
   ~MemoryLoop( void );
 
@@ -86,10 +83,9 @@ class MemoryLoop : public FileLoop {
 
 protected:
   virtual void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize );
-  virtual void open(MemoryFS *fs, bool owning_fs_ptr, bool doNormalize=true,bool doInt2FloatScaling=true);
+  virtual void open(bool doNormalize=true,bool doInt2FloatScaling=true);
 
-  MemoryFS *fs_ptr;
-  bool owning_fs_ptr;
+  MemoryFS memoryFS;
 
   StkFrames firstFrame_;
   StkFloat phaseOffset_;

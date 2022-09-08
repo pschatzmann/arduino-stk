@@ -2,8 +2,8 @@
 #include "StkAll.h"
 
 ArdStreamTextOut output(Serial);
-//BeeThree instrument;
-Clarinet instrument(440);
+Drummer instrument;
+//Clarinet instrument(440);
 int note = 90; // starting midi note
 
 float noteToFrequency(uint8_t x) {

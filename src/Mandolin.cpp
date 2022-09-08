@@ -56,6 +56,7 @@ Mandolin :: Mandolin( StkFloat lowestFrequency )
   MemoryFS::registerFile((Stk::rawwavePath() +"mand9.raw").c_str(), mand9_raw, mand9_raw_len);
   MemoryFS::registerFile((Stk::rawwavePath() +"mand10.raw").c_str(), mand10_raw, mand10_raw_len);
   MemoryFS::registerFile((Stk::rawwavePath() +"mand11.raw").c_str(), mand11_raw, mand11_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"mand12.raw").c_str(), mand12_raw, mand12_raw_len);
   #endif
 
   // Concatenate the STK rawwave path to the rawwave files

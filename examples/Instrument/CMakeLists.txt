@@ -17,6 +17,7 @@ endif()
 set_source_files_properties(Instrument.ino PROPERTIES LANGUAGE CXX)
 add_executable (Instrument Instrument.ino)
 
+
 # set preprocessor defines
 target_compile_definitions(arduino_emulator PUBLIC -DDEFINE_MAIN)
 target_compile_definitions(Instrument PUBLIC -DARDUINO -DIS_DESKTOP -DEXIT_ON_STOP)

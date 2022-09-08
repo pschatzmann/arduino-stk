@@ -24,34 +24,25 @@ MemoryLoop :: MemoryLoop(unsigned long chunkSize){
 
 MemoryLoop ::  MemoryLoop(const char* fileName, unsigned long chunkSize){
   chunkSize_ = chunkSize;
-  bool ok = fs_ptr->open(fileName, chunkSize);
+  bool ok = memoryFS.open(fileName, chunkSize);
   if (!ok){
     STK_LOGE("Could not find file: %s", fileName);
   }
 }
 
-
 MemoryLoop :: MemoryLoop(const char* fileName,  const unsigned char *data, size_t size, unsigned long chunkSize ){
   chunkSize_ = chunkSize;
   Stk::addSampleRateAlert( this );
-  fs_ptr->registerFile(fileName,data, size);
+  memoryFS.registerFile(fileName, data, size);
   this->openFile(fileName, true, true, true);
 }
 
-MemoryLoop :: MemoryLoop(MemoryFS *data, unsigned long chunkSize) {
-  chunkSize_ = chunkSize;
-  Stk::addSampleRateAlert( this );
-  open(data, false);
-}
-
 MemoryLoop :: ~MemoryLoop( void ){
-  if (owning_fs_ptr)
-    delete this->fs_ptr;
 }
 
 void MemoryLoop :: addPhaseOffset( StkFloat angle ){
   // Add a phase offset in cycles, where 1.0 = fileSize.
-  phaseOffset_ = fs_ptr->getSize() * angle;
+  phaseOffset_ = memoryFS.getSize() * angle;
 }
 
 void MemoryLoop ::openFile( std::string fileName, bool raw, bool doNormalize, bool doInt2FloatScaling ){
@@ -59,25 +50,17 @@ void MemoryLoop ::openFile( std::string fileName, bool raw, bool doNormalize, bo
 }
 
 void MemoryLoop ::openFile( const char* fileName, bool raw, bool doNormalize, bool doInt2FloatScaling ){
-  MemoryFS *fs = this->fs_ptr;
-  bool owning = false;
-  if (fs==NULL){
-    fs = new MemoryFS();
-    owning = true;
-  }
-  // Attempt to open the file ... an error might be thrown here.
-  if (!fs->open(fileName)){
+  if (!memoryFS.open(fileName)){
     finished_ = true;
+    STK_LOGE("failed to open file %s", fileName);
     return;
   }
-  open(fs, owning, doNormalize, doInt2FloatScaling);
+  open(doNormalize, doInt2FloatScaling);
 }
 
-void MemoryLoop ::open(MemoryFS *fs, bool owning_fs_ptr, bool doNormalize,bool doInt2FloatScaling) {
-  this->owning_fs_ptr = owning_fs_ptr;
-  this->fs_ptr = fs;
+void MemoryLoop ::open(bool doNormalize,bool doInt2FloatScaling) {
   finished_ = false;
-  fileSize_ = fs_ptr->getSize();
+  fileSize_ = memoryFS.getSize();
 
   // Determine whether chunking or not.
   if ( fileSize_ > chunkThreshold_ ) {
@@ -120,11 +103,11 @@ void MemoryLoop ::open(MemoryFS *fs, bool owning_fs_ptr, bool doNormalize,bool d
 }
 
 void MemoryLoop :: fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize ){
-  finished_ = fs_ptr->fileRead(buffer, startFrame, doNormalize);
+  finished_ = memoryFS.fileRead(buffer, startFrame, doNormalize);
 }
 
 void MemoryLoop :: closeFile( void ){
-  fs_ptr->close();
+  memoryFS.close();
   finished_ = true;
 }
 
@@ -134,7 +117,7 @@ StkFloat MemoryLoop :: getFileRate( void )  {
 
 
 bool MemoryLoop :: isOpen( void ) { 
-  return fs_ptr->isOpen();
+  return memoryFS.isOpen();
 }
 
 
