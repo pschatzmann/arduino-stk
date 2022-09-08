@@ -66,7 +66,12 @@ class Drummer : public Instrmnt
   StkFrames& tick( StkFrames& frames, unsigned int channel = 0 );
 
  protected:
+#ifdef __RAW_ARRAYS__
+  MemoryWvIn waves_[DRUM_POLYPHONY];
+#else
   FileWvIn waves_[DRUM_POLYPHONY];
+#endif
+
   OnePole  filters_[DRUM_POLYPHONY];
   std::vector<int> soundOrder_;
   std::vector<int> soundNumber_;
