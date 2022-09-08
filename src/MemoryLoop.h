@@ -82,7 +82,7 @@ class MemoryLoop : public FileLoop {
 
 
 protected:
-  virtual void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize );
+  virtual void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize ) override;
   virtual void open(bool doNormalize=true,bool doInt2FloatScaling=true);
 
   MemoryFS memoryFS;

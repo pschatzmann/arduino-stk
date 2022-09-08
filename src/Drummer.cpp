@@ -71,16 +71,16 @@ Drummer :: Drummer( void ) : Instrmnt()
   soundNumber_ = std::vector<int> (DRUM_POLYPHONY, -1);
 
    #ifdef __RAW_ARRAYS__
-  MemoryFS::registerFile("dope.raw",dope_raw,dope_raw_len);
-  MemoryFS::registerFile("bassdrum.raw",bassdrum_raw,bassdrum_raw_len);
-  MemoryFS::registerFile("snardrum.raw",snardrum_raw,snardrum_raw_len);
-  MemoryFS::registerFile("tomlowdr.raw",tomlowdr_raw,tomlowdr_raw_len);
-  MemoryFS::registerFile("tommiddr.raw",tommiddr_raw,tommiddr_raw_len);
-  MemoryFS::registerFile("hihatcym.raw",hihatcym_raw,hihatcym_raw_len);
-  MemoryFS::registerFile("ridecymb.raw",ridecymb_raw,ridecymb_raw_len);
-  MemoryFS::registerFile("crashcym.raw",crashcym_raw,crashcym_raw_len);
-  MemoryFS::registerFile("cowbell1.raw",cowbell1_raw,cowbell1_raw_len);
-  MemoryFS::registerFile("tambourn.raw",tambourn_raw,tambourn_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"dope.raw").c_str(),dope_raw,dope_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"bassdrum.raw").c_str(),bassdrum_raw,bassdrum_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"snardrum.raw").c_str(),snardrum_raw,snardrum_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"tomlowdr.raw").c_str(),tomlowdr_raw,tomlowdr_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"tommiddr.raw").c_str(),tommiddr_raw,tommiddr_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"hihatcym.raw").c_str(),hihatcym_raw,hihatcym_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"ridecymb.raw").c_str(),ridecymb_raw,ridecymb_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"crashcym.raw").c_str(),crashcym_raw,crashcym_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"cowbell1.raw").c_str(),cowbell1_raw,cowbell1_raw_len);
+  MemoryFS::registerFile((Stk::rawwavePath() +"tambourn.raw").c_str(),tambourn_raw,tambourn_raw_len);
   #endif
 
 }
