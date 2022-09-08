@@ -33,10 +33,10 @@ class MemoryLoop : public FileLoop {
   MemoryLoop(unsigned long chunkSize=256);
 
   //! Class constructor that opens a specified file.
-  MemoryLoop(const char* fileName,  const unsigned char *data, size_t size, unsigned long chunkSize=256);
+  MemoryLoop(std::string fileName,  const unsigned char *data, size_t size, unsigned long chunkSize=1024);
 
   //! Class constructor that opens a specified file. The file must have been registered
-  MemoryLoop(const char* fileName, unsigned long chunkSize=256);
+  MemoryLoop(std::string fileName, unsigned long chunkSize=1024);
 
   //! Class destructor.
   ~MemoryLoop( void );

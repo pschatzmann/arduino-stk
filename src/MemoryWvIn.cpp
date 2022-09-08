@@ -6,20 +6,20 @@
 namespace stk {
 
 
-MemoryWvIn :: MemoryWvIn(unsigned long chunkSize){
-  chunkSize_ = chunkSize;
+MemoryWvIn :: MemoryWvIn(unsigned long chunkSize)
+:FileWvIn(chunkSize*10,chunkSize){
   Stk::addSampleRateAlert( this );
 }
 
-MemoryWvIn :: MemoryWvIn(const char* name, const unsigned char* raw, size_t size,unsigned long chunkSize){
-  chunkSize_ = chunkSize;
+MemoryWvIn :: MemoryWvIn(std::string name, const unsigned char* raw, size_t size,unsigned long chunkSize)
+:FileWvIn(chunkSize*10,chunkSize){
   Stk::addSampleRateAlert( this );
-  fs.registerFile(name,raw, size);
+  fs.registerFile(name.c_str(),raw, size);
   openFile(name);
 }
 
-MemoryWvIn :: MemoryWvIn(const char* name,unsigned long chunkSize ) {
-  chunkSize_ = chunkSize;
+MemoryWvIn :: MemoryWvIn(std::string name,unsigned long chunkSize ) 
+:FileWvIn(chunkSize*10,chunkSize){
   Stk::addSampleRateAlert( this );
   openFile(name);
 }

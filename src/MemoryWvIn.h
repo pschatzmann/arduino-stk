@@ -37,13 +37,13 @@ public:
   /*!
     The file is also registed
   */
-  MemoryWvIn(const char* fileName,  const unsigned char *data, size_t size, unsigned long chunkSize=256);
+  MemoryWvIn(std::string fileName,  const unsigned char *data, size_t size, unsigned long chunkSize=256);
 
   //! Overloaded constructor for file input.
   /*!
     The file must have been registed before
   */
-  MemoryWvIn(const char* fileName, unsigned long chunkSize=256);
+  MemoryWvIn(std::string fileName, unsigned long chunkSize=256);
 
 
   //! Class destructor.

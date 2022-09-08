@@ -17,27 +17,29 @@
 
 namespace stk {
 
-MemoryLoop :: MemoryLoop(unsigned long chunkSize){
-  chunkSize_ = chunkSize;
+MemoryLoop :: MemoryLoop(unsigned long chunkSize)
+: FileLoop(chunkSize*10, chunkSize)  {
   Stk::addSampleRateAlert( this );
 }
 
-MemoryLoop ::  MemoryLoop(const char* fileName, unsigned long chunkSize){
-  chunkSize_ = chunkSize;
-  bool ok = memoryFS.open(fileName, chunkSize);
+MemoryLoop ::  MemoryLoop(std::string fileName, unsigned long chunkSize)
+: FileLoop(chunkSize*10, chunkSize)  {
+  Stk::addSampleRateAlert( this );
+  bool ok = memoryFS.open(fileName.c_str(), chunkSize);
   if (!ok){
-    STK_LOGE("Could not find file: %s", fileName);
+    STK_LOGE("Could not find file: %s", fileName.c_str());
   }
 }
 
-MemoryLoop :: MemoryLoop(const char* fileName,  const unsigned char *data, size_t size, unsigned long chunkSize ){
-  chunkSize_ = chunkSize;
+MemoryLoop :: MemoryLoop(std::string fileName,  const unsigned char *data, size_t size, unsigned long chunkSize )
+: FileLoop(chunkSize*10, chunkSize)  {
   Stk::addSampleRateAlert( this );
-  memoryFS.registerFile(fileName, data, size);
+  memoryFS.registerFile(fileName.c_str(), data, size);
   this->openFile(fileName, true, true, true);
 }
 
 MemoryLoop :: ~MemoryLoop( void ){
+  Stk::removeSampleRateAlert( this );
 }
 
 void MemoryLoop :: addPhaseOffset( StkFloat angle ){
@@ -97,7 +99,7 @@ void MemoryLoop ::open(bool doNormalize,bool doInt2FloatScaling) {
   // Set default rate based on file sampling rate.
   this->setRate( data_.dataRate() / Stk::sampleRate() );
 
-  if ( doNormalize & !chunking_ ) this->normalize();
+  if ( doNormalize && !chunking_ ) this->normalize();
 
   this->reset();
 }

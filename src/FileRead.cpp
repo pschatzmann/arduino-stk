@@ -32,7 +32,7 @@
 /***************************************************/
 
 #include "FileRead.h"
-#ifndef __ARDUINO__
+#if !defined(__ARDUINO__) || defined(IS_DESKTOP)
 #include <sys/stat.h>
 #include <sys/types.h>
 #endif
