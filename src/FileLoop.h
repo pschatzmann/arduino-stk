@@ -83,7 +83,7 @@ class FileLoop : protected FileWvIn
     their headers.  STK RAW files have a sample rate of 22050 Hz
     by definition.  MAT-files are assumed to have a rate of 44100 Hz.
   */
-  StkFloat getFileRate( void ) const { return data_.dataRate(); };
+  virtual StkFloat getFileRate( void ) const { return data_.dataRate(); };
 
   //! Set the data read rate in samples.  The rate can be negative.
   /*!
@@ -117,7 +117,7 @@ class FileLoop : protected FileWvIn
     size and the current Stk::sampleRate.  The \e angle value
     is a multiple of file size.
   */
-  void addPhaseOffset( StkFloat angle );
+  virtual void addPhaseOffset( StkFloat angle );
 
   //! Return the specified channel value of the last computed frame.
   /*!
@@ -154,7 +154,7 @@ class FileLoop : protected FileWvIn
   virtual StkFrames& tick( StkFrames& frames,unsigned int channel = 0 );
 
  protected:
-  void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize );
+  virtual void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize );
 
   StkFrames firstFrame_;
   StkFloat phaseOffset_;

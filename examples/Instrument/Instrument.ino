@@ -2,7 +2,7 @@
 #include "StkAll.h"
 
 ArdStreamTextOut output(Serial);
-Drummer instrument;
+BeeThree instrument;
 //Clarinet instrument(440);
 int note = 90; // starting midi note
 

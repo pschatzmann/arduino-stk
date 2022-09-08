@@ -45,13 +45,13 @@ class MemoryLoop : public FileLoop {
   /*!
     This method is provided to be compatible with the FileWvIn
   */
-  virtual void openFile( std::string fileName, bool raw = true, bool doNormalize = true, bool doInt2FloatScaling = true );
+  virtual void openFile( std::string fileName, bool raw = true, bool doNormalize = true, bool doInt2FloatScaling = true ) override;
  
   //! Open the specified file and load its data.
   /*!
     This method is provided to be compatible with the FileWvIn
   */
-  virtual void openFile( const char* fileName, bool raw = true, bool doNormalize = true, bool doInt2FloatScaling = true );
+  virtual void openFile( const char* fileName, bool raw = true, bool doNormalize = true, bool doInt2FloatScaling = true ) ;
 
   //! Add a phase offset to the current read pointer.
   /*!
@@ -59,34 +59,32 @@ class MemoryLoop : public FileLoop {
     size and the current Stk::sampleRate.  The \e angle value
     is a multiple of file size.
   */
-  void addPhaseOffset( StkFloat angle );
+  void addPhaseOffset( StkFloat angle ) override;
   
   //! Close the actual file
   /*!
     This method is provided to be compatible with the FileWvIn
   */
-  void  closeFile(void );
+  void  closeFile(void ) override;
 
   //! Query whether a file is open.
   /*!
     This does not have any importance since the data is available in the memory
     anyhow.
   */
-  bool  isOpen(void );
+  bool  isOpen(void ) override;
 
   //! Return the input file sample rate in Hz (not the data read rate).
   /*!
     STK RAW files have a sample rate of 22050 Hz
   */
-  StkFloat  getFileRate( void );
-
+  virtual StkFloat getFileRate( void ) const override;
 
 protected:
   virtual void fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize ) override;
   virtual void open(bool doNormalize=true,bool doInt2FloatScaling=true);
 
   MemoryFS memoryFS;
-
   StkFrames firstFrame_;
   StkFloat phaseOffset_;
 

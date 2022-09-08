@@ -111,7 +111,7 @@ void MemoryLoop :: closeFile( void ){
   finished_ = true;
 }
 
-StkFloat MemoryLoop :: getFileRate( void )  { 
+StkFloat MemoryLoop :: getFileRate( void ) const { 
   return 22050.0;
 }
 
