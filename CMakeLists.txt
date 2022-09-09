@@ -14,7 +14,7 @@ FetchContent_Declare(arduino_emulator GIT_REPOSITORY "https://github.com/pschatz
 FetchContent_GetProperties(arduino_emulator)
 if(NOT arduino_emulator_POPULATED)
     FetchContent_Populate(arduino_emulator)
-    add_subdirectory(${arduino_emulator_SOURCE_DIR})
+    add_subdirectory(${arduino_emulator_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/arduino_emulator)
 endif()
 
 # define source files
