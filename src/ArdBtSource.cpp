@@ -67,7 +67,6 @@ int32_t get_stk_data(uint8_t *data, int32_t len) {
 
     if (logTime < millis()){
       logTime = millis()+5000;
-      ESP_LOGD(APP_ArdBtSource, "Playing %s sound!", hasSoundData ? "" : "no" );
       hasSoundData = false;
     }
 

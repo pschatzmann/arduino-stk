@@ -97,6 +97,7 @@
 #include "WvIn.h"
 #include "WvOut.h"
 #ifdef ARDUINO
+#include "ArdStkLogger.h"
 #include "ArdBtSource.h"
 #include "ArdCommonOut.h"
 #include "ArdConfig.h"

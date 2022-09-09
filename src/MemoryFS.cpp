@@ -74,8 +74,6 @@ void MemoryFS :: close(){
 
 
 bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doNormalize ){
-  //ESP_LOGD(APP_VFS, "x%x, %s: reading %d from start %ld of %ld", __func__, p_fd->name, frames.size(), startFrame, this->getSize());
-
   // data is available as array of uint16_t
   bool is_finished = false;
 

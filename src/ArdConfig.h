@@ -20,6 +20,7 @@
     #define __RTOS__            // supports Free RTOS
     #define __LWIP__            // use lwip socket implementation
     #define TASK_STACK_SIZE configMINIMAL_STACK_SIZE
+    #define RAWWAVE_PATH "/sdcard/rawwaves/"
 
 //  Uncomment after installing https://github.com/pschatzmann/ESP32-A2DP
 //  #define __BT_A2DP__         // output to A2DP sink
@@ -31,6 +32,7 @@
     #define __NO_EXCEPTIONS__   // comment out exceptions
     #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
     #define __NO_RT__           // no STK RT functions
+    #define RAWWAVE_PATH "/sdcard/rawwaves/"
 
     #include "FS.h"
     #undef round
@@ -42,11 +44,7 @@
     #define __NO_EXCEPTIONS__   // comment out exceptions
     #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
     #define __NO_RT__           // no STK RT functions
-
-    // Logging support
-    #define STK_ERROR_MSG_LEN 200
-    extern char stk_error_msg[STK_ERROR_MSG_LEN];
-    #define ESP_LOGD(APP,...) { snprintf(stk_error_msg, STK_ERROR_MSG_LEN, __VA_ARGS__); Serial.println(stk_error_msg); }
+    #define RAWWAVE_PATH "/rawwaves/"
 
 #elif defined(IS_DESKTOP)
 //  #define __MIDI__            // support Midi 
@@ -55,11 +53,6 @@
 //  #define __NO_EXCEPTIONS__   // comment out exceptions
 //    #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
 //    #define __NO_RT__           // no STK RT functions
-
-    // Logging support
-    #define STK_ERROR_MSG_LEN 200
-    extern char stk_error_msg[STK_ERROR_MSG_LEN];
-    #define ESP_LOGD(APP,...) { snprintf(stk_error_msg, STK_ERROR_MSG_LEN, __VA_ARGS__); Serial.println(stk_error_msg); }
 
 #endif
 

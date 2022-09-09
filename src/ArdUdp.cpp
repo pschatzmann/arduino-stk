@@ -1,5 +1,7 @@
 
+#include <ArdStkLogger.h>
 #include <ArdUdp.h>
+
 #ifdef ARDUPD_H
 
 namespace stk {
@@ -29,11 +31,11 @@ size_t ArdUdp :: write(const uint8_t * buffer, size_t size ) {
         result = WiFiUDP::write(buffer, size);
         if (result>0){
             bool packetOk = this->endPacket();
-            ESP_LOGD(APP_ArdUdp, "x%x, Number of bytes have %s been sent out: %d ", __func__, packetOk?"":"not", result);
+            STK_LOGD("x%x, Number of bytes have %s been sent out: %d ", __func__, packetOk?"":"not", result);
         }
         //this->flush();
     } else {
-        ESP_LOGD(APP_ArdUdp, "x%x, beginPacked has failed ", __func__);
+        STK_LOGD("x%x, beginPacked has failed ", __func__);
         this->isValidHostFlag = false;
     }
     return result;
