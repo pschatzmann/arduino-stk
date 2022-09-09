@@ -35,12 +35,16 @@ class Granulate: public Generator
   //! Constructor taking input audio file and number of voices arguments.
   Granulate( unsigned int nVoices, std::string fileName, bool typeRaw = false );
 
+#ifdef __RAW_ARRAYS__
+  Granulate( unsigned int nVoices, MemoryFS &memoryFile);
+#endif
+
   //! Class destructor.
   ~Granulate( void );
 
-  Granulate( unsigned int nVoices, MemoryFS &memoryFile);
+#ifdef __RAW_ARRAYS__
   void  openMemory(MemoryFS &memoryFile);
-
+#endif
   //! Load a monophonic soundfile to be "granulated".
   /*!
     An StkError will be thrown if the file is not found, its format

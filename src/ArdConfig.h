@@ -7,7 +7,9 @@
     by Phil Schatzmann
  */
 
-#ifndef USE_FILES
+//#define STK_USE_FILES
+
+#ifndef STK_USE_FILES
     #define __RAW_ARRAYS__      // raw files as compilable c arrays
 #endif
 

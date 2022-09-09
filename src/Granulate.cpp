@@ -41,6 +41,8 @@ Granulate :: Granulate( unsigned int nVoices, std::string fileName, bool typeRaw
   this->setVoices( nVoices );
 }
 
+#ifdef __RAW_ARRAYS__
+
 Granulate :: Granulate( unsigned int nVoices, MemoryFS &memoryFile)
 {
   this->setGrainParameters(); // use default values
@@ -57,6 +59,8 @@ void Granulate :: openMemory(MemoryFS &memoryFile) {
   lastFrame_.resize( 1, 1, 0.0 );
   this->reset();
 }
+
+#endif
 
 Granulate :: ~Granulate( void )
 {
