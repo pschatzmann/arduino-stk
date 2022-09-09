@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # set the project name
-project(arduino_stk)
+project(arduino-stk)
 
 # lots of warnings and all warnings as errors
 # add_compile_options(-Wall -Wextra )
@@ -21,11 +21,11 @@ endif()
 file(GLOB_RECURSE SRC_LIST_CPP CONFIGURE_DEPENDS  "${PROJECT_SOURCE_DIR}/src/*.cpp" )
 
 # define libraries
-add_library (arduino_stk ${SRC_LIST_CPP})
+add_library (arduino-stk ${SRC_LIST_CPP})
 
-target_compile_definitions(arduino_stk PUBLIC -DIS_DESKTOP )
+target_compile_definitions(arduino-stk PUBLIC -DIS_DESKTOP )
 
 # define location for header files
-target_include_directories(arduino_stk PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src )
+target_include_directories(arduino-stk PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src )
 
-target_link_libraries(arduino_stk  arduino_emulator)
+target_link_libraries(arduino-stk  arduino_emulator)
