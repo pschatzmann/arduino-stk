@@ -25,7 +25,8 @@ MemoryFS :: MemoryFS(const unsigned char *raw, unsigned int size, int bytesPerSa
     VFS_FD* p_fd = registerFile(nullptr, raw, size);
     if (p_fd != nullptr){
         this->is_open = true;
-        this->data_ = (int16_t*)raw;
+        this->swapBytes = swapBytes;
+        this->data_ = (int16_t*)p_fd->data;
         this->fileSize_ = p_fd->size / bytesPerSample;
         this->current_pos_ = 0;
     } else {

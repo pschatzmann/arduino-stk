@@ -70,7 +70,7 @@ class MemoryFS {
     protected:
         long  fileSize_ = 0;;
         int16_t *data_ = nullptr;
-        bool swapBytes = false;
+        bool swapBytes = true;
         bool is_open = false;
         //volatile VFS_FD* p_fd = nullptr;
 
