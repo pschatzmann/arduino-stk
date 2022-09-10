@@ -87,17 +87,6 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
       frames.resize( result_size, 1 );
     }
 
-    // we get memory access errors when we access the data directly so we copy it
-    // int16_t tmp[result_size*2];
-    // memcpy_P(tmp, (data_)+(startFrame*2), result_size*2);
-
-    // for (int j=0; j<result_size; j++) {
-    //   if (this->swapBytes)
-    //     Stk::swap16((unsigned char *) &(tmp[j]));
-    //   frames[j] = static_cast<float>(tmp[j]) / 32768.0;
-    //   this->current_pos_++;
-    // }   
-
     for (int j=0; j<result_size; j++) {
       int16_t tmp = data_[current_pos_];
       if (this->swapBytes){

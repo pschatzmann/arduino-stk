@@ -97,7 +97,7 @@ void MemoryLoop ::open(bool doNormalize,bool doInt2FloatScaling) {
   lastFrame_.resize( 1, 1 );
 
   // Set default rate based on file sampling rate.
-  this->setRate( data_.dataRate() / Stk::sampleRate() );
+  this->setRate( getFileRate() / Stk::sampleRate() );
 
   if ( doNormalize && !chunking_ ) this->normalize();
 
