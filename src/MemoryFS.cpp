@@ -146,7 +146,7 @@ VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, un
       if (name!=nullptr) {
         result->name = strdup(name);
       }
-      assert(raw!=nullptr);
+      //assert(raw!=nullptr);
       result->data = raw;
       result->size = size;
       STK_LOGI( "file %s registed with size: %d", nameToLog, size );
