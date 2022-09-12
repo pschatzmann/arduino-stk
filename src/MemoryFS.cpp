@@ -131,7 +131,7 @@ VFS_FD* MemoryFS :: findByName(const char * path){
 
 VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, unsigned int size){
   const char *nameToLog = name==nullptr?"":name;
-  STK_LOGW("Register file %s (%d)",nameToLog, size);
+  STK_LOGI("Register file %s (%d)",nameToLog, size);
 
   // add only new files
   VFS_FD * result = findByName(name);
@@ -149,10 +149,10 @@ VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, un
       assert(raw!=nullptr);
       result->data = raw;
       result->size = size;
-      STK_LOGW( "file %s registed with size: %d", nameToLog, size );
+      STK_LOGI( "file %s registed with size: %d", nameToLog, size );
       registry_last_entry++;
   } else {
-      STK_LOGW( "file %s already exists",  nameToLog );
+      STK_LOGI( "file %s already exists",  nameToLog );
   }
   return result;
 }
