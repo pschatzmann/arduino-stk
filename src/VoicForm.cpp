@@ -37,6 +37,9 @@ namespace stk {
 VoicForm :: VoicForm( void ) : Instrmnt()
 {
 
+#ifdef __RAW_ARRAYS__
+  MemoryFS::registerFile((Stk::rawwavePath() +"impuls20.raw").c_str(),dope_raw,dope_raw_len);
+#endif
   // Concatenate the STK rawwave path to the rawwave file
   voiced_ = new SingWave( (Stk::rawwavePath() + "impuls20.raw").c_str(), true );
   voiced_->setGainRate( 0.001 );

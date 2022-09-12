@@ -1,7 +1,12 @@
 #ifndef STK_SINGWAVE_H
 #define STK_SINGWAVE_H
 
-#include "FileLoop.h"
+#include "ArdConfig.h"
+#ifdef __RAW_ARRAYS__
+#  include "MemoryLoop.h"
+#else
+#  include "FileLoop.h"
+#endif
 #include "Modulate.h"
 #include "Envelope.h"
 
@@ -91,8 +96,11 @@ class SingWave : public Generator
   StkFrames& tick( StkFrames& frames, unsigned int channel = 0 );
 
  protected:
-
+#ifdef __RAW_ARRAYS__
+  MemoryLoop wave_;
+#else
   FileLoop wave_;
+#endif
   Modulate modulator_;
   Envelope envelope_;
   Envelope pitchEnvelope_;

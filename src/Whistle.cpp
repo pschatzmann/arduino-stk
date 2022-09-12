@@ -27,11 +27,11 @@ const int PEA_RADIUS = 30;
 const int BUMP_RADIUS = 5;
 
 const StkFloat NORM_CAN_LOSS = 0.97;
-//const StkFloat SLOW_CAN_LOSS = 0.90;
+const StkFloat SLOW_CAN_LOSS = 0.90;
 const StkFloat GRAVITY = 20.0;
 
 const StkFloat NORM_TICK_SIZE = 0.004;
-//const StkFloat SLOW_TICK_SIZE = 0.0001;
+const StkFloat SLOW_TICK_SIZE = 0.0001;
 
 const StkFloat ENV_RATE = 0.001;
 
@@ -62,8 +62,8 @@ Whistle :: Whistle( void )
   noiseGain_ = 0.125;
   baseFrequency_ = 2000;
 
-  tickSize_ = NORM_TICK_SIZE;
-  canLoss_ = NORM_CAN_LOSS;
+  tickSize_ = SLOW_TICK_SIZE;
+  canLoss_ = SLOW_CAN_LOSS;
 
   subSample_ = 1;
   subSampCount_ = subSample_;
