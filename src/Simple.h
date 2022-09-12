@@ -3,7 +3,11 @@
 
 #include "Instrmnt.h"
 #include "ADSR.h"
-#include "FileLoop.h"
+#ifdef __RAW_ARRAYS__
+#  include "MemoryLoop.h"
+#else
+#  include "FileLoop.h"
+#endif
 #include "OnePole.h"
 #include "BiQuad.h"
 #include "Noise.h"
