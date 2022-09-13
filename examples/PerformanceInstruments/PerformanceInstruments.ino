@@ -60,7 +60,7 @@ void measure(const char*title, Instrmnt *src) {
     // generate sound
     src->noteOn(note, amplitude);
     // pull samples for 10 seconds at 44100 
-    for (int j=0;j<44100*sec;j++){
+    for (int j=0;j<sampleRate*sec;j++){
         float f = src->tick();
     }
     snprintf(msg, 80, "%s: %f sec",title, static_cast<float>(millis()-start)/1000.0);
