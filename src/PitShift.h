@@ -35,6 +35,12 @@ class PitShift : public Effect
   StkFloat lastOut( void ) const { return lastFrame_[0]; };
 
   //! Input one sample to the effect and return one output.
+  StkFloat tick( StkFloat input, unsigned int channel){
+    return tick(input);
+  }
+
+
+  //! Input one sample to the effect and return one output.
   StkFloat tick( StkFloat input );
 
   //! Take a channel of the StkFrames object as inputs to the effect and replace with corresponding outputs.
