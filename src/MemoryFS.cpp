@@ -8,17 +8,23 @@ namespace stk {
 
 //! Simulated File Descriptor of registered virtual "Memory" files
 struct VFS_FD {
+  VFS_FD() = default;
+  ~VFS_FD(){
+    if (is_ram) delete[] data;
+  }
   const char *name="";
   const unsigned char *data=nullptr;
   long size=0; // in bytes
+  bool is_ram=false;
 };
 
 const char *APP_VFS ="MemoryFS";
 
 // Support for file registration
-static const int registry_size=30;
+static const int registry_size = 30;
 VFS_FD **registry = nullptr;
-int registry_last_entry=0;
+int registry_last_entry = 0;
+bool registry_use_ram = false;
 
 MemoryFS :: MemoryFS(const unsigned char *raw, unsigned int size, int bytesPerSample, bool swapBytes) {
   if (raw!=nullptr){
@@ -55,10 +61,6 @@ bool MemoryFS :: open(const char* fileName, int bytesPerSample) {
     }
     return result;
 }
-
-// VFS_FD* MemoryFS :: getFD(){
-//   return (VFS_FD*) p_fd;
-// }
 
 
 size_t MemoryFS :: getSize(){
@@ -146,15 +148,33 @@ VFS_FD * MemoryFS :: registerFile(const char* name, const unsigned char *raw, un
       if (name!=nullptr) {
         result->name = strdup(name);
       }
-      //assert(raw!=nullptr);
-      result->data = raw;
+      // check if we need to make a copy to speed things up
+      if (registry_use_ram){
+         STK_LOGW( "Using RAM for file %s registed with size: %d", nameToLog, size );
+         void* p_data = new uint8_t[size];
+         memcpy_P(p_data, raw, size);
+         result->data = (const unsigned char*) p_data;
+      } else {
+        result->data = raw;
+      }
       result->size = size;
+      result->is_ram = registry_use_ram;
       STK_LOGI( "file %s registed with size: %d", nameToLog, size );
       registry_last_entry++;
   } else {
       STK_LOGI( "file %s already exists",  nameToLog );
   }
   return result;
+}
+
+void MemoryFS :: reset() {
+      for (int idx=0; idx<=registry_last_entry-1; idx++){
+          VFS_FD* ptr = registry[idx];
+          if (ptr!=nullptr) delete ptr;
+          registry[idx] = nullptr;
+      }
+      registry_last_entry = 0;
+
 }
 
 } // namespace

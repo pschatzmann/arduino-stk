@@ -40,13 +40,13 @@ HevyMetl :: HevyMetl( void )
 {
   #ifdef __RAW_ARRAYS__
     for ( unsigned int i=0; i<3; i++ )
-    waves_[i] = new MemoryLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), sinewave_raw,sinewave_raw_len );
-  waves_[3] = new MemoryLoop( (Stk::rawwavePath() + "fwavblnk.raw").c_str(), fwavblnk_raw,fwavblnk_raw_len);
+    waves_[i] = new MemoryLoop( Stk::rawwavePath() + "sinewave.raw", sinewave_raw,sinewave_raw_len );
+  waves_[3] = new MemoryLoop( Stk::rawwavePath() + "fwavblnk.raw", fwavblnk_raw,fwavblnk_raw_len);
   #else
   // Concatenate the STK rawwave path to the rawwave files
   for ( unsigned int i=0; i<3; i++ )
-    waves_[i] = new FileLoop( (Stk::rawwavePath() + "sinewave.raw").c_str(), true );
-  waves_[3] = new FileLoop( (Stk::rawwavePath() + "fwavblnk.raw").c_str(), true );
+    waves_[i] = new FileLoop( Stk::rawwavePath() + "sinewave.raw", true );
+  waves_[3] = new FileLoop( Stk::rawwavePath() + "fwavblnk.raw", true );
   #endif
 
   this->setRatio(0, 1.0 * 1.000);

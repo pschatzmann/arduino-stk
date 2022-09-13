@@ -25,10 +25,10 @@ namespace stk {
 Simple :: Simple( void )
 {
   #ifdef __RAW_ARRAYS__
-    loop_ = new MemoryLoop( (Stk::rawwavePath() + "impuls10.raw").c_str(), impuls10_raw, impuls10_raw_len );
+    loop_ = new MemoryLoop( Stk::rawwavePath() + "impuls10.raw", impuls10_raw, impuls10_raw_len );
   #else
     // Concatenate the STK rawwave path to the rawwave file
-    loop_ = new FileLoop( (Stk::rawwavePath() + "impuls10.raw").c_str(), true );
+    loop_ = new FileLoop( Stk::rawwavePath() + "impuls10.raw", true );
   #endif
 
   filter_.setPole( 0.5 );

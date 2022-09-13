@@ -29,6 +29,7 @@ namespace stk {
 struct VFS_FD;
 extern VFS_FD **registry;
 extern int registry_last_entry;
+extern bool registry_use_ram;
 
 /***************************************************/
 /*! \class stk::MemoryFS
@@ -63,7 +64,12 @@ class MemoryFS {
         bool isOpen();
         //! Reads the data into the buffer at the indicated start frame
         bool fileRead( StkFrames& buffer, unsigned long startFrame, bool doNormalize) ;
-
+        /// Clears all stored tables
+        static void reset();
+        /// Defines if the audio data is copied from progmem to RAM
+        static void useRAM(bool ram) {
+            registry_use_ram = ram;
+        }
         size_t current_pos_; // current read position in the memory in samples
 
 
@@ -72,7 +78,6 @@ class MemoryFS {
         int16_t *data_ = nullptr;
         bool swapBytes = true;
         bool is_open = false;
-        //volatile VFS_FD* p_fd = nullptr;
 
         static VFS_FD* findByName(const char * path);
 };
