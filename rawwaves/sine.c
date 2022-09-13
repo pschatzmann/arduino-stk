@@ -16,7 +16,7 @@ void main()
 
   fd = fopen("sinewave.raw","wb");
   for (i=0; i<LENGTH; i++)
-    data[i] = 32767 * sin(i * 2 * PI / (double) LENGTH);
+    data[i] = 32767 * sin(i * 2 * PI / (float) LENGTH);
   fwrite(&data,2,LENGTH,fd);
   fclose(fd);
 }

@@ -86,7 +86,7 @@ inline StkFloat BowTable :: tick( StkFloat input )
   // The input represents differential string vs. bow velocity.
   StkFloat sample  = input + offset_;  // add bias to input
   sample *= slope_;          // then scale it
-  lastFrame_[0] = (StkFloat) fabs( (double) sample ) + (StkFloat) 0.75;
+  lastFrame_[0] = (StkFloat) fabs( (float) sample ) + (StkFloat) 0.75;
   lastFrame_[0] = (StkFloat) pow( lastFrame_[0], (StkFloat) -4.0 );
 
   // Set minimum threshold
@@ -112,7 +112,7 @@ inline StkFrames& BowTable :: tick( StkFrames& frames, unsigned int channel )
   for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
     *samples = *samples + offset_;
     *samples *= slope_;
-    *samples = (StkFloat) fabs( (double) *samples ) + 0.75;
+    *samples = (StkFloat) fabs( (float) *samples ) + 0.75;
     *samples = (StkFloat) pow( *samples, (StkFloat) -4.0 );
     if ( *samples > 1.0) *samples = 1.0;
   }
@@ -136,7 +136,7 @@ inline StkFrames& BowTable :: tick( StkFrames& iFrames, StkFrames& oFrames, unsi
   for ( unsigned int i=0; i<iFrames.frames(); i++, iSamples += iHop, oSamples += oHop ) {
     *oSamples = *iSamples + offset_;
     *oSamples *= slope_;
-    *oSamples = (StkFloat) fabs( (double) *oSamples ) + 0.75;
+    *oSamples = (StkFloat) fabs( (float) *oSamples ) + 0.75;
     *oSamples = (StkFloat) pow( *oSamples, (StkFloat) -4.0 );
     if ( *oSamples > 1.0) *oSamples = 1.0;
   }

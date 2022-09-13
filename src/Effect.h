@@ -70,7 +70,7 @@ inline bool Effect :: isPrime( unsigned int number )
 {
   if ( number == 2 ) return true;
   if ( number & 1 ) {
-	  for ( int i=3; i<(int)sqrt((double)number)+1; i+=2 )
+	  for ( int i=3; i<(int)sqrt((float)number)+1; i+=2 )
 		  if ( (number % i) == 0 ) return false;
 	  return true; // prime
 	}

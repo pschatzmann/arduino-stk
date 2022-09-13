@@ -90,7 +90,7 @@ void BiQuad :: setNotch( StkFloat frequency, StkFloat radius )
 
   // This method does not attempt to normalize the filter gain.
   b_[2] = radius * radius;
-  b_[1] = (StkFloat) -2.0 * radius * cos( STK_TWO_PI * (double) frequency / Stk::sampleRate() );
+  b_[1] = (StkFloat) -2.0 * radius * cos( STK_TWO_PI * (float) frequency / Stk::sampleRate() );
 }
 
 void BiQuad :: setEqualGainZeroes( void )

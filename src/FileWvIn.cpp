@@ -143,7 +143,7 @@ void FileWvIn :: normalize( StkFloat peak )
 
   for ( i=0; i<data_.size(); i++ ) {
     if ( fabs( data_[i] ) > max )
-      max = (StkFloat) fabs((double) data_[i]);
+      max = (StkFloat) fabs((float) data_[i]);
   }
 
   if ( max > 0.0 ) {

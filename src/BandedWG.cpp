@@ -82,7 +82,7 @@ void BandedWG :: setPreset( int preset )
     modes_[3] = (StkFloat) 18.0697050938;
 
     for (i=0; i<presetModes_; i++) {
-      basegains_[i] = (StkFloat) pow(0.999,(double) i+1);
+      basegains_[i] = (StkFloat) pow(0.999,(float) i+1);
       excitation_[i] = 1.0;
     }
 
@@ -98,7 +98,7 @@ void BandedWG :: setPreset( int preset )
     // modes_[5] = (StkFloat) 12.22;
 
     for (i=0; i<presetModes_; i++) {
-      basegains_[i] = (StkFloat) pow(0.999,(double) i+1);
+      basegains_[i] = (StkFloat) pow(0.999,(float) i+1);
       excitation_[i] = 1.0;
     }
     /*
@@ -158,7 +158,7 @@ void BandedWG :: setPreset( int preset )
     modes_[3] = (StkFloat) 8.933;
 
     for (i=0; i<presetModes_; i++) {
-      basegains_[i] = (StkFloat) pow(0.9,(double) i+1);
+      basegains_[i] = (StkFloat) pow(0.9,(float) i+1);
       excitation_[i] = 1.0;
     }
 
