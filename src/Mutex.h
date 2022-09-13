@@ -18,15 +18,13 @@
   typedef HANDLE CONDITION;
   #define STK_MUTEXT_SUPPORTED
 
-#elif defined(__RTOS__)
-
-  #include <freertos/FreeRTOS.h>
-  #include <freertos/semphr.h>
-
-  typedef SemaphoreHandle_t MUTEX;
-  typedef SemaphoreHandle_t* CONDITION;
-  #define STK_MUTEXT_SUPPORTED
-
+// Commented out to support ESP32 C3
+// #elif defined(__RTOS__)
+//   #include <freertos/FreeRTOS.h>
+//   #include <freertos/semphr.h>
+//   typedef SemaphoreHandle_t MUTEX;
+//   typedef SemaphoreHandle_t* CONDITION;
+//   #define STK_MUTEXT_SUPPORTED
 
 #endif
 

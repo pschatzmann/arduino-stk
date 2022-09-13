@@ -1,5 +1,7 @@
 #include "ArdI2SOut.h"
 #ifdef ARDI2SOUT_H
+#ifndef ESP32X
+
 #include "ArdStkLogger.h"
 
 #define BITS_PER_BYTE 8
@@ -59,4 +61,5 @@ void ArdI2SOut::write(int16_t value) {
 
 
 }; //STK
+ #endif
  #endif

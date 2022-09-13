@@ -15,13 +15,29 @@
 #endif
 
 #define SAMPLE_RATE     ((int)stk::SRATE)
-#define I2S_BCK_IO      (GPIO_NUM_13)
-#define I2S_WS_IO       (GPIO_NUM_15)
-#define I2S_DO_IO       (GPIO_NUM_21)
-#define I2S_DI_IO       (-1)
-#ifndef I2S_NUM
-#define I2S_NUM         (0)
+
+#if defined(ESP32)  && defined(ARDUINO_ESP32C3_DEV)
+#  define ESP32C3
+#  define ESP32X
 #endif
+#if defined(ESP32)  && defined(ARDUINO_ESP32S2_DEV)
+#  define ESP32S2
+#  define ESP32X
+#endif
+#if defined(ESP32)  && defined(ARDUINO_ESP32S3_DEV)
+#  define ESP32S3
+#  define ESP32X
+#endif
+
+// Legacy support: We allow only the Standard ESP32 
+#ifndef ESP32X
+#  define I2S_BCK_IO      (GPIO_NUM_13)
+#  define I2S_WS_IO       (GPIO_NUM_15)
+#  define I2S_DO_IO       (GPIO_NUM_21)
+#  define I2S_DI_IO       (-1)
+#  ifndef I2S_NUM
+#    define I2S_NUM         (0)
+#  endif
 
 #if ESP_IDF_VERSION_MAJOR < 4 && !defined(I2S_COMM_FORMAT_STAND_I2S)
 # define I2S_COMM_FORMAT_STAND_I2S (I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_MSB)
@@ -92,5 +108,6 @@ class ArdI2SOut: public ArdCommonOut {
 };
 
 }; //stk
+#endif
 #endif
 #endif

@@ -19,6 +19,7 @@
     #define __STREAMS__         // output to Ardiono Streams
     #define __RTOS__            // supports Free RTOS
     #define __LWIP__            // use lwip socket implementation
+    #define __NO_RT__           // no STK RT functions
     #define TASK_STACK_SIZE configMINIMAL_STACK_SIZE
     #define RAWWAVE_PATH "/sdcard/rawwaves/"
 

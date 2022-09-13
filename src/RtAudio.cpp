@@ -40,9 +40,10 @@
 /************************************************************************/
 
 // RtAudio: Version 5.1.0
+#include "ArdConfig.h"
+#ifndef __NO_RT__
 
 #include "RtAudio.h"
-#ifndef __NO_RT__
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
@@ -10642,8 +10643,3 @@ void RtApi :: byteSwapBuffer( char *buffer, unsigned int samples, RtAudioFormat 
 
 #endif // __NO_RT__
 
-// not sure why this is needed
-#if defined(__USE_STM32_HACK__)
-extern "C" int _open() {return -1;}
-extern "C" int _gettimeofday() {return -1;}
-#endif
