@@ -29,6 +29,9 @@ void measure(const char*title, MemoryLoop *src) {
 
 
 void setup() {    
+    // wait for serial to be available
+    while(!Serial); 
+
     Serial.begin(115200);
     StkLogLevel = StkWarning;
     Stk::setSampleRate(44100);

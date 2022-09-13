@@ -11,6 +11,7 @@
 
 #include "StkAll.h"
 #include <stdio.h>
+#include <functional>
 
 float note = 220;
 float amplitude = 0.8;
@@ -27,7 +28,7 @@ InstrumentInfo instrumentArray[] = {
     {"BlowHole", []() { return new BlowHole(200); }},
     {"Bowed", []() { return new Bowed(); }},
     {"Clarinet", []() { return new Clarinet(); }},
-    {"Drummer", []() { return new Drummer(); }},
+    {"Drummer", []() { return new Drummer(); }},  // comment out for STM32
     {"Flute", []() { return new Flute(200); }},
     {"Rhodey", []() { return new Rhodey(); }},
     {"TubeBell", []() { return new TubeBell(); }},
@@ -71,9 +72,13 @@ void measure(const char*title, Instrmnt *src) {
 
 
 void setup() {    
+    // wait for serial to be available
+    while(!Serial); 
+
     Serial.begin(115200);
     StkLogLevel = StkWarning;
     Stk::setSampleRate(sampleRate);
+
 
     snprintf(msg, 80, "Time for %d sec music at %f samples per second", sec, sampleRate);
     Serial.println(msg);

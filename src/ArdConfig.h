@@ -37,6 +37,16 @@
     #include "FS.h"
     #undef round
 
+#elif defined(ARDUINO_ARCH_STM32)
+    #define __STREAMS__
+    #define __ARDUINO__  // exclude standard c++ h files
+    #define __NO_EXCEPTIONS__   // comment out exceptions
+    #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
+    #define __NO_RT__           // no STK RT functions
+    #define __USE_STM32_HACK__
+    #define RAWWAVE_PATH "/sdcard/rawwaves/"
+    #undef HAVE_GETTIMEOFDAY
+
 #elif defined(ARDUINO)
 //  #define __MIDI__            // support Midi 
     #define __ARDUINO__  // exclude standard c++ h files

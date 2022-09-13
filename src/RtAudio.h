@@ -65,7 +65,6 @@
   #endif
 #endif
 
-#include "ArdConfig.h"
 #include <string>
 #include <vector>
 #include <stdexcept>

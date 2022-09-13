@@ -442,8 +442,8 @@ void RtApi :: tickStreamTime( void )
   stream_.streamTime += ( stream_.bufferSize * 1.0 / stream_.sampleRate );
 
 #if defined( HAVE_GETTIMEOFDAY )
-  gettimeofday( &stream_.lastTickTimestamp, NULL );
 #endif
+  gettimeofday( &stream_.lastTickTimestamp, NULL );
 }
 
 long RtApi :: getStreamLatency( void )
@@ -10641,3 +10641,9 @@ void RtApi :: byteSwapBuffer( char *buffer, unsigned int samples, RtAudioFormat 
   // vim: et sts=2 sw=2
 
 #endif // __NO_RT__
+
+// not sure why this is needed
+#if defined(__USE_STM32_HACK__)
+extern "C" int _open() {return -1;}
+extern "C" int _gettimeofday() {return -1;}
+#endif
