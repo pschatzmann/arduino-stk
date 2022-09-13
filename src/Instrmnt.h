@@ -70,8 +70,34 @@ class Instrmnt : public Stk
     first channel is specified by 0).  However, range checking is only
     performed if _STK_DEBUG_ is defined during compilation, in which
     case an out-of-range value will trigger an StkError exception.
+    (pschatzmann: provide default implementation)
   */
-  virtual StkFrames& tick( StkFrames& frames, unsigned int channel = 0 ) = 0;
+  virtual StkFrames& tick( StkFrames& frames, unsigned int channel = 0 ) {
+  unsigned int nChannels = lastFrame_.channels();
+#if defined(_STK_DEBUG_)
+  if ( channel > frames.channels() - nChannels ) {
+    oStream_ << "Mandolin::tick(): channel and StkFrames arguments are incompatible!";
+    handleError( StkError::FUNCTION_ARGUMENT );
+  }
+#endif
+
+  StkFloat *samples = &frames[channel];
+  unsigned int j, hop = frames.channels() - nChannels;
+  if ( nChannels == 1 ) {
+    for ( unsigned int i=0; i<frames.frames(); i++, samples += hop )
+      *samples++ = tick();
+  }
+  else {
+    for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
+      *samples++ = tick();
+      for ( j=1; j<nChannels; j++ )
+        *samples++ = lastFrame_[j];
+    }
+  }
+
+  return frames;
+}
+
 
  protected:
 
