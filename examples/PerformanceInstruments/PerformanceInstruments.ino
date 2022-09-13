@@ -72,10 +72,10 @@ void measure(const char*title, Instrmnt *src) {
 
 
 void setup() {    
+    Serial.begin(115200);
     // wait for serial to be available
     while(!Serial); 
 
-    Serial.begin(115200);
     StkLogLevel = StkWarning;
     Stk::setSampleRate(sampleRate);
 
