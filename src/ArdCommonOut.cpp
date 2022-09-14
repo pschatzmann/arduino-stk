@@ -20,7 +20,6 @@ void ArdCommonOut :: tick( const StkFloat sample )
 
 void ArdCommonOut :: tick( const StkFrames& frames )
 {
-  unsigned int j;
   unsigned int iFrames = 0;
   for ( unsigned int i=0; i<frames.frames(); i++ ) {
     StkFloat sample = frames[iFrames++];
