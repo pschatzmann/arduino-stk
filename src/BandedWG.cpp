@@ -178,7 +178,7 @@ void BandedWG :: setFrequency( StkFloat frequency )
   }
 #endif
 
-  if (frequency > 1568.0) frequency = 1568.0;
+  if (frequency > 1568.0f) frequency = 1568.0f;
 
   StkFloat radius;
   StkFloat base = Stk::sampleRate() / frequency;
@@ -186,7 +186,7 @@ void BandedWG :: setFrequency( StkFloat frequency )
   for (int i=0; i<presetModes_; i++) {
     // Calculate the delay line lengths for each mode.
     length = (int)(base / modes_[i]);
-    if ( length > 2.0) {
+    if ( length > 2.0f) {
       delay_[i].setDelay( length );
       gains_[i]=basegains_[i];
       //	  gains_[i]=(StkFloat) pow(basegains_[i], 1/((StkFloat)delay_[i].getDelay()));
@@ -199,8 +199,8 @@ void BandedWG :: setFrequency( StkFloat frequency )
     //	std::cerr << std::endl;
 
     // Set the bandpass filter resonances
-    radius = 1.0 - STK_PI * 32 / Stk::sampleRate(); //frequency_ * modes_[i] / Stk::sampleRate()/32;
-    if ( radius < 0.0 ) radius = 0.0;
+    radius = 1.0f - STK_PI * 32.0f / Stk::sampleRate(); //frequency_ * modes_[i] / Stk::sampleRate()/32;
+    if ( radius < 0.0f ) radius = 0.0f;
     bandpass_[i].setResonance(frequency * modes_[i], radius, true);
 
     delay_[i].clear();
@@ -213,14 +213,14 @@ void BandedWG :: setFrequency( StkFloat frequency )
 
 void BandedWG :: setStrikePosition( StkFloat position )
 {
-  strikePosition_ = (int)(delay_[0].getDelay() * position / 2.0);
+  strikePosition_ = (int)(delay_[0].getDelay() * position / 2.0f  );
 }
 
 void BandedWG :: startBowing( StkFloat amplitude, StkFloat rate )
 {
   adsr_.setAttackRate(rate);
   adsr_.keyOn();
-  maxVelocity_ = 0.03 + (0.1 * amplitude); 
+  maxVelocity_ = 0.03f + (0.1f * amplitude); 
 }
 
 void BandedWG :: stopBowing( StkFloat rate )
@@ -247,13 +247,13 @@ void BandedWG :: noteOn( StkFloat frequency, StkFloat amplitude )
   if ( doPluck_ )
     this->pluck( amplitude );
   else
-    this->startBowing( amplitude, amplitude * 0.001 );
+    this->startBowing( amplitude, amplitude * 0.001f );
 }
 
 void BandedWG :: noteOff( StkFloat amplitude )
 {
   if ( !doPluck_ )
-    this->stopBowing( (1.0 - amplitude) * 0.005 );
+    this->stopBowing( (1.0f - amplitude) * 0.005f );
 }
 
 StkFloat BandedWG :: tick( unsigned int )
@@ -267,8 +267,8 @@ StkFloat BandedWG :: tick( unsigned int )
     //  strikeAmp_ = 0.0;
   }
   else {
-    if ( integrationConstant_ == 0.0 )
-      velocityInput_ = 0.0;
+    if ( integrationConstant_ == 0.0f )
+      velocityInput_ = 0.0f;
     else
       velocityInput_ = integrationConstant_ * velocityInput_;
 
@@ -276,7 +276,7 @@ StkFloat BandedWG :: tick( unsigned int )
       velocityInput_ += baseGain_ * delay_[k].lastOut();
       
     if ( trackVelocity_ )  {
-      bowVelocity_ *= 0.9995;
+      bowVelocity_ *= 0.9995f;
       bowVelocity_ += bowTarget_;
       bowTarget_ *= 0.995;
     }
@@ -311,16 +311,16 @@ void BandedWG :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_BowPressure_) { // 2
-    if ( normalizedValue == 0.0 )
+    if ( normalizedValue == 0.0f )
       doPluck_ = true;
     else {
       doPluck_ = false;
-      bowTable_.setSlope( 10.0 - (9.0 * normalizedValue));
+      bowTable_.setSlope( 10.0f - (9.0f * normalizedValue));
     }
   }
   else if (number == 4)	{ // 4
     if ( !trackVelocity_ ) trackVelocity_ = true;
-    bowTarget_ += 0.005 * (normalizedValue - bowPosition_);
+    bowTarget_ += 0.005f   * (normalizedValue - bowPosition_);
     bowPosition_ = normalizedValue;
     //adsr_.setTarget(bowPosition_);
   }
@@ -330,12 +330,12 @@ void BandedWG :: controlChange( int number, StkFloat value )
     //bowTarget_ += 0.02 * (normalizedValue - bowPosition_);
     //bowPosition_ = normalizedValue;
     if ( trackVelocity_ ) trackVelocity_ = false;
-    maxVelocity_ = 0.13 * normalizedValue; 
+    maxVelocity_ = 0.13f * normalizedValue; 
     adsr_.setTarget(normalizedValue);
   }      
   else if (number == __SK_ModWheel_) { // 1
     //    baseGain_ = 0.9989999999 + (0.001 * normalizedValue );
-	  baseGain_ = 0.8999999999999999 + (0.1 * normalizedValue);
+	  baseGain_ = 0.8999999999999999f + (0.1f * normalizedValue);
     //	std::cerr << "Yuck!" << std::endl;
     for (int i=0; i<nModes_; i++)
       gains_[i]=(StkFloat) basegains_[i]*baseGain_;

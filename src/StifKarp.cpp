@@ -29,7 +29,7 @@ namespace stk {
 
 StifKarp :: StifKarp( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "StifKarp::StifKarp: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -71,32 +71,32 @@ void StifKarp :: setFrequency( StkFloat frequency )
 
   lastFrequency_ = frequency; 
   lastLength_ = Stk::sampleRate() / lastFrequency_;
-  StkFloat delay = lastLength_ - 0.5;
+  StkFloat delay = lastLength_ - 0.5f;
   delayLine_.setDelay( delay );
 
-  loopGain_ = baseLoopGain_ + (frequency * 0.000005);
-  if (loopGain_ >= 1.0) loopGain_ = 0.99999;
+  loopGain_ = baseLoopGain_ + (frequency * 0.000005f);
+  if (loopGain_ >= 1.0f) loopGain_ = 0.99999f;
 
   setStretch(stretching_);
 
-  combDelay_.setDelay( 0.5 * pickupPosition_ * lastLength_ ); 
+  combDelay_.setDelay( 0.5f * pickupPosition_ * lastLength_ ); 
 }
 
 void StifKarp :: setStretch( StkFloat stretch )
 {
   stretching_ = stretch;
   StkFloat coefficient;
-  StkFloat freq = lastFrequency_ * 2.0;
-  StkFloat dFreq = ( (0.5 * Stk::sampleRate()) - freq ) * 0.25;
-  StkFloat temp = 0.5 + (stretch * 0.5);
-  if ( temp > 0.99999 ) temp = 0.99999;
+  StkFloat freq = lastFrequency_ * 2.0f;
+  StkFloat dFreq = ( (0.5f * Stk::sampleRate()) - freq ) * 0.25f;
+  StkFloat temp = 0.5f + (stretch * 0.5f);
+  if ( temp > 0.99999f ) temp = 0.99999f;
   for ( int i=0; i<4; i++ )	{
     coefficient = temp * temp;
     biquad_[i].setA2( coefficient );
     biquad_[i].setB0( coefficient );
     biquad_[i].setB2( 1.0 );
 
-    coefficient = -2.0 * temp * cos(STK_TWO_PI * freq / Stk::sampleRate());
+    coefficient = -2.0f * temp * cos(STK_TWO_PI * freq / Stk::sampleRate());
     biquad_[i].setA1( coefficient );
     biquad_[i].setB1( coefficient );
 
@@ -106,26 +106,26 @@ void StifKarp :: setStretch( StkFloat stretch )
 
 void StifKarp :: setPickupPosition( StkFloat position ) {
 
-  if ( position < 0.0 || position > 1.0 ) {
+  if ( position < 0.0f || position > 1.0f ) {
     oStream_ << "StifKarp::setPickupPosition: parameter is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
   // Set the pick position, which puts zeroes at position * length.
   pickupPosition_ = position;
-  combDelay_.setDelay( 0.5 * pickupPosition_ * lastLength_ );
+  combDelay_.setDelay( 0.5f * pickupPosition_ * lastLength_ );
 }
 
 void StifKarp :: setBaseLoopGain( StkFloat aGain )
 {
   baseLoopGain_ = aGain;
-  loopGain_ = baseLoopGain_ + (lastFrequency_ * 0.000005);
-  if ( loopGain_ > 0.99999 ) loopGain_ = (StkFloat) 0.99999;
+  loopGain_ = baseLoopGain_ + (lastFrequency_ * 0.000005f);
+  if ( loopGain_ > 0.99999f ) loopGain_ = (StkFloat) 0.99999f;
 }
 
 void StifKarp :: pluck( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "StifKarp::pluck: amplitude is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -133,7 +133,7 @@ void StifKarp :: pluck( StkFloat amplitude )
   pluckAmplitude_ = amplitude;
   for ( unsigned long i=0; i<lastLength_; i++ ) {
     // Fill delay with noise additively with current contents.
-    delayLine_.tick( (delayLine_.lastOut() * 0.6) + 0.4 * noise_.tick() * pluckAmplitude_ );
+    delayLine_.tick( (delayLine_.lastOut() * 0.6f) + 0.4f * noise_.tick() * pluckAmplitude_ );
     //delayLine_.tick( combDelay_.tick((delayLine_.lastOut() * 0.6) + 0.4 * noise->tick() * pluckAmplitude_) );
   }
 }
@@ -146,12 +146,12 @@ void StifKarp :: noteOn( StkFloat frequency, StkFloat amplitude )
 
 void StifKarp :: noteOff( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "StifKarp::noteOff: amplitude is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
-  loopGain_ =  (1.0 - amplitude) * 0.5;
+  loopGain_ =  (1.0f - amplitude) * 0.5f  ;
 }
 
 void StifKarp :: controlChange( int number, StkFloat value )
@@ -167,9 +167,9 @@ void StifKarp :: controlChange( int number, StkFloat value )
   if (number == __SK_PickPosition_) // 4
     this->setPickupPosition( normalizedValue );
   else if (number == __SK_StringDamping_) // 11
-    this->setBaseLoopGain( 0.97 + (normalizedValue * 0.03) );
+    this->setBaseLoopGain( 0.97f + (normalizedValue * 0.03f) );
   else if (number == __SK_StringDetune_) // 1
-    this->setStretch( 0.9 + (0.1 * (1.0 - normalizedValue)) );
+    this->setStretch( 0.9f + (0.1f * (1.0f - normalizedValue)) );
 #if defined(_STK_DEBUG_)
   else {
     oStream_ << "StifKarp::controlChange: undefined control number (" << number << ")!";

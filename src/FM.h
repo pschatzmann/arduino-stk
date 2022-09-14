@@ -66,10 +66,10 @@ class FM : public Instrmnt
   void setModulationDepth( StkFloat mDepth ) { modDepth_ = mDepth; };
 
   //! Set the value of control1.
-  void setControl1( StkFloat cVal ) { control1_ = cVal * 2.0; };
+  void setControl1( StkFloat cVal ) { control1_ = cVal * 2.0f; };
 
   //! Set the value of control1.
-  void setControl2( StkFloat cVal ) { control2_ = cVal * 2.0; };
+  void setControl2( StkFloat cVal ) { control2_ = cVal * 2.0f; };
 
   //! Start envelopes toward "on" targets.
   void keyOn( void );

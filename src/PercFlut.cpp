@@ -87,10 +87,10 @@ void PercFlut :: setFrequency( StkFloat frequency )
 
 void PercFlut :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
-  gains_[0] = amplitude * fmGains_[99] * 0.5;
-  gains_[1] = amplitude * fmGains_[71] * 0.5;
-  gains_[2] = amplitude * fmGains_[93] * 0.5;
-  gains_[3] = amplitude * fmGains_[85] * 0.5;
+  gains_[0] = amplitude * fmGains_[99] * 0.5f;
+  gains_[1] = amplitude * fmGains_[71] * 0.5f;
+  gains_[2] = amplitude * fmGains_[93] * 0.5f;
+  gains_[3] = amplitude * fmGains_[85] * 0.5f;
   this->setFrequency( frequency );
   this->keyOn();
 }

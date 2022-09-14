@@ -111,8 +111,8 @@ inline StkFloat Chorus :: tick( StkFloat input, unsigned int channel )
   }
 #endif
 
-  delayLine_[0].setDelay( baseLength_ * 0.707 * ( 1.0 + modDepth_ * mods_[0].tick() ) );
-  delayLine_[1].setDelay( baseLength_  * 0.5 *  ( 1.0 - modDepth_ * mods_[1].tick() ) );
+  delayLine_[0].setDelay( baseLength_ * 0.707f * ( 1.0f + modDepth_ * mods_[0].tick() ) );
+  delayLine_[1].setDelay( baseLength_  * 0.5f *  ( 1.0f - modDepth_ * mods_[1].tick() ) );
   lastFrame_[0] = effectMix_ * ( delayLine_[0].tick( input ) - input ) + input;
   lastFrame_[1] = effectMix_ * ( delayLine_[1].tick( input ) - input ) + input;
   return lastFrame_[channel];
@@ -130,8 +130,8 @@ inline StkFrames& Chorus :: tick( StkFrames& frames, unsigned int channel )
   StkFloat *samples = &frames[channel];
   unsigned int hop = frames.channels() - 1;
   for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
-    delayLine_[0].setDelay( baseLength_ * 0.707 * ( 1.0 + modDepth_ * mods_[0].tick() ) );
-    delayLine_[1].setDelay( baseLength_  * 0.5 *  ( 1.0 - modDepth_ * mods_[1].tick() ) );
+    delayLine_[0].setDelay( baseLength_ * 0.707f * ( 1.0f + modDepth_ * mods_[0].tick() ) );
+    delayLine_[1].setDelay( baseLength_  * 0.5f *  ( 1.0f - modDepth_ * mods_[1].tick() ) );
     *samples = effectMix_ * ( delayLine_[0].tick( *samples ) - *samples ) + *samples;
     samples++;
     *samples = effectMix_ * ( delayLine_[1].tick( *samples ) - *samples ) + *samples;
@@ -155,8 +155,8 @@ inline StkFrames& Chorus :: tick( StkFrames& iFrames, StkFrames& oFrames, unsign
   StkFloat *oSamples = &oFrames[oChannel];
   unsigned int iHop = iFrames.channels(), oHop = oFrames.channels();
   for ( unsigned int i=0; i<iFrames.frames(); i++, iSamples += iHop, oSamples += oHop ) {
-    delayLine_[0].setDelay( baseLength_ * 0.707 * ( 1.0 + modDepth_ * mods_[0].tick() ) );
-    delayLine_[1].setDelay( baseLength_  * 0.5 *  ( 1.0 - modDepth_ * mods_[1].tick() ) );
+    delayLine_[0].setDelay( baseLength_ * 0.707f * ( 1.0f + modDepth_ * mods_[0].tick() ) );
+    delayLine_[1].setDelay( baseLength_  * 0.5f *  ( 1.0f - modDepth_ * mods_[1].tick() ) );
     *oSamples = effectMix_ * ( delayLine_[0].tick( *iSamples ) - *iSamples ) + *iSamples;
     *(oSamples+1) = effectMix_ * ( delayLine_[1].tick( *iSamples ) - *iSamples ) + *iSamples;
   }

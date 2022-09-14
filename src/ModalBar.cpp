@@ -50,7 +50,7 @@ ModalBar :: ModalBar( void )
   wave_ = new FileWvIn( (Stk::rawwavePath() + "marmstk1.raw").c_str(), true );
   #endif
 
-  wave_->setRate( 0.5 * 22050.0 / Stk::sampleRate() );
+  wave_->setRate( 0.5f * 22050.0f / Stk::sampleRate() );
 
   // Set the resonances for preset 0 (marimba).
   this->setPreset( 0 );
@@ -63,19 +63,19 @@ ModalBar :: ~ModalBar( void )
 
 void ModalBar :: setStickHardness( StkFloat hardness )
 {
-  if ( hardness < 0.0 || hardness > 1.0 ) {
+  if ( hardness < 0.0f || hardness > 1.0f ) {
     oStream_ << "ModalBar::setStickHardness: parameter is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
   stickHardness_ = hardness;
-  wave_->setRate( (0.25 * pow(4.0, stickHardness_) ) );
-  masterGain_ = 0.1 + (1.8 * stickHardness_);
+  wave_->setRate( (0.25f * pow(4.0f, stickHardness_) ) );
+  masterGain_ = 0.1f + (1.8f * stickHardness_);
 }
 
 void ModalBar :: setStrikePosition( StkFloat position )
 {
-  if ( position < 0.0 || position > 1.0 ) {
+  if ( position < 0.0f || position > 1.0f ) {
     oStream_ << "ModalBar::setStrikePosition: parameter is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -85,13 +85,13 @@ void ModalBar :: setStrikePosition( StkFloat position )
   // Hack only first three modes.
   StkFloat temp2 = position * STK_PI;
   StkFloat temp = sin(temp2);                                       
-  this->setModeGain(0, 0.12 * temp);
+  this->setModeGain(0, 0.12f * temp);
 
-  temp = sin(0.05 + (3.9 * temp2));
-  this->setModeGain(1, -0.03 * temp);
+  temp = sin(0.05f + (3.9f * temp2));
+  this->setModeGain(1, -0.03f * temp);
 
-  temp = sin(-0.05 + (11 * temp2));
-  this->setModeGain(2, 0.11 * temp);
+  temp = sin(-0.05f + (11 * temp2));
+  this->setModeGain(2, 0.11f * temp);
 }
 
 void ModalBar :: setPreset( int preset )
@@ -175,11 +175,11 @@ void ModalBar :: controlChange( int number, StkFloat value )
   else if (number == __SK_ProphesyRibbon_) // 16
 		this->setPreset((int) value);
   else if (number == __SK_Balance_) // 8
-    vibratoGain_ = normalizedValue * 0.3;
+    vibratoGain_ = normalizedValue * 0.3f ;
   else if (number == __SK_ModWheel_) // 1
     directGain_ = normalizedValue;
   else if (number == __SK_ModFrequency_) // 11
-    vibrato_.setFrequency( normalizedValue * 12.0 );
+    vibrato_.setFrequency( normalizedValue * 12.0f );
   else if (number == __SK_AfterTouch_Cont_)	// 128
     envelope_.setTarget( normalizedValue );
 #if defined(_STK_DEBUG_)

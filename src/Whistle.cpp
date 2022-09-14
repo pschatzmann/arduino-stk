@@ -94,7 +94,7 @@ void Whistle :: setFrequency( StkFloat frequency )
 
 void Whistle :: startBlowing( StkFloat amplitude, StkFloat rate )
 {
-  if ( amplitude <= 0.0 || rate <= 0.0 ) {
+  if ( amplitude <= 0.0f || rate <= 0.0f ) {
     oStream_ << "Whistle::startBlowing: one or more arguments is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -105,7 +105,7 @@ void Whistle :: startBlowing( StkFloat amplitude, StkFloat rate )
 
 void Whistle :: stopBlowing( StkFloat rate )
 {
-  if ( rate <= 0.0 ) {
+  if ( rate <= 0.0f ) {
     oStream_ << "Whistle::stopBlowing: argument is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -117,12 +117,12 @@ void Whistle :: stopBlowing( StkFloat rate )
 void Whistle :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   this->setFrequency( frequency );
-  this->startBlowing( amplitude*2.0 ,amplitude * 0.2 );
+  this->startBlowing( amplitude*2.0f ,amplitude * 0.2f );
 }
 
 void Whistle :: noteOff( StkFloat amplitude )
 {
-  this->stopBlowing( amplitude * 0.02 );
+  this->stopBlowing( amplitude * 0.02f );
 }
 
 int frameCount = 0;
@@ -131,8 +131,8 @@ StkFloat Whistle :: tick( unsigned int )
 {
   StkFloat soundMix, tempFreq;
   StkFloat envOut = 0, temp, temp1, temp2, tempX, tempY;
-  double phi, cosphi, sinphi;
-  double gain = 0.5, mod = 0.0;
+  StkFloat phi, cosphi, sinphi;
+  StkFloat gain = 0.5, mod = 0.0;
 
   if ( --subSampCount_ <= 0 )	{
     tempVectorP_ = pea_.getPosition();
@@ -149,21 +149,21 @@ StkFloat Whistle :: tick( unsigned int )
     envOut = envelope_.tick();
 
     if (temp < (BUMP_RADIUS + PEA_RADIUS)) {
-      tempX = envOut * tickSize_ * 2000 * noise_.tick();
-      tempY = -envOut * tickSize_ * 1000 * (1.0 + noise_.tick());
+      tempX = envOut * tickSize_ * 2000.0f * noise_.tick();
+      tempY = -envOut * tickSize_ * 1000.0f * (1.0f + noise_.tick());
       pea_.addVelocity( tempX, tempY, 0 ); 
       pea_.tick( tickSize_ );
     }
 
-    mod  = exp(-temp * 0.01);	  // exp. distance falloff of fipple/pea effect
+    mod  = exp(-temp * 0.01f);	  // exp. distance falloff of fipple/pea effect
     temp = onepole_.tick(mod);	// smooth it a little
-    gain = (1.0 - (fippleGainMod_*0.5)) + (2.0 * fippleGainMod_ * temp);
+    gain = (1.0f - (fippleGainMod_*0.5f)) + (2.0f * fippleGainMod_ * temp);
     gain *= gain;	              // squared distance/gain
     //    tempFreq = 1.0				//  Normalized Base Freq
     //			+ (fippleFreqMod_ * 0.25) - (fippleFreqMod_ * temp) // fippleModulation 
     //			- (blowFreqMod_) + (blowFreqMod_ * envOut); // blowingModulation
     // short form of above
-    tempFreq = 1.0 + fippleFreqMod_*(0.25-temp) + blowFreqMod_*(envOut-1.0);
+    tempFreq = 1.0f + fippleFreqMod_*(0.25f-temp) + blowFreqMod_*(envOut-1.0f);
     tempFreq *= baseFrequency_;
 
     sine_.setFrequency(tempFreq);
@@ -171,7 +171,7 @@ StkFloat Whistle :: tick( unsigned int )
     tempVectorP_ = pea_.getPosition();
     temp = can_.isInside(tempVectorP_);
     temp  = -temp;       // We know (hope) it's inside, just how much??
-    if (temp < (PEA_RADIUS * 1.25)) {
+    if (temp < (PEA_RADIUS * 1.25f)) {
       pea_.getVelocity( &tempVector_ );  // This is the can/pea collision
       tempX = tempVectorP_->getX();     // calculation.  Could probably
       tempY = tempVectorP_->getY();     // simplify using tables, etc.
@@ -191,31 +191,31 @@ StkFloat Whistle :: tick( unsigned int )
     }
 
     temp = tempVectorP_->getLength();	
-    if (temp > 0.01) {
+    if (temp > 0.01f) {
       tempX = tempVectorP_->getX();
       tempY = tempVectorP_->getY();
-      phi = atan2( tempY, tempX );
-      phi += 0.3 * temp / CAN_RADIUS;
+      phi = atan2f( tempY, tempX );
+      phi += 0.3f * temp / CAN_RADIUS;
       cosphi = cos(phi);
       sinphi = sin(phi);
-      tempX = 3.0 * temp * cosphi;
-      tempY = 3.0 * temp * sinphi;
+      tempX = 3.0f * temp * cosphi;
+      tempY = 3.0f * temp * sinphi;
     }
     else {
       tempX = 0.0;
       tempY = 0.0;
     }
 
-    temp = (0.9 + 0.1*subSample_*noise_.tick()) * envOut * 0.6 * tickSize_;
+    temp = (0.9f + 0.1f * subSample_*noise_.tick()) * envOut * 0.6f * tickSize_;
     pea_.addVelocity( temp * tempX, (temp*tempY) - (GRAVITY*tickSize_), 0 );
     pea_.tick( tickSize_ );
 
     // bumper_.tick(0.0);
   }
 
-  temp = envOut * envOut * gain / 2;
+  temp = envOut * envOut * gain / 2.0f        ;
   soundMix = temp * ( sine_.tick() + ( noiseGain_*noise_.tick() ) );
-  lastFrame_[0] = 0.20 * soundMix; // should probably do one-zero filter here
+  lastFrame_[0] = 0.20f * soundMix; // should probably do one-zero filter here
 
   return lastFrame_[0];
 }
@@ -231,15 +231,15 @@ void Whistle :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if ( number == __SK_NoiseLevel_ ) // 4
-    noiseGain_ = 0.25 * normalizedValue;
+    noiseGain_ = 0.25f * normalizedValue;
   else if ( number == __SK_ModFrequency_ ) // 11
     fippleFreqMod_ = normalizedValue;
   else if ( number == __SK_ModWheel_ ) // 1
     fippleGainMod_ = normalizedValue;
   else if ( number == __SK_AfterTouch_Cont_ ) // 128
-    envelope_.setTarget( normalizedValue * 2.0 );
+    envelope_.setTarget( normalizedValue * 2.0f );
   else if ( number == __SK_Breath_ ) // 2
-    blowFreqMod_ = normalizedValue * 0.5;
+    blowFreqMod_ = normalizedValue * 0.5f;
   else if ( number == __SK_Sustain_ )	{ // 64
     subSample_ = (int) value;
     if ( subSample_ < 1.0 ) subSample_ = 1;

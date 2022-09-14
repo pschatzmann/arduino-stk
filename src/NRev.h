@@ -128,7 +128,7 @@ inline StkFloat NRev :: tick( StkFloat input, unsigned int channel )
   }
 
 	// One-pole lowpass filter.
-  lowpassState_ = 0.7 * lowpassState_ + 0.3 * temp0;
+  lowpassState_ = 0.7f * lowpassState_ + 0.3f * temp0;
   temp = allpassDelays_[3].lastOut();
   temp1 = allpassCoefficient_ * temp;
   temp1 += lowpassState_;
@@ -147,7 +147,7 @@ inline StkFloat NRev :: tick( StkFloat input, unsigned int channel )
   allpassDelays_[5].tick( temp3 );
   lastFrame_[1] = effectMix_*( - ( allpassCoefficient_ * temp3 ) + temp );
 
-  temp = ( 1.0 - effectMix_ ) * input;
+  temp = ( 1.0f - effectMix_ ) * input;
   lastFrame_[0] += temp;
   lastFrame_[1] += temp;
     

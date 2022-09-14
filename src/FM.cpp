@@ -116,7 +116,7 @@ void FM :: setRatio( unsigned int waveIndex, StkFloat ratio )
   }
 
   ratios_[waveIndex] = ratio;
-  if (ratio > 0.0) 
+  if (ratio > 0.0f) 
     waves_[waveIndex]->setFrequency( baseFrequency_ * ratio );
   else
     waves_[waveIndex]->setFrequency( ratio );
@@ -164,7 +164,7 @@ void FM :: controlChange( int number, StkFloat value )
   else if (number == __SK_FootControl_) // 4
     this->setControl2( normalizedValue );
   else if (number == __SK_ModFrequency_) // 11
-    this->setModulationSpeed( normalizedValue * 12.0);
+    this->setModulationSpeed( normalizedValue * 12.0f);
   else if (number == __SK_ModWheel_) // 1
     this->setModulationDepth( normalizedValue );
   else if (number == __SK_AfterTouch_Cont_)	{ // 128

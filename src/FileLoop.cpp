@@ -106,7 +106,7 @@ void FileLoop :: addTime( StkFloat time )
   // Add an absolute time in samples.
   time_ += time;
 
-  while ( time_ < 0.0 )
+  while ( time_ < 0.0f   )
     time_ += fileSize_;
   while ( time_ >= fileSize_ )
     time_ -= fileSize_;
@@ -117,7 +117,7 @@ void FileLoop :: addPhase( StkFloat angle )
   // Add a time in cycles (one cycle = fileSize).
   time_ += fileSize_ * angle;
 
-  while ( time_ < 0.0 )
+  while ( time_ < 0.0f )
     time_ += fileSize_;
   while ( time_ >= fileSize_ )
     time_ -= fileSize_;
@@ -146,7 +146,7 @@ StkFloat FileLoop :: tick( unsigned int channel )
 
   // Check limits of time address ... if necessary, recalculate modulo
   // fileSize.
-  while ( time_ < 0.0 )
+  while ( time_ < 0.0f )
     time_ += fileSize_;
   while ( time_ >= fileSize_ )
     time_ -= fileSize_;
@@ -154,7 +154,7 @@ StkFloat FileLoop :: tick( unsigned int channel )
   StkFloat tyme = time_;
   if ( phaseOffset_ ) {
     tyme += phaseOffset_;
-    while ( tyme < 0.0 )
+    while ( tyme < 0.0f )
       tyme += fileSize_;
     while ( tyme >= fileSize_ )
       tyme -= fileSize_;

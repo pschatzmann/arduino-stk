@@ -87,11 +87,11 @@ void Simple :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_Breath_) // 2
-    filter_.setPole( 0.99 * (1.0 - (normalizedValue * 2.0)) );
+    filter_.setPole( 0.99f * (1.0f - (normalizedValue * 2.0f)) );
   else if (number == __SK_NoiseLevel_) // 4
     loopGain_ = normalizedValue;
   else if (number == __SK_ModFrequency_) { // 11
-    normalizedValue /= 0.2 * Stk::sampleRate();
+    normalizedValue /= 0.2f * Stk::sampleRate();
     adsr_.setAttackRate( normalizedValue );
     adsr_.setDecayRate( normalizedValue );
     adsr_.setReleaseRate( normalizedValue );

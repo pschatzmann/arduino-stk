@@ -29,12 +29,12 @@ namespace stk {
 
 Clarinet :: Clarinet( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Clarinet::Clarinet: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
 
-  unsigned long nDelays = (unsigned long) ( 0.5 * Stk::sampleRate() / lowestFrequency );
+  unsigned long nDelays = (unsigned long) ( 0.5f * Stk::sampleRate() / lowestFrequency );
   delayLine_.setMaximumDelay( nDelays + 1 );
 
   reedTable_.setOffset( 0.7 );
@@ -69,13 +69,13 @@ void Clarinet :: setFrequency( StkFloat frequency )
 #endif
 
   // Account for filter delay and one sample "lastOut" delay.
-  StkFloat delay = ( Stk::sampleRate() / frequency ) * 0.5 - filter_.phaseDelay( frequency ) - 1.0;
+  StkFloat delay = ( Stk::sampleRate() / frequency ) * 0.5f - filter_.phaseDelay( frequency ) - 1.0f;
   delayLine_.setDelay( delay );
 }
 
 void Clarinet :: startBlowing( StkFloat amplitude, StkFloat rate )
 {
-  if ( amplitude <= 0.0 || rate <= 0.0 ) {
+  if ( amplitude <= 0.0f || rate <= 0.0f ) {
     oStream_ << "Clarinet::startBlowing: one or more arguments is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -86,7 +86,7 @@ void Clarinet :: startBlowing( StkFloat amplitude, StkFloat rate )
 
 void Clarinet :: stopBlowing( StkFloat rate )
 {
-  if ( rate <= 0.0 ) {
+  if ( rate <= 0.0f ) {
     oStream_ << "Clarinet::stopBlowing: argument is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -98,13 +98,13 @@ void Clarinet :: stopBlowing( StkFloat rate )
 void Clarinet :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   this->setFrequency( frequency );
-  this->startBlowing( 0.55 + (amplitude * 0.30), amplitude * 0.005 );
-  outputGain_ = amplitude + 0.001;
+  this->startBlowing( 0.55f + (amplitude * 0.30f), amplitude * 0.005f );
+  outputGain_ = amplitude + 0.001f;
 }
 
 void Clarinet :: noteOff( StkFloat amplitude )
 {
-  this->stopBlowing( amplitude * 0.01 );
+  this->stopBlowing( amplitude * 0.01f );
 }
 
 void Clarinet :: controlChange( int number, StkFloat value )
@@ -118,13 +118,13 @@ void Clarinet :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if ( number == __SK_ReedStiffness_ ) // 2
-    reedTable_.setSlope( -0.44 + ( 0.26 * normalizedValue ) );
+    reedTable_.setSlope( -0.44f + ( 0.26f * normalizedValue ) );
   else if ( number == __SK_NoiseLevel_ ) // 4
-    noiseGain_ = ( normalizedValue * 0.4 );
+    noiseGain_ = ( normalizedValue * 0.4f );
   else if ( number == __SK_ModFrequency_ ) // 11
-    vibrato_.setFrequency( normalizedValue * 12.0 );
+    vibrato_.setFrequency( normalizedValue * 12.0f );
   else if ( number == __SK_ModWheel_ ) // 1
-    vibratoGain_ = ( normalizedValue * 0.5 );
+    vibratoGain_ = ( normalizedValue * 0.5f );
   else if ( number == __SK_AfterTouch_Cont_ ) // 128
     envelope_.setValue( normalizedValue );
 #if defined(_STK_DEBUG_)

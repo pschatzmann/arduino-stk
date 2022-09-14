@@ -112,9 +112,9 @@ inline StkFrames& BowTable :: tick( StkFrames& frames, unsigned int channel )
   for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
     *samples = *samples + offset_;
     *samples *= slope_;
-    *samples = (StkFloat) fabs( (float) *samples ) + 0.75;
-    *samples = (StkFloat) pow( *samples, (StkFloat) -4.0 );
-    if ( *samples > 1.0) *samples = 1.0;
+    *samples = (StkFloat) fabs( (float) *samples ) + 0.75f;
+    *samples = (StkFloat) pow( *samples, (StkFloat) -4.0f );
+    if ( *samples > 1.0f) *samples = 1.0f;
   }
 
   lastFrame_[0] = *(samples-hop);
@@ -136,9 +136,9 @@ inline StkFrames& BowTable :: tick( StkFrames& iFrames, StkFrames& oFrames, unsi
   for ( unsigned int i=0; i<iFrames.frames(); i++, iSamples += iHop, oSamples += oHop ) {
     *oSamples = *iSamples + offset_;
     *oSamples *= slope_;
-    *oSamples = (StkFloat) fabs( (float) *oSamples ) + 0.75;
-    *oSamples = (StkFloat) pow( *oSamples, (StkFloat) -4.0 );
-    if ( *oSamples > 1.0) *oSamples = 1.0;
+    *oSamples = (StkFloat) fabs( (float) *oSamples ) + 0.75f;
+    *oSamples = (StkFloat) pow( *oSamples, (StkFloat) -4.0f);
+    if ( *oSamples > 1.0f) *oSamples = 1.0f;
   }
 
   lastFrame_[0] = *(oSamples-oHop);

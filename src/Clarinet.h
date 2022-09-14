@@ -106,7 +106,7 @@ inline StkFloat Clarinet :: tick( unsigned int )
   breathPressure += breathPressure * vibratoGain_ * vibrato_.tick();
 
   // Perform commuted loss filtering.
-  pressureDiff = -0.95 * filter_.tick( delayLine_.lastOut() );
+  pressureDiff = -0.95f * filter_.tick( delayLine_.lastOut() );
 
   // Calculate pressure difference of reflected and mouthpiece pressures.
   pressureDiff = pressureDiff - breathPressure;

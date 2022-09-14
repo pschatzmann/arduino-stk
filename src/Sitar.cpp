@@ -23,7 +23,7 @@ namespace stk {
 
 Sitar :: Sitar( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Sitar::Sitar: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -61,10 +61,10 @@ void Sitar :: setFrequency( StkFloat frequency )
 #endif
 
   targetDelay_ = (Stk::sampleRate() / frequency);
-  delay_ = targetDelay_ * (1.0 + (0.05 * noise_.tick()));
+  delay_ = targetDelay_ * (1.0f + (0.05f * noise_.tick()));
   delayLine_.setDelay( delay_ );
-  loopGain_ = 0.995 + (frequency * 0.0000005);
-  if ( loopGain_ > 0.9995 ) loopGain_ = 0.9995;
+  loopGain_ = 0.995f + (frequency * 0.0000005f);
+  if ( loopGain_ > 0.9995f ) loopGain_ = 0.9995f;
 }
 
 void Sitar :: pluck( StkFloat amplitude )
@@ -76,17 +76,17 @@ void Sitar :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   this->setFrequency( frequency );
   this->pluck( amplitude );
-  amGain_ = 0.1 * amplitude;
+  amGain_ = 0.1f * amplitude;
 }
 
 void Sitar :: noteOff( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Sitar::noteOff: amplitude is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
-  loopGain_ = (StkFloat) 1.0 - amplitude;
+  loopGain_ =  1.0f - amplitude;
 }
 
 } // stk namespace

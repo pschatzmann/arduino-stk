@@ -46,26 +46,26 @@ void ADSR :: sampleRateChanged( StkFloat newRate, StkFloat oldRate )
 
 void ADSR :: keyOn()
 {
-  if ( target_ <= 0.0 ) target_ = 1.0;
+  if ( target_ <= 0.0f ) target_ = 1.0f;
   state_ = ATTACK;
 }
 
 void ADSR :: keyOff()
 {
-  target_ = 0.0;
+  target_ = 0.0f;
   state_ = RELEASE;
 
   // FIXED October 2010 - Nick Donaldson
   // Need to make release rate relative to current value!!
   // Only update if we have set a TIME rather than a RATE,
   // in which case releaseTime_ will be -1
-  if ( releaseTime_ > 0.0 )
+  if ( releaseTime_ > 0.0f )
 	  releaseRate_ = value_ / ( releaseTime_ * Stk::sampleRate() );
 }
 
 void ADSR :: setAttackRate( StkFloat rate )
 {
-  if ( rate < 0.0 ) {
+  if ( rate < 0.0f ) {
     handleError("ADSR::setAttackRate: argument must be >= 0.0!", StkError::WARNING ); return;
   }
 
@@ -74,7 +74,7 @@ void ADSR :: setAttackRate( StkFloat rate )
 
 void ADSR :: setAttackTarget( StkFloat target )
 {
-  if ( target < 0.0 ) {
+  if ( target < 0.0f ) {
     handleError("ADSR::setAttackTarget: negative target not allowed!",  StkError::WARNING ); return;
   }
 
@@ -83,7 +83,7 @@ void ADSR :: setAttackTarget( StkFloat target )
 
 void ADSR :: setDecayRate( StkFloat rate )
 {
-  if ( rate < 0.0 ) {
+  if ( rate < 0.0f ) {
     handleError("ADSR::setDecayRate: negative rates not allowed!",  StkError::WARNING ); return;
   }
 
@@ -92,7 +92,7 @@ void ADSR :: setDecayRate( StkFloat rate )
 
 void ADSR :: setSustainLevel( StkFloat level )
 {
-  if ( level < 0.0 ) {
+  if ( level < 0.0f ) {
     handleError("ADSR::setSustainLevel: negative level not allowed!", StkError::WARNING ); return;
   }
 
@@ -101,7 +101,7 @@ void ADSR :: setSustainLevel( StkFloat level )
 
 void ADSR :: setReleaseRate( StkFloat rate )
 {
-  if ( rate < 0.0 ) {
+  if ( rate < 0.0f ) {
     handleError("ADSR::setReleaseRate: negative rates not allowed!", StkError::WARNING ); return;
   }
 
@@ -113,25 +113,25 @@ void ADSR :: setReleaseRate( StkFloat rate )
 
 void ADSR :: setAttackTime( StkFloat time )
 {
-  if ( time <= 0.0 ) {
+  if ( time <= 0.0f ) {
     handleError( "ADSR::setAttackTime: negative or zero times not allowed!", StkError::WARNING ); return;
   }
 
-  attackRate_ = 1.0 / ( time * Stk::sampleRate() );
+  attackRate_ = 1.0f / ( time * Stk::sampleRate() );
 }
 
 void ADSR :: setDecayTime( StkFloat time )
 {
-  if ( time <= 0.0 ) {
+  if ( time <= 0.0f ) {
     handleError("ADSR::setDecayTime: negative or zero times not allowed!",  StkError::WARNING ); return;
   }
 
-  decayRate_ = (1.0 - sustainLevel_) / ( time * Stk::sampleRate() );
+  decayRate_ = (1.0f - sustainLevel_) / ( time * Stk::sampleRate() );
 }
 
 void ADSR :: setReleaseTime( StkFloat time )
 {
-  if ( time <= 0.0 ) {
+  if ( time <= 0.0f ) {
     handleError("ADSR::setReleaseTime: negative or zero times not allowed!",  StkError::WARNING ); return;
   }
 
@@ -149,7 +149,7 @@ void ADSR :: setAllTimes( StkFloat aTime, StkFloat dTime, StkFloat sLevel, StkFl
 
 void ADSR :: setTarget( StkFloat target )
 {
-  if ( target < 0.0 ) {
+  if ( target < 0.0f ) {
     handleError( "ADSR::setTarget: negative target not allowed!", StkError::WARNING ); return;
   }
 

@@ -48,7 +48,7 @@ class Moog : public Sampler
   void setModulationSpeed( StkFloat mSpeed ) { loops_[1]->setFrequency( mSpeed ); };
 
   //! Set the modulation (vibrato) depth.
-  void setModulationDepth( StkFloat mDepth ) { modDepth_ = mDepth * 0.5; };
+  void setModulationDepth( StkFloat mDepth ) { modDepth_ = mDepth * 0.5f; };
 
   //! Perform the control change specified by \e number and \e value (0.0 - 128.0).
   void controlChange( int number, StkFloat value );
@@ -79,9 +79,9 @@ inline StkFloat Moog :: tick( unsigned int )
 {
   StkFloat temp;
 
-  if ( modDepth_ != 0.0 ) {
+  if ( modDepth_ != 0.0f ) {
     temp = loops_[1]->tick() * modDepth_;    
-    loops_[0]->setFrequency( baseFrequency_ * (1.0 + temp) );
+    loops_[0]->setFrequency( baseFrequency_ * (1.0f + temp) );
   }
 
   temp = attackGain_ * attacks_[0]->tick();
@@ -90,7 +90,7 @@ inline StkFloat Moog :: tick( unsigned int )
   temp *= adsr_.tick();
   temp = filters_[0].tick( temp );
   lastFrame_[0] = filters_[1].tick( temp );
-  return lastFrame_[0] * 6.0;
+  return lastFrame_[0] * 6.0f;
 }
 
 inline StkFrames& Moog :: tick( StkFrames& frames, unsigned int channel )

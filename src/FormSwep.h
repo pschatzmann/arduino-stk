@@ -124,7 +124,7 @@ inline StkFloat FormSwep :: tick( StkFloat input )
 {                                     
   if ( dirty_ )  {
     sweepState_ += sweepRate_;
-    if ( sweepState_ >= 1.0 )   {
+    if ( sweepState_ >= 1.0f )   {
       sweepState_ = 1.0;
       dirty_ = false;
       radius_ = targetRadius_;

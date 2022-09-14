@@ -32,7 +32,7 @@ PoleZero :: ~PoleZero()
 
 void PoleZero :: setCoefficients( StkFloat b0, StkFloat b1, StkFloat a1, bool clearState )
 {
-  if ( std::abs( a1 ) >= 1.0 ) {
+  if ( std::abs( a1 ) >= 1.0f ) {
     oStream_ << "PoleZero::setCoefficients: a1 argument (" << a1 << ") should be less than 1.0!";
     handleError( StkError::WARNING ); return;
   }
@@ -46,7 +46,7 @@ void PoleZero :: setCoefficients( StkFloat b0, StkFloat b1, StkFloat a1, bool cl
 
 void PoleZero :: setAllpass( StkFloat coefficient )
 {
-  if ( std::abs( coefficient ) >= 1.0 ) {
+  if ( std::abs( coefficient ) >= 1.0f ) {
     oStream_ << "PoleZero::setAllpass: argument (" << coefficient << ") makes filter unstable!";
     handleError( StkError::WARNING ); return;
   }
@@ -59,7 +59,7 @@ void PoleZero :: setAllpass( StkFloat coefficient )
 
 void PoleZero :: setBlockZero( StkFloat thePole )
 {
-  if ( std::abs( thePole ) >= 1.0 ) {
+  if ( std::abs( thePole ) >= 1.0f ) {
     oStream_ << "PoleZero::setBlockZero: argument (" << thePole << ") makes filter unstable!";
     handleError( StkError::WARNING ); return;
   }

@@ -92,7 +92,7 @@ inline StkFloat Simple :: tick( unsigned int )
 {
   lastFrame_[0] = loopGain_ * loop_->tick();
   biquad_.tick( noise_.tick() );
-  lastFrame_[0] += (1.0 - loopGain_) * biquad_.lastOut();
+  lastFrame_[0] += (1.0f - loopGain_) * biquad_.lastOut();
   lastFrame_[0] = filter_.tick( lastFrame_[0] );
   lastFrame_[0] *= adsr_.tick();
   return lastFrame_[0];

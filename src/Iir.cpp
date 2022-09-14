@@ -46,7 +46,7 @@ Iir :: Iir( std::vector<StkFloat> &bCoefficients, std::vector<StkFloat> &aCoeffi
     handleError( StkError::FUNCTION_ARGUMENT );
   }
 
-  if ( aCoefficients[0] == 0.0 ) {
+  if ( aCoefficients[0] == 0.0f ) {
     oStream_ << "Iir: a[0] coefficient cannot == 0!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -99,7 +99,7 @@ void Iir :: setDenominator( std::vector<StkFloat> &aCoefficients, bool clearStat
     handleError( StkError::FUNCTION_ARGUMENT );
   }
 
-  if ( aCoefficients[0] == 0.0 ) {
+  if ( aCoefficients[0] == 0.0f ) {
     oStream_ << "Iir::setDenominator: a[0] coefficient cannot == 0!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -115,7 +115,7 @@ void Iir :: setDenominator( std::vector<StkFloat> &aCoefficients, bool clearStat
   if ( clearState ) this->clear();
 
   // Scale coefficients by a[0] if necessary
-  if ( a_[0] != 1.0 ) {
+  if ( a_[0] != 1.0f ) {
     unsigned int i;
     for ( i=0; i<b_.size(); i++ ) b_[i] /= a_[0];
     for ( i=1; i<a_.size(); i++ )  a_[i] /= a_[0];

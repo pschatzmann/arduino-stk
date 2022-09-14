@@ -97,7 +97,7 @@ class LentPitShift : public Effect
   // Pitch shifter variables
   StkFloat env[2];     // Coefficients for the linear interpolation when modifying the output samples
   StkFloat* window;    // Hamming window used for the input portion extraction
-  double periodRatio_; // Ratio of modification of the signal period
+  StkFloat periodRatio_; // Ratio of modification of the signal period
   StkFrames zeroFrame; // Frame of tMax_ zero samples
 
 
@@ -177,7 +177,7 @@ inline void LentPitShift::process()
 
   long M;  // Index of reading in the input delay line
   long N;  // Index of writing in the output delay line
-  double sample;  // Temporary storage for the new coefficient
+  StkFloat sample;  // Temporary storage for the new coefficient
 
   // We loop for all the frames of length lastPeriod_ presents between inputPtr and tMax_
   for ( ; inputPtr<(int)(tMax_-lastPeriod_); inputPtr+=lastPeriod_ ) {
@@ -185,11 +185,11 @@ inline void LentPitShift::process()
     while ( outputPtr < inputPtr ) {
       // Coefficients for the linear interpolation
       env[1] = fmod( outputPtr + tMax_, 1.0 );
-      env[0] = 1.0 - env[1];
+      env[0] = 1.0f   - env[1];
       M = tMax_ - inputPtr + lastPeriod_ - 1; // New reading pointer
       N = 2*tMax_ - (unsigned long)floor(outputPtr + tMax_) + lastPeriod_ - 1; // New writing pointer
       for ( unsigned int j=0; j<2*lastPeriod_; j++,M--,N-- ) {
-        sample = inputLine_.tapOut(M) * window[j] / 2.;
+        sample = inputLine_.tapOut(M) * window[j] / 2.f;
         // Linear interpolation
         outputLine_.addTo(env[0] * sample, N);
         outputLine_.addTo(env[1] * sample, N-1);

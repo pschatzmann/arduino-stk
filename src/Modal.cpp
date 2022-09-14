@@ -84,7 +84,7 @@ void Modal :: setRatioAndRadius( unsigned int modeIndex, StkFloat ratio, StkFloa
     handleError( StkError::WARNING ); return;
   }
 
-  StkFloat nyquist = Stk::sampleRate() / 2.0;
+  StkFloat nyquist = Stk::sampleRate() / 2.0f;
   StkFloat temp;
 
   if ( ratio * baseFrequency_ < nyquist ) {
@@ -120,14 +120,14 @@ void Modal :: setModeGain( unsigned int modeIndex, StkFloat gain )
 
 void Modal :: strike( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Modal::strike: amplitude is out of range!";
     handleError( StkError::WARNING );
   }
 
   envelope_.setRate( 1.0 );
   envelope_.setTarget( amplitude );
-  onepole_.setPole( 1.0 - amplitude );
+  onepole_.setPole( 1.0f - amplitude );
   envelope_.tick();
   wave_->reset();
 
@@ -151,7 +151,7 @@ void Modal :: noteOff( StkFloat amplitude )
 {
   // This calls damp, but inverts the meaning of amplitude (high
   // amplitude means fast damping).
-  this->damp( 1.0 - (amplitude * 0.03) );
+  this->damp( 1.0f - (amplitude * 0.03f) );
 }
 
 void Modal :: damp( StkFloat amplitude )

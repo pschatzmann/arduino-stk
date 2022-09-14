@@ -140,15 +140,15 @@ inline StkFloat Guitar :: tick( StkFloat input )
     if ( stringState_[i] ) {
       temp = input;
       // If pluckGain < 0.2, let string ring but don't pluck it.
-      if ( filePointer_[i] < excitation_.frames() && pluckGains_[i] > 0.2 )
+      if ( filePointer_[i] < excitation_.frames() && pluckGains_[i] > 0.2f )
         temp += pluckGains_[i] * excitation_[filePointer_[i]++];
       temp += couplingGain_ * couplingFilter_.tick( lastFrame_[0] ); // bridge coupling
       output += strings_[i].tick( temp );
       // Check if string energy has decayed sufficiently to turn it off.
       if ( stringState_[i] == 1 ) {
-        if ( fabs( strings_[i].lastOut() ) < 0.001 ) decayCounter_[i]++;
+        if ( fabs( strings_[i].lastOut() ) < 0.001f ) decayCounter_[i]++;
         else decayCounter_[i] = 0;
-        if ( decayCounter_[i] > (unsigned int) floor( 0.1 * Stk::sampleRate() ) ) {
+        if ( decayCounter_[i] > (unsigned int) floor( 0.1f * Stk::sampleRate() ) ) {
           stringState_[i] = 0;
           decayCounter_[i] = 0;
         }

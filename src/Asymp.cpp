@@ -33,7 +33,7 @@ Asymp :: Asymp( void )
   value_ = 0.0;
   target_ = 0.0;
   state_ = 0;
-  factor_ = exp( -1.0 / ( 0.3 * Stk::sampleRate() ) );
+  factor_ = exp( -1.0f / ( 0.3f * Stk::sampleRate() ) );
   constant_ = 0.0;
   Stk::addSampleRateAlert( this );
 }
@@ -46,8 +46,8 @@ Asymp :: ~Asymp( void )
 void Asymp :: sampleRateChanged( StkFloat newRate, StkFloat oldRate )
 {
   if ( !ignoreSampleRateChange_ ) {
-    StkFloat tau = -1.0 / ( std::log( factor_ ) * oldRate );
-    factor_ = std::exp( -1.0 / ( tau * newRate ) );
+    StkFloat tau = -1.0f / ( std::log( factor_ ) * oldRate );
+    factor_ = std::exp( -1.0f / ( tau * newRate ) );
   }
 }
 
@@ -63,42 +63,42 @@ void Asymp :: keyOff( void )
 
 void Asymp :: setTau( StkFloat tau )
 {
-  if ( tau <= 0.0 ) {
+  if ( tau <= 0.0f ) {
     oStream_ << "Asymp::setTau: negative or zero tau not allowed!";
     handleError( StkError::WARNING ); return;
   }
 
-  factor_ = std::exp( -1.0 / ( tau * Stk::sampleRate() ) );
-  constant_ = ( 1.0 - factor_ ) * target_;
+  factor_ = std::exp( -1.0f / ( tau * Stk::sampleRate() ) );
+  constant_ = ( 1.0f - factor_ ) * target_;
 }
 
 void Asymp :: setTime( StkFloat time )
 {
-  if ( time <= 0.0 ) {
+  if ( time <= 0.0f ) {
     oStream_ << "Asymp::setTime: negative or zero times not allowed!";
     handleError( StkError::WARNING ); return;
   }
 
   StkFloat tau = -time / std::log( TARGET_THRESHOLD );
-  factor_ = std::exp( -1.0 / ( tau * Stk::sampleRate() ) );
-  constant_ = ( 1.0 - factor_ ) * target_;
+  factor_ = std::exp( -1.0f / ( tau * Stk::sampleRate() ) );
+  constant_ = ( 1.0f - factor_ ) * target_;
 }
 
 void Asymp :: setT60( StkFloat t60 )
 {
-  if ( t60 <= 0.0 ) {
+  if ( t60 <= 0.0f ) {
     oStream_ << "Asymp::setT60: negative or zero t60 not allowed!";
     handleError( StkError::WARNING ); return;
   }
 
-  setTau( t60 / 6.91 );
+  setTau( t60 / 6.91f );
 }
 
 void Asymp :: setTarget( StkFloat target )
 {
   target_ = target;
   if ( value_ != target_ ) state_ = 1;
-  constant_ = ( 1.0 - factor_ ) * target_;
+  constant_ = ( 1.0f - factor_ ) * target_;
 }
 
 void Asymp :: setValue( StkFloat value )

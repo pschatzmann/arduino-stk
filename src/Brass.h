@@ -101,15 +101,15 @@ inline StkFloat Brass :: tick( unsigned int )
   StkFloat breathPressure = maxPressure_ * adsr_.tick();
   breathPressure += vibratoGain_ * vibrato_.tick();
 
-  StkFloat mouthPressure = 0.3 * breathPressure;
-  StkFloat borePressure = 0.85 * delayLine_.lastOut();
+  StkFloat mouthPressure = 0.3f * breathPressure;
+  StkFloat borePressure = 0.85f * delayLine_.lastOut();
   StkFloat deltaPressure = mouthPressure - borePressure; // Differential pressure.
   deltaPressure = lipFilter_.tick( deltaPressure );      // Force - > position.
   deltaPressure *= deltaPressure;                        // Basic position to area mapping.
-  if ( deltaPressure > 1.0 ) deltaPressure = 1.0;        // Non-linear saturation.
+  if ( deltaPressure > 1.0f ) deltaPressure = 1.0f;        // Non-linear saturation.
 
   // The following input scattering assumes the mouthPressure = area.
-  lastFrame_[0] = deltaPressure * mouthPressure + ( 1.0 - deltaPressure) * borePressure;
+  lastFrame_[0] = deltaPressure * mouthPressure + ( 1.0f - deltaPressure) * borePressure;
   lastFrame_[0] = delayLine_.tick( dcBlock_.tick( lastFrame_[0] ) );
 
   return lastFrame_[0];

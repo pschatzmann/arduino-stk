@@ -49,24 +49,24 @@ void TwoZero :: setCoefficients( StkFloat b0, StkFloat b1, StkFloat b2, bool cle
 void TwoZero :: setNotch( StkFloat frequency, StkFloat radius )
 {
 #if defined(_STK_DEBUG_)
-  if ( frequency < 0.0 || frequency > 0.5 * Stk::sampleRate() ) {
+  if ( frequency < 0.0f || frequency > 0.5 * Stk::sampleRate() ) {
     oStream_ << "TwoZero::setNotch: frequency argument (" << frequency << ") is out of range!";
     handleError( StkError::WARNING ); return;
   }
-  if ( radius < 0.0 ) {
+  if ( radius < 0.0f ) {
     oStream_ << "TwoZero::setNotch: radius argument (" << radius << ") is negative!";
     handleError( StkError::WARNING ); return;
   }
 #endif
 
   b_[2] = radius * radius;
-  b_[1] = -2.0 * radius * cos(STK_TWO_PI * frequency / Stk::sampleRate());
+  b_[1] = -2.0f * radius * cos(STK_TWO_PI * frequency / Stk::sampleRate());
 
   // Normalize the filter gain.
-  if ( b_[1] > 0.0 ) // Maximum at z = 0.
-    b_[0] = 1.0 / ( 1.0 + b_[1] + b_[2] );
+  if ( b_[1] > 0.0f ) // Maximum at z = 0.
+    b_[0] = 1.0f / ( 1.0f + b_[1] + b_[2] );
   else            // Maximum at z = -1.
-    b_[0] = 1.0 / ( 1.0 - b_[1] + b_[2] );
+    b_[0] = 1.0f / ( 1.0f - b_[1] + b_[2] );
   b_[1] *= b_[0];
   b_[2] *= b_[0];
 }

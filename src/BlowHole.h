@@ -146,7 +146,7 @@ class BlowHole : public Instrmnt
   StkFloat pth = tonehole_.lastOut();
   temp = scatter_ * (pa + pb - 2 * pth);
 
-  delays_[2].tick( filter_.tick(pa + temp) * -0.95 );
+  delays_[2].tick( filter_.tick(pa + temp) * -0.95f    );
   delays_[1].tick( pb + temp );
   tonehole_.tick( pa + pb - pth + temp );
 

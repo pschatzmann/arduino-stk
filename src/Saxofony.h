@@ -124,7 +124,7 @@ inline StkFloat Saxofony :: tick( unsigned int )
   breathPressure += breathPressure * noiseGain_ * noise_.tick();
   breathPressure += breathPressure * vibratoGain_ * vibrato_.tick();
 
-  temp = -0.95 * filter_.tick( delays_[0].lastOut() );
+  temp = -0.95f * filter_.tick( delays_[0].lastOut() );
   lastFrame_[0] = temp - delays_[1].lastOut();
   pressureDiff = breathPressure - lastFrame_[0];
   delays_[1].tick( temp );

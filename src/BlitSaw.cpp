@@ -25,7 +25,7 @@ namespace stk {
  
 BlitSaw:: BlitSaw( StkFloat frequency )
 {
-  if ( frequency <= 0.0 ) {
+  if ( frequency <= 0.0f   ) {
     oStream_ << "BlitSaw::BlitSaw: argument (" << frequency << ") must be positive!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -48,7 +48,7 @@ void BlitSaw :: reset()
 
 void BlitSaw :: setFrequency( StkFloat frequency )
 {
-  if ( frequency <= 0.0 ) {
+  if ( frequency <= 0.0f ) {
     oStream_ << "BlitSaw::setFrequency: argument (" << frequency << ") must be positive!";
     handleError( StkError::WARNING ); return;
   }
@@ -73,13 +73,13 @@ void BlitSaw :: setHarmonics( unsigned int nHarmonics )
   // the number of harmonics once the oscillator is running because
   // this is automatically taken care of in the setFrequency()
   // function.  (GPS - 1 October 2005)
-  state_ = -0.5 * a_;
+  state_ = -0.5f * a_;
 }
 
 void BlitSaw :: updateHarmonics( void )
 {
   if ( nHarmonics_ <= 0 ) {
-    unsigned int maxHarmonics = (unsigned int) floor( 0.5 * p_ );
+    unsigned int maxHarmonics = (unsigned int) floor( 0.5f * p_ );
     m_ = 2 * maxHarmonics + 1;
   }
   else

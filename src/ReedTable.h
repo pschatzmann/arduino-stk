@@ -85,12 +85,12 @@ inline StkFloat ReedTable :: tick( StkFloat input )
 
   // If output is > 1, the reed has slammed shut and the
   // reflection function value saturates at 1.0.
-  if ( lastFrame_[0] > 1.0) lastFrame_[0] = (StkFloat) 1.0;
+  if ( lastFrame_[0] > 1.0f) lastFrame_[0] = (StkFloat) 1.0f;
 
   // This is nearly impossible in a physical system, but
   // a reflection function value of -1.0 corresponds to
   // an open end (and no discontinuity in bore profile).
-  if ( lastFrame_[0] < -1.0) lastFrame_[0] = (StkFloat) -1.0;
+  if ( lastFrame_[0] < -1.0f) lastFrame_[0] = (StkFloat) -1.0f   ;
 
   return lastFrame_[0];
 }
@@ -108,8 +108,8 @@ inline StkFrames& ReedTable :: tick( StkFrames& frames, unsigned int channel )
   unsigned int hop = frames.channels();
   for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
     *samples = offset_ + (slope_ * *samples);
-    if ( *samples > 1.0) *samples = 1.0;
-    if ( *samples < -1.0) *samples = -1.0;
+    if ( *samples > 1.0f) *samples = 1.0f;
+    if ( *samples < -1.0f) *samples = -1.0f;
   }
 
   lastFrame_[0] = *(samples-hop);
@@ -130,8 +130,8 @@ inline StkFrames& ReedTable :: tick( StkFrames& iFrames, StkFrames& oFrames, uns
   unsigned int iHop = iFrames.channels(), oHop = oFrames.channels();
   for ( unsigned int i=0; i<iFrames.frames(); i++, iSamples += iHop, oSamples += oHop ) {
     *oSamples = offset_ + (slope_ * *iSamples);
-    if ( *oSamples > 1.0) *oSamples = 1.0;
-    if ( *oSamples < -1.0) *oSamples = -1.0;
+    if ( *oSamples > 1.0f) *oSamples = 1.0f;
+    if ( *oSamples < -1.0f) *oSamples = -1.0f;
   }
 
   lastFrame_[0] = *(oSamples-oHop);

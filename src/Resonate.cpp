@@ -50,12 +50,12 @@ void Resonate :: noteOff( StkFloat amplitude )
 
 void Resonate :: setResonance( StkFloat frequency, StkFloat radius )
 {
-  if ( frequency < 0.0 ) {
+  if ( frequency < 0.0f ) {
     oStream_ << "Resonate::setResonance: frequency parameter is less than zero!";
     handleError( StkError::WARNING ); return;
   }
 
-  if ( radius < 0.0 || radius >= 1.0 ) {
+  if ( radius < 0.0f || radius >= 1.0f ) {
     oStream_ << "Resonate::setResonance: radius parameter is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -67,12 +67,12 @@ void Resonate :: setResonance( StkFloat frequency, StkFloat radius )
 
 void Resonate :: setNotch( StkFloat frequency, StkFloat radius )
 {
-  if ( frequency < 0.0 ) {
+  if ( frequency < 0.0f ) {
     oStream_ << "Resonate::setNotch: frequency parameter is less than zero ... setting to 0.0!";
     handleError( StkError::WARNING ); return;
   }
 
-  if ( radius < 0.0 ) {
+  if ( radius < 0.0f ) {
     oStream_ << "Resonate::setNotch: radius parameter is less than 0.0!";
     handleError( StkError::WARNING ); return;
   }
@@ -93,11 +93,11 @@ void Resonate :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == 2) // 2
-    setResonance( normalizedValue * Stk::sampleRate() * 0.5, poleRadius_ );
+    setResonance( normalizedValue * Stk::sampleRate() * 0.5f, poleRadius_ );
   else if (number == 4) // 4
-    setResonance( poleFrequency_, normalizedValue * 0.9999 );
+    setResonance( poleFrequency_, normalizedValue * 0.9999f );
   else if (number == 11) // 11
-    this->setNotch( normalizedValue * Stk::sampleRate() * 0.5, zeroRadius_ );
+    this->setNotch( normalizedValue * Stk::sampleRate() * 0.5f, zeroRadius_ );
   else if (number == 1)
     this->setNotch( zeroFrequency_, normalizedValue );
   else if (number == __SK_AfterTouch_Cont_) // 128

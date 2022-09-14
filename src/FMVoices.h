@@ -83,12 +83,12 @@ inline StkFloat FMVoices :: tick( unsigned int )
   StkFloat temp, temp2;
 
   temp = gains_[3] * adsr_[3]->tick() * waves_[3]->tick();
-  temp2 = vibrato_.tick() * modDepth_ * 0.1;
+  temp2 = vibrato_.tick() * modDepth_ * 0.1f;
 
-  waves_[0]->setFrequency(baseFrequency_ * (1.0 + temp2) * ratios_[0]);
-  waves_[1]->setFrequency(baseFrequency_ * (1.0 + temp2) * ratios_[1]);
-  waves_[2]->setFrequency(baseFrequency_ * (1.0 + temp2) * ratios_[2]);
-  waves_[3]->setFrequency(baseFrequency_ * (1.0 + temp2) * ratios_[3]);
+  waves_[0]->setFrequency(baseFrequency_ * (1.0f + temp2) * ratios_[0]);
+  waves_[1]->setFrequency(baseFrequency_ * (1.0f + temp2) * ratios_[1]);
+  waves_[2]->setFrequency(baseFrequency_ * (1.0f + temp2) * ratios_[2]);
+  waves_[3]->setFrequency(baseFrequency_ * (1.0f + temp2) * ratios_[3]);
 
   waves_[0]->addPhaseOffset(temp * mods_[0]);
   waves_[1]->addPhaseOffset(temp * mods_[1]);
@@ -99,7 +99,7 @@ inline StkFloat FMVoices :: tick( unsigned int )
   temp += gains_[1] * tilt_[1] * adsr_[1]->tick() * waves_[1]->tick();
   temp += gains_[2] * tilt_[2] * adsr_[2]->tick() * waves_[2]->tick();
 
-  lastFrame_[0] = temp * 0.33;
+  lastFrame_[0] = temp * 0.33f;
   return lastFrame_[0];
 }
 

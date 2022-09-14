@@ -61,12 +61,12 @@ class WvOut : public Stk
 inline StkFloat& WvOut :: clipTest( StkFloat& sample )
 {
   bool clip = false;
-  if ( sample > 1.0 ) {
+  if ( sample > 1.0f ) {
     sample = 1.0;
     clip = true;
   }
-  else if ( sample < -1.0 ) {
-    sample = -1.0;
+  else if ( sample < -1.0f ) {
+    sample = -1.0f;
     clip = true;
   }
 

@@ -149,7 +149,7 @@ class Shakers : public Instrmnt
 
 inline void Shakers :: setResonance( BiQuad &filter, StkFloat frequency, StkFloat radius )
 {
-  filter.a[1] = -2.0 * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate());
+  filter.a[1] = -2.0f * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate());
   filter.a[2] = radius * radius;
 }
 
@@ -180,17 +180,17 @@ inline StkFloat Shakers :: tickEqualize( StkFloat input )
 
 inline int Shakers :: randomInt( int max ) //  Return random integer between 0 and max-1
 {
-  return (int) ((float)max * rand() / (RAND_MAX + 1.0) );
+  return (int) ((float)max * rand() / (RAND_MAX + 1.0f) );
 }
 
 inline StkFloat Shakers :: randomFloat( StkFloat max ) // Return random float between 0.0 and max
 {	
-  return (StkFloat) (max * rand() / (RAND_MAX + 1.0) );
+  return (StkFloat) (max * rand() / (RAND_MAX + 1.0f) );
 }
 
 inline StkFloat Shakers :: noise( void ) //  Return random StkFloat float between -1.0 and 1.0
 {
-  return ( (StkFloat) ( 2.0 * rand() / (RAND_MAX + 1.0) ) - 1.0 );
+  return ( (StkFloat) ( 2.0f * rand() / (RAND_MAX + 1.0f) ) - 1.0f );
 }
 
 const StkFloat MIN_ENERGY = 0.001;
@@ -201,16 +201,16 @@ inline void Shakers :: waterDrop( void )
   if ( randomInt( 32767 ) < nObjects_) {
     sndLevel_ = shakeEnergy_;   
     unsigned int j = randomInt( 3 );
-    if ( j == 0 && filters_[0].gain == 0.0 ) { // don't change unless fully decayed
-      tempFrequencies_[0] = baseFrequencies_[1] * (0.75 + (0.25 * noise()));
+    if ( j == 0 && filters_[0].gain == 0.0f ) { // don't change unless fully decayed
+      tempFrequencies_[0] = baseFrequencies_[1] * (0.75f + (0.25f * noise()));
       filters_[0].gain = fabs( noise() );
     }
-    else if (j == 1 && filters_[1].gain == 0.0) {
-      tempFrequencies_[1] = baseFrequencies_[1] * (1.0 + (0.25 * noise()));
+    else if (j == 1 && filters_[1].gain == 0.0f) {
+      tempFrequencies_[1] = baseFrequencies_[1] * (1.0f + (0.25f * noise()));
       filters_[1].gain = fabs( noise() );
     }
-    else if ( filters_[2].gain == 0.0 ) {
-      tempFrequencies_[2] = baseFrequencies_[1] * (1.25 + (0.25 * noise()));
+    else if ( filters_[2].gain == 0.0f ) {
+      tempFrequencies_[2] = baseFrequencies_[1] * (1.25f + (0.25f * noise()));
       filters_[2].gain = fabs( noise() );
     }
   }
@@ -218,9 +218,9 @@ inline void Shakers :: waterDrop( void )
   // Sweep center frequencies.
   for ( unsigned int i=0; i<3; i++ ) { // WATER_RESONANCES = 3
     filters_[i].gain *= baseRadii_[i];
-    if ( filters_[i].gain > 0.001 ) {
+    if ( filters_[i].gain > 0.001f ) {
       tempFrequencies_[i] *= WATER_FREQ_SWEEP;
-      filters_[i].a[1] = -2.0 * baseRadii_[i] * cos( STK_TWO_PI * tempFrequencies_[i] / Stk::sampleRate() );
+      filters_[i].a[1] = -2.0f * baseRadii_[i] * cos( STK_TWO_PI * tempFrequencies_[i] / Stk::sampleRate() );
     }
     else
       filters_[i].gain = 0.0;
@@ -234,9 +234,9 @@ inline StkFloat Shakers :: tick( unsigned int )
   if ( shakerType_ == 19 || shakerType_ == 20 ) {
     if ( ratchetCount_ <= 0 ) return lastFrame_[0] = 0.0;
 
-    shakeEnergy_ -= ( ratchetDelta_ + ( 0.002 * shakeEnergy_ ) );
-    if ( shakeEnergy_ < 0.0 ) {
-      shakeEnergy_ = 1.0;
+    shakeEnergy_ -= ( ratchetDelta_ + ( 0.002f * shakeEnergy_ ) );
+    if ( shakeEnergy_ < 0.0f ) {
+      shakeEnergy_ = 1.0f;
       ratchetCount_--;
     }
 
@@ -264,8 +264,8 @@ inline StkFloat Shakers :: tick( unsigned int )
         // Vary resonance frequencies if specified.
         for ( unsigned int i=0; i<nResonances_; i++ ) {
           if ( doVaryFrequency_[i] ) {
-            StkFloat tempRand = baseFrequencies_[i] * ( 1.0 + ( varyFactor_ * noise() ) );
-            filters_[i].a[1] = -2.0 * baseRadii_[i] * cos( STK_TWO_PI * tempRand / Stk::sampleRate() );
+            StkFloat tempRand = baseFrequencies_[i] * ( 1.0f + ( varyFactor_ * noise() ) );
+            filters_[i].a[1] = -2.0f * baseRadii_[i] * cos( STK_TWO_PI * tempRand / Stk::sampleRate() );
           }
         }
         if ( shakerType_ == 22 ) iTube = randomInt( 7 ); // ANGKLUNG_RESONANCES

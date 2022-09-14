@@ -726,7 +726,7 @@ void FileWrite :: write( StkFrames& buffer )
   if ( dataType_ == STK_SINT16 ) {
     SINT16 sample;
     for ( unsigned long k=0; k<nSamples; k++ ) {
-      sample = (SINT16) (buffer[k] * 32767.0);
+      sample = (SINT16) (buffer[k] * 32767.0f);
       //sample = ((SINT16) (( buffer[k] + 1.0 ) * 32767.5 + 0.5)) - 32768;
       if ( byteswap_ ) swap16( (unsigned char *)&sample );
       if ( fwrite(&sample, 2, 1, fd_) != 1 ) goto error;
@@ -736,14 +736,14 @@ void FileWrite :: write( StkFrames& buffer )
     if ( fileType_ == FILE_WAV ) { // 8-bit WAV data is unsigned!
       unsigned char sample;
       for ( unsigned long k=0; k<nSamples; k++ ) {
-        sample = (unsigned char) (buffer[k] * 127.0 + 128.0);
+        sample = (unsigned char) (buffer[k] * 127.0f + 128.0f);
         if ( fwrite(&sample, 1, 1, fd_) != 1 ) goto error;
       }
     }
     else {
       signed char sample;
       for ( unsigned long k=0; k<nSamples; k++ ) {
-        sample = (signed char) (buffer[k] * 127.0);
+        sample = (signed char) (buffer[k] * 127.0f);
         //sample = ((signed char) (( buffer[k] + 1.0 ) * 127.5 + 0.5)) - 128;
         if ( fwrite(&sample, 1, 1, fd_) != 1 ) goto error;
       }
@@ -752,7 +752,7 @@ void FileWrite :: write( StkFrames& buffer )
   else if ( dataType_ == STK_SINT32 ) {
     SINT32 sample;
     for ( unsigned long k=0; k<nSamples; k++ ) {
-      sample = (SINT32) (buffer[k] * 2147483647.0);
+      sample = (SINT32) (buffer[k] * 2147483647.0f );
       //sample = ((SINT32) (( buffer[k] + 1.0 ) * 2147483647.5 + 0.5)) - 2147483648;
       if ( byteswap_ ) swap32( (unsigned char *)&sample );
       if ( fwrite(&sample, 4, 1, fd_) != 1 ) goto error;
@@ -777,7 +777,7 @@ void FileWrite :: write( StkFrames& buffer )
   else if ( dataType_ == STK_SINT24 ) {
     SINT32 sample;
     for ( unsigned long k=0; k<nSamples; k++ ) {
-      sample = (SINT32) (buffer[k] * 8388607.0);
+      sample = (SINT32) (buffer[k] * 8388607.0f);
       if ( byteswap_ ) {
         swap32( (unsigned char *)&sample );
         unsigned char *ptr = (unsigned char *) &sample;

@@ -665,10 +665,10 @@ const StkFloat MAX_SHAKE = 1.0;
 void Shakers :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   // Yep ... pretty kludgey, but it works!
-  int noteNumber = (int) ((12 * log(frequency/220.0)/log(2.0)) + 57.01) % 32;
+  int noteNumber = (int) ((12 * log(frequency/220.0f)/log(2.0f)) + 57.01f) % 32;
   if ( shakerType_ != noteNumber ) this->setType( noteNumber );
 
-  shakeEnergy_ += amplitude * MAX_SHAKE * 0.1;
+  shakeEnergy_ += amplitude * MAX_SHAKE * 0.1f;
   if ( shakeEnergy_ > MAX_SHAKE ) shakeEnergy_ = MAX_SHAKE;
   if ( shakerType_==19 || shakerType_==20 ) ratchetCount_ += 1;
 }
@@ -697,25 +697,25 @@ void Shakers :: controlChange( int number, StkFloat value )
       lastRatchetValue_ = (int) value;
     }
     else {
-      shakeEnergy_ += normalizedValue * MAX_SHAKE * 0.1;
+      shakeEnergy_ += normalizedValue * MAX_SHAKE * 0.1f;
       if ( shakeEnergy_ > MAX_SHAKE ) shakeEnergy_ = MAX_SHAKE;
     }
   }
   else if ( number == __SK_ModFrequency_ ) { // 4 ... decay
-    systemDecay_ = baseDecay_ + ( 2.0 * (normalizedValue - 0.5) * decayScale_ * (1.0 - baseDecay_) );
+    systemDecay_ = baseDecay_ + ( 2.0f * (normalizedValue - 0.5f) * decayScale_ * (1.0f - baseDecay_) );
   }
   else if ( number == __SK_FootControl_ ) { // 11 ... number of objects
-    nObjects_ = (StkFloat) ( 2.0 * normalizedValue * baseObjects_ ) + 1.1;
+    nObjects_ = (StkFloat) ( 2.0f * normalizedValue * baseObjects_ ) + 1.1f;
     currentGain_ = log( nObjects_ ) * baseGain_ / nObjects_;
   }
   else if ( number == __SK_ModWheel_ ) { // 1 ... resonance frequency
     for ( unsigned int i=0; i<nResonances_; i++ ) {
-      StkFloat temp = baseFrequencies_[i] * pow( 4.0, normalizedValue-0.5 );
+      StkFloat temp = baseFrequencies_[i] * pow( 4.0f, normalizedValue-0.5f );
       setResonance( filters_[i], temp, baseRadii_[i] );
     }
   }
   else  if (number == __SK_ShakerInst_) { // 1071
-    unsigned int type = (unsigned int) (value + 0.5);	//  Just to be safe
+    unsigned int type = (unsigned int) (value + 0.5f);	//  Just to be safe
     this->setType( type );
   }
 #if defined(_STK_DEBUG_)

@@ -94,7 +94,7 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
       if (this->swapBytes){
         Stk::swap16((unsigned char *) &tmp);
       }
-      frames[j] = static_cast<float>(tmp) / 32768.0;
+      frames[j] = static_cast<float>(tmp) / 32768.0f;
       this->current_pos_++;
     }   
 

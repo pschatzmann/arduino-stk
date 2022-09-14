@@ -37,8 +37,8 @@ FreeVerb::FreeVerb( void )
 
   // Initialize parameters
   Effect::setEffectMix( 0.75 ); // set initially to 3/4 wet 1/4 dry signal (different than original freeverb) 
-  roomSizeMem_ = (0.75 * scaleRoom) + offsetRoom; // feedback attenuation in LBFC
-  dampMem_ = 0.25 * scaleDamp;                    // pole of lowpass filters in the LBFC
+  roomSizeMem_ = (0.75f * scaleRoom) + offsetRoom; // feedback attenuation in LBFC
+  dampMem_ = 0.25f * scaleDamp;                    // pole of lowpass filters in the LBFC
   width_ = 1.0;
   frozenMode_ = false;
   update();
@@ -47,8 +47,8 @@ FreeVerb::FreeVerb( void )
   g_ = 0.5;               // allpass coefficient, immutable in FreeVerb
 
   // Scale delay line lengths according to the current sampling rate
-  double fsScale = Stk::sampleRate() / 44100.0;
-  if ( fsScale != 1.0 ) {
+  StkFloat fsScale = Stk::sampleRate() / 44100.0f;
+  if ( fsScale != 1.0f ) {
     // scale comb filter delay lines
     for ( int i = 0; i < nCombs; i++ ) {
       cDelayLengths[i] = (int) floor(fsScale * cDelayLengths[i]);
@@ -134,15 +134,15 @@ StkFloat FreeVerb::getMode()
 void FreeVerb::update()
 {
   StkFloat wet = scaleWet * effectMix_;
-  dry_ = scaleDry * (1.0-effectMix_);
+  dry_ = scaleDry * (1.0f-effectMix_);
 
   // Use the L1 norm so the output gain will sum to one while still
   // preserving the ratio of scalings in original FreeVerb
   wet /= (wet + dry_);
   dry_ /= (wet + dry_);
 
-  wet1_ = wet * (width_/2.0 + 0.5);
-  wet2_ = wet * (1.0 - width_)/2.0;
+  wet1_ = wet * (width_/2.0f + 0.5f);
+  wet2_ = wet * (1.0f - width_)/2.0f;
 
   if ( frozenMode_ ) {
     // put into freeze mode
@@ -158,8 +158,8 @@ void FreeVerb::update()
 
   for ( int i=0; i<nCombs; i++ ) {
     // set low pass filter for delay output
-    combLPL_[i].setCoefficients(1.0 - damp_, -damp_);
-    combLPR_[i].setCoefficients(1.0 - damp_, -damp_);
+    combLPL_[i].setCoefficients(1.0f - damp_, -damp_);
+    combLPR_[i].setCoefficients(1.0f - damp_, -damp_);
   }
 }
 

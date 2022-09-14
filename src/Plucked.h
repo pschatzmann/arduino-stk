@@ -81,7 +81,7 @@ class Plucked : public Instrmnt
 inline StkFloat Plucked :: tick( unsigned int )
 {
   // Here's the whole inner loop of the instrument!!
-  return lastFrame_[0] = 3.0 * delayLine_.tick( loopFilter_.tick( delayLine_.lastOut() * loopGain_ ) ); 
+  return lastFrame_[0] = 3.0f * delayLine_.tick( loopFilter_.tick( delayLine_.lastOut() * loopGain_ ) ); 
 }
 
 inline StkFrames& Plucked :: tick( StkFrames& frames, unsigned int channel )

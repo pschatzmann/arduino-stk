@@ -85,14 +85,14 @@ inline StkFloat Rhodey :: tick( unsigned int )
   twozero_.tick(temp);
 
   waves_[2]->addPhaseOffset( temp );
-  temp = ( 1.0 - (control2_ * 0.5)) * gains_[0] * adsr_[0]->tick() * waves_[0]->tick();
-  temp += control2_ * 0.5 * gains_[2] * adsr_[2]->tick() * waves_[2]->tick();
+  temp = ( 1.0f - (control2_ * 0.5f)) * gains_[0] * adsr_[0]->tick() * waves_[0]->tick();
+  temp += control2_ * 0.5f * gains_[2] * adsr_[2]->tick() * waves_[2]->tick();
 
   // Calculate amplitude modulation and apply it to output.
   temp2 = vibrato_.tick() * modDepth_;
-  temp = temp * (1.0 + temp2);
+  temp = temp * (1.0f + temp2);
     
-  lastFrame_[0] = temp * 0.5;
+  lastFrame_[0] = temp * 0.5f;
   return lastFrame_[0];
 }
 

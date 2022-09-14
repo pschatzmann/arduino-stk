@@ -146,8 +146,8 @@ void FileWvIn :: normalize( StkFloat peak )
       max = (StkFloat) fabs((float) data_[i]);
   }
 
-  if ( max > 0.0 ) {
-    max = 1.0 / max;
+  if ( max > 0.0f ) {
+    max = 1.0f / max;
     max *= peak;
     for ( i=0; i<data_.size(); i++ )
       data_[i] *= max;
@@ -160,7 +160,7 @@ void FileWvIn :: setRate( StkFloat rate )
 
   // If negative rate and at beginning of sound, move pointer to end
   // of sound.
-  if ( (rate_ < 0) && (time_ == 0.0) ) time_ = fileSize_ - 1.0;
+  if ( (rate_ < 0) && (time_ == 0.0f) ) time_ = fileSize_ - 1.0;
 
   if ( fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
   else interpolate_ = false;
@@ -171,8 +171,8 @@ void FileWvIn :: addTime( StkFloat time )
   // Add an absolute time in samples 
   time_ += time;
 
-  if ( time_ < 0.0 ) time_ = 0.0;
-  if ( time_ > fileSize_ - 1.0 ) {
+  if ( time_ < 0.0f ) time_ = 0.0;
+  if ( time_ > fileSize_ - 1.0f ) {
     time_ = fileSize_ - 1.0;
     for ( unsigned int i=0; i<lastFrame_.size(); i++ ) lastFrame_[i] = 0.0;
     finished_ = true;
@@ -190,7 +190,7 @@ StkFloat FileWvIn :: tick( unsigned int channel )
 
   if ( finished_ ) return 0.0;
 
-  if ( time_ < 0.0 || time_ > (StkFloat) ( fileSize_ - 1.0 ) ) {
+  if ( time_ < 0.0f || time_ > (StkFloat) ( fileSize_ - 1.0f ) ) {
     for ( unsigned int i=0; i<lastFrame_.size(); i++ ) lastFrame_[i] = 0.0;
     finished_ = true;
     return 0.0;

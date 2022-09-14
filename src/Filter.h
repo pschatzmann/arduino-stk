@@ -92,9 +92,9 @@ inline void Filter :: clear( void )
 
 inline StkFloat Filter :: phaseDelay( StkFloat frequency )
 {
-  if ( frequency <= 0.0 || frequency > 0.5 * Stk::sampleRate() ) {
+  if ( frequency <= 0.0f || frequency > 0.5f * Stk::sampleRate() ) {
     oStream_ << "Filter::phaseDelay: argument (" << frequency << ") is out of range!";
-    handleError( StkError::WARNING ); return 0.0;
+    handleError( StkError::WARNING ); return 0.0f;
   }
 
   StkFloat omegaT = 2 * STK_PI * frequency / Stk::sampleRate();

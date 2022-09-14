@@ -170,7 +170,7 @@ void Mesh2D :: setNY( unsigned short lenY )
 
 void Mesh2D :: setDecay( StkFloat decayFactor )
 {
-  if ( decayFactor < 0.0 || decayFactor > 1.0 ) {
+  if ( decayFactor < 0.0f || decayFactor > 1.0f ) {
     oStream_ << "Mesh2D::setDecay: decayFactor is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -185,12 +185,12 @@ void Mesh2D :: setDecay( StkFloat decayFactor )
 
 void Mesh2D :: setInputPosition( StkFloat xFactor, StkFloat yFactor )
 {
-  if ( xFactor < 0.0 || xFactor > 1.0 ) {
+  if ( xFactor < 0.0f || xFactor > 1.0f ) {
     oStream_ << "Mesh2D::setInputPosition xFactor value is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
-  if ( yFactor < 0.0 || yFactor > 1.0 ) {
+  if ( yFactor < 0.0f || yFactor > 1.0f ) {
     oStream_ << "Mesh2D::setInputPosition yFactor value is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -353,7 +353,7 @@ void Mesh2D :: controlChange( int number, StkFloat value )
   else if ( number == 4 ) // 4
     this->setNY( (unsigned short) (normalizedValue * (NYMAX-2) + 2) );
   else if ( number == 11 ) // 11
-    this->setDecay( 0.9 + (normalizedValue * 0.1) );
+    this->setDecay( 0.9f + (normalizedValue * 0.1f) );
   else if ( number == __SK_ModWheel_ ) // 1
     this->setInputPosition( normalizedValue, normalizedValue );
 #if defined(_STK_DEBUG_)

@@ -52,15 +52,15 @@ class Effect : public Stk
 
 inline void Effect :: setEffectMix( StkFloat mix )
 {
-  if ( mix < 0.0 ) {
+  if ( mix < 0.0f ) {
     oStream_ << "Effect::setEffectMix: mix parameter is less than zero ... setting to zero!";
     handleError( StkError::WARNING );
-    effectMix_ = 0.0;
+    effectMix_ = 0.0f;
   }
-  else if ( mix > 1.0 ) {
+  else if ( mix > 1.0f ) {
     oStream_ << "Effect::setEffectMix: mix parameter is greater than 1.0 ... setting to one!";
     handleError( StkError::WARNING );
-    effectMix_ = 1.0;
+    effectMix_ = 1.0f;
   }
   else
     effectMix_ = mix;

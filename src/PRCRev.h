@@ -127,7 +127,7 @@ inline StkFloat PRCRev :: lastOut( unsigned int channel )
 
   lastFrame_[0] = effectMix_ * (combDelays_[0].tick(temp2));
   lastFrame_[1] = effectMix_ * (combDelays_[1].tick(temp3));
-  temp = (1.0 - effectMix_) * input;
+  temp = (1.0f - effectMix_) * input;
   lastFrame_[0] += temp;
   lastFrame_[1] += temp;
 

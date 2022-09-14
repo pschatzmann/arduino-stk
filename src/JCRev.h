@@ -153,11 +153,11 @@ inline StkFloat JCRev :: tick( StkFloat input, unsigned int channel )
 
   lastFrame_[0] = effectMix_ * (outLeftDelay_.tick(filtout));
   lastFrame_[1] = effectMix_ * (outRightDelay_.tick(filtout));
-  temp = (1.0 - effectMix_) * input;
+  temp = (1.0f - effectMix_) * input;
   lastFrame_[0] += temp;
   lastFrame_[1] += temp;
     
-  return 0.7 * lastFrame_[channel];
+  return 0.7f * lastFrame_[channel];
 }
 
 } // stk namespace

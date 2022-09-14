@@ -39,7 +39,7 @@ namespace stk {
 
 Mandolin :: Mandolin( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Mandolin::Mandolin: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -95,7 +95,7 @@ void Mandolin :: clear( void )
 
 void Mandolin :: setPluckPosition( StkFloat position )
 {
-  if ( position < 0.0 || position > 1.0 ) {
+  if ( position < 0.0f || position > 1.0f ) {
     oStream_ << "Mandolin::setPluckPosition: position parameter out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -106,7 +106,7 @@ void Mandolin :: setPluckPosition( StkFloat position )
 
 void Mandolin :: setDetune( StkFloat detune )
 {
-  if ( detune <= 0.0 ) {
+  if ( detune <= 0.0f ) {
     oStream_ << "Mandolin::setDeturn: parameter is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -118,7 +118,7 @@ void Mandolin :: setDetune( StkFloat detune )
 void Mandolin :: setBodySize( StkFloat size )
 {
   // Scale the commuted body response by its sample rate (22050).
-  StkFloat rate = size * 22050.0 / Stk::sampleRate();
+  StkFloat rate = size * 22050.0f / Stk::sampleRate();
   for ( int i=0; i<12; i++ )
     soundfile_[i].setRate( rate );
 }
@@ -139,7 +139,7 @@ void Mandolin :: setFrequency( StkFloat frequency )
 
 void Mandolin :: pluck( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Mandolin::pluck: amplitude parameter out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -165,7 +165,7 @@ void Mandolin :: noteOn( StkFloat frequency, StkFloat amplitude )
 
 void Mandolin :: noteOff( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Mandolin::noteOff: amplitude is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -185,17 +185,17 @@ void Mandolin :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if ( number == __SK_BodySize_ ) // 2
-    this->setBodySize( normalizedValue * 2.0 );
+    this->setBodySize( normalizedValue * 2.0f );
   else if ( number == __SK_PickPosition_ ) // 4
     this->setPluckPosition( normalizedValue );
   else if ( number == __SK_StringDamping_ ) { // 11
-    strings_[0].setLoopGain( 0.97 + (normalizedValue * 0.03) );
-    strings_[1].setLoopGain( 0.97 + (normalizedValue * 0.03) );
+    strings_[0].setLoopGain( 0.97f + (normalizedValue * 0.03f) );
+    strings_[1].setLoopGain( 0.97f + (normalizedValue * 0.03f) );
   }
   else if ( number == __SK_StringDetune_ ) // 1
-    this->setDetune( 1.0 - (normalizedValue * 0.1) );
+    this->setDetune( 1.0f - (normalizedValue * 0.1f) );
   else if ( number == __SK_AfterTouch_Cont_ ) // 128
-    mic_ = (int) (normalizedValue * 11.0);
+    mic_ = (int) (normalizedValue * 11.0f);
 #if defined(_STK_DEBUG_)
   else {
     oStream_ << "Mandolin::controlChange: undefined control number (" << number << ")!";
