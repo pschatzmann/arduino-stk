@@ -82,7 +82,7 @@ void BandedWG :: setPreset( int preset )
     modes_[3] = (StkFloat) 18.0697050938;
 
     for (i=0; i<presetModes_; i++) {
-      basegains_[i] = (StkFloat) pow(0.999,(float) i+1);
+      basegains_[i] = (StkFloat) std::pow(0.999,(float) i+1);
       excitation_[i] = 1.0;
     }
 
@@ -98,13 +98,13 @@ void BandedWG :: setPreset( int preset )
     // modes_[5] = (StkFloat) 12.22;
 
     for (i=0; i<presetModes_; i++) {
-      basegains_[i] = (StkFloat) pow(0.999,(float) i+1);
+      basegains_[i] = (StkFloat) std::pow(0.999,(float) i+1);
       excitation_[i] = 1.0;
     }
     /*
       baseGain_ = (StkFloat) 0.99999;
       for (i=0; i<presetModes_; i++) 
-      gains_[i]= (StkFloat) pow(baseGain_, delay_[i].getDelay()+i);
+      gains_[i]= (StkFloat) std::pow(baseGain_, delay_[i].getDelay()+i);
     */
 
     break;
@@ -158,7 +158,7 @@ void BandedWG :: setPreset( int preset )
     modes_[3] = (StkFloat) 8.933;
 
     for (i=0; i<presetModes_; i++) {
-      basegains_[i] = (StkFloat) pow(0.9,(float) i+1);
+      basegains_[i] = (StkFloat) std::pow(0.9,(float) i+1);
       excitation_[i] = 1.0;
     }
 
@@ -189,7 +189,7 @@ void BandedWG :: setFrequency( StkFloat frequency )
     if ( length > 2.0f) {
       delay_[i].setDelay( length );
       gains_[i]=basegains_[i];
-      //	  gains_[i]=(StkFloat) pow(basegains_[i], 1/((StkFloat)delay_[i].getDelay()));
+      //	  gains_[i]=(StkFloat) std::pow(basegains_[i], 1/((StkFloat)delay_[i].getDelay()));
       //	  std::cerr << gains_[i];
     }
     else	{
@@ -339,7 +339,7 @@ void BandedWG :: controlChange( int number, StkFloat value )
     //	std::cerr << "Yuck!" << std::endl;
     for (int i=0; i<nModes_; i++)
       gains_[i]=(StkFloat) basegains_[i]*baseGain_;
-    //      gains_[i]=(StkFloat) pow(baseGain_, (int)((StkFloat)delay_[i].getDelay()+i));
+    //      gains_[i]=(StkFloat) std::pow(baseGain_, (int)((StkFloat)delay_[i].getDelay()+i));
   }
   else if (number == __SK_ModFrequency_) // 11
     integrationConstant_ = normalizedValue;

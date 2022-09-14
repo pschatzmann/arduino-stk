@@ -108,10 +108,10 @@ inline StkFloat BlitSaw :: tick( void )
   // Avoid a divide by zero, or use of a denormalized divisor 
   // at the sinc peak, which has a limiting value of m_ / p_.
   StkFloat tmp, denominator = sin( phase_ );
-  if ( fabs(denominator) <= std::numeric_limits<StkFloat>::epsilon() )
+  if ( std::fabs(denominator) <= std::numeric_limits<StkFloat>::epsilon() )
     tmp = a_;
   else {
-    tmp =  sin( m_ * phase_ );
+    tmp =  std::sin( m_ * phase_ );
     tmp /= p_ * denominator;
   }
 

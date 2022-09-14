@@ -173,7 +173,7 @@ inline void LentPitShift::process()
 
   // Initialization of the Hamming window used in the algorithm
   for ( int n=-(int)lastPeriod_; n<(int)lastPeriod_; n++ )
-    window[n+lastPeriod_] = (1 + cos(STK_PI*n/lastPeriod_)) / 2	;
+    window[n+lastPeriod_] = (1 + std::cos(STK_PI*n/lastPeriod_)) / 2	;
 
   long M;  // Index of reading in the input delay line
   long N;  // Index of writing in the output delay line
@@ -184,10 +184,10 @@ inline void LentPitShift::process()
     // Test for the decision of compression/expansion
     while ( outputPtr < inputPtr ) {
       // Coefficients for the linear interpolation
-      env[1] = fmod( outputPtr + tMax_, 1.0 );
+      env[1] = std::fmod( outputPtr + tMax_, 1.0 );
       env[0] = 1.0f   - env[1];
       M = tMax_ - inputPtr + lastPeriod_ - 1; // New reading pointer
-      N = 2*tMax_ - (unsigned long)floor(outputPtr + tMax_) + lastPeriod_ - 1; // New writing pointer
+      N = 2*tMax_ - (unsigned long)std::floor(outputPtr + tMax_) + lastPeriod_ - 1; // New writing pointer
       for ( unsigned int j=0; j<2*lastPeriod_; j++,M--,N-- ) {
         sample = inputLine_.tapOut(M) * window[j] / 2.f;
         // Linear interpolation

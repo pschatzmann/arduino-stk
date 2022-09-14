@@ -40,7 +40,7 @@ JCRev :: JCRev( StkFloat T60 )
   int delay, i;
   if ( scaler != 1.0f ) {
     for ( i=0; i<9; i++ ) {
-      delay = (int) floor( scaler * lengths[i] );
+      delay = (int) std::floor( scaler * lengths[i] );
       if ( (delay & 1) == 0) delay++;
       while ( !this->isPrime(delay) ) delay += 2;
       lengths[i] = delay;
@@ -91,7 +91,7 @@ void JCRev :: setT60( StkFloat T60 )
   }
 
   for ( int i=0; i<4; i++ )
-    combCoefficient_[i] = pow(10.0f, (-3.0f * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
+    combCoefficient_[i] = std::pow(10.0f, (-3.0f * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
 }
 
 StkFrames& JCRev :: tick( StkFrames& frames, unsigned int channel )

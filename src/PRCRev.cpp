@@ -36,7 +36,7 @@ PRCRev :: PRCRev( StkFloat T60 )
   int delay, i;
   if ( scaler != 1.0f ) {
     for (i=0; i<4; i++)	{
-      delay = (int) floor(scaler * lengths[i]);
+      delay = (int) std::floor(scaler * lengths[i]);
       if ( (delay & 1) == 0) delay++;
       while ( !this->isPrime(delay) ) delay += 2;
       lengths[i] = delay;
@@ -74,8 +74,8 @@ void PRCRev :: setT60( StkFloat T60 )
     handleError( StkError::WARNING ); return;
   }
 
-  combCoefficient_[0] = pow(10.0f, (-3.0f * combDelays_[0].getDelay() / (T60 * Stk::sampleRate())));
-  combCoefficient_[1] = pow(10.0f, (-3.0f * combDelays_[1].getDelay() / (T60 * Stk::sampleRate())));
+  combCoefficient_[0] = std::pow(10.0f, (-3.0f * combDelays_[0].getDelay() / (T60 * Stk::sampleRate())));
+  combCoefficient_[1] = std::pow(10.0f, (-3.0f * combDelays_[1].getDelay() / (T60 * Stk::sampleRate())));
 }
 
 StkFrames& PRCRev :: tick( StkFrames& frames, unsigned int channel )

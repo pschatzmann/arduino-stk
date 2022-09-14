@@ -54,13 +54,13 @@ void TwoPole :: setResonance( StkFloat frequency, StkFloat radius, bool normaliz
 #endif
 
   a_[2] = radius * radius;
-  a_[1] = (StkFloat) -2.0 * radius * cos(STK_TWO_PI * frequency / Stk::sampleRate());
+  a_[1] = (StkFloat) -2.0 * radius * std::cos(STK_TWO_PI * frequency / Stk::sampleRate());
 
   if ( normalize ) {
     // Normalize the filter gain ... not terribly efficient.
-    StkFloat real = 1 - radius + (a_[2] - radius) * cos(STK_TWO_PI * 2 * frequency / Stk::sampleRate());
-    StkFloat imag = (a_[2] - radius) * sin(STK_TWO_PI * 2 * frequency / Stk::sampleRate());
-    b_[0] = sqrt( pow(real, 2) + pow(imag, 2) );
+    StkFloat real = 1 - radius + (a_[2] - radius) * std::cos(STK_TWO_PI * 2 * frequency / Stk::sampleRate());
+    StkFloat imag = (a_[2] - radius) * std::sin(STK_TWO_PI * 2 * frequency / Stk::sampleRate());
+    b_[0] = sqrt( std::pow(real, 2) + std::pow(imag, 2) );
   }
 }
 

@@ -60,7 +60,7 @@ void TwoZero :: setNotch( StkFloat frequency, StkFloat radius )
 #endif
 
   b_[2] = radius * radius;
-  b_[1] = -2.0f * radius * cos(STK_TWO_PI * frequency / Stk::sampleRate());
+  b_[1] = -2.0f * radius * std::cos(STK_TWO_PI * frequency / Stk::sampleRate());
 
   // Normalize the filter gain.
   if ( b_[1] > 0.0f ) // Maximum at z = 0.

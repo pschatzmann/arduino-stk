@@ -163,7 +163,7 @@ void Recorder :: setBreathCutoff( StkFloat val )
   // The gain of this filter is quite high
   breathCutoff_ = val;
   StkFloat Q = 0.99;
-  StkFloat r = 2.0f * sin(STK_PI * val / sampleRate());
+  StkFloat r = 2.0f * std::sin(STK_PI * val / sampleRate());
   StkFloat q = 1.0f - r * Q;
   StkFloat as[3] = { 1.0f, r * r - q - 1, q };
   std::vector<StkFloat> b_turb(1, r*r);
@@ -272,15 +272,15 @@ StkFloat Recorder::tick( unsigned int )
   Qj_ = h * H * Uj_;
 
   // Jet drive
-  StkFloat Uj_steady = fmax(sqrt(2 * pf / rho), 0.1f);
+  StkFloat Uj_steady = std::fmax(sqrt(2 * pf / rho), 0.1f);
   StkFloat fc_jet = 0.36f / W * Uj_steady;
-  StkFloat g_jet = 0.002004f * exp(-0.06046f * Uj_steady);
+  StkFloat g_jet = 0.002004f * std::exp(-0.06046f * Uj_steady);
   StkFloat r_jet = 0.95f - Uj_steady * 0.015f;
   StkFloat b0_jet = g_jet * (1 - r_jet * r_jet) / 2;
 
   // Calculate coefficients for resonant filter
   StkFloat b_jet[3] = { b0_jet, 0, -b0_jet };
-  StkFloat a_jet[3] = { 1, -2 * r_jet * cos(2 * STK_PI * fc_jet * T), r_jet * r_jet };
+  StkFloat a_jet[3] = { 1, -2 * r_jet * std::cos(2 * STK_PI * fc_jet * T), r_jet * r_jet };
   std::vector<StkFloat> b_jetcoeffs( &b_jet[0], &b_jet[0]+3 );
   std::vector<StkFloat> a_jetcoeffs( &a_jet[0], &a_jet[0]+3 );
   jetFilter_.setCoefficients( b_jetcoeffs, a_jetcoeffs );
@@ -288,7 +288,7 @@ StkFloat Recorder::tick( unsigned int )
 
   // Calculate flow source Q1
   Q1m1_ = Q1_;
-  Q1_ = b * H * Uj_ * (1 + tanh(eta / (psi_ * b)));
+  Q1_ = b * H * Uj_ * (1 + std::tanh(eta / (psi_ * b)));
 
   // Calculate pressure pulse modeling the jet drive
   StkFloat pjd = -rho * dd / Sm * (Q1_ - Q1m1_) / T;

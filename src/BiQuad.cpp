@@ -65,7 +65,7 @@ void BiQuad :: setResonance( StkFloat frequency, StkFloat radius, bool normalize
 #endif
 
   a_[2] = radius * radius;
-  a_[1] = -2.0f   * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate() );
+  a_[1] = -2.0f   * radius * std::cos( STK_TWO_PI * frequency / Stk::sampleRate() );
 
   if ( normalize ) {
     // Use zeros at +- 1 and normalize the filter peak gain.
@@ -90,7 +90,7 @@ void BiQuad :: setNotch( StkFloat frequency, StkFloat radius )
 
   // This method does not attempt to normalize the filter gain.
   b_[2] = radius * radius;
-  b_[1] = (StkFloat) -2.0 * radius * cos( STK_TWO_PI * (float) frequency / Stk::sampleRate() );
+  b_[1] = (StkFloat) -2.0 * radius * std::cos( STK_TWO_PI * (float) frequency / Stk::sampleRate() );
 }
 
 void BiQuad :: setEqualGainZeroes( void )

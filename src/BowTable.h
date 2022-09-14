@@ -86,8 +86,8 @@ inline StkFloat BowTable :: tick( StkFloat input )
   // The input represents differential string vs. bow velocity.
   StkFloat sample  = input + offset_;  // add bias to input
   sample *= slope_;          // then scale it
-  lastFrame_[0] = (StkFloat) fabs( (float) sample ) + (StkFloat) 0.75;
-  lastFrame_[0] = (StkFloat) pow( lastFrame_[0], (StkFloat) -4.0 );
+  lastFrame_[0] = (StkFloat) std::fabs( (float) sample ) + (StkFloat) 0.75;
+  lastFrame_[0] = (StkFloat) std::pow( lastFrame_[0], (StkFloat) -4.0 );
 
   // Set minimum threshold
   if ( lastFrame_[0] < minOutput_ ) lastFrame_[0] = minOutput_;
@@ -112,8 +112,8 @@ inline StkFrames& BowTable :: tick( StkFrames& frames, unsigned int channel )
   for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
     *samples = *samples + offset_;
     *samples *= slope_;
-    *samples = (StkFloat) fabs( (float) *samples ) + 0.75f;
-    *samples = (StkFloat) pow( *samples, (StkFloat) -4.0f );
+    *samples = (StkFloat) std::fabs( (float) *samples ) + 0.75f;
+    *samples = (StkFloat) std::pow( *samples, (StkFloat) -4.0f );
     if ( *samples > 1.0f) *samples = 1.0f;
   }
 
@@ -136,8 +136,8 @@ inline StkFrames& BowTable :: tick( StkFrames& iFrames, StkFrames& oFrames, unsi
   for ( unsigned int i=0; i<iFrames.frames(); i++, iSamples += iHop, oSamples += oHop ) {
     *oSamples = *iSamples + offset_;
     *oSamples *= slope_;
-    *oSamples = (StkFloat) fabs( (float) *oSamples ) + 0.75f;
-    *oSamples = (StkFloat) pow( *oSamples, (StkFloat) -4.0f);
+    *oSamples = (StkFloat) std::fabs( (float) *oSamples ) + 0.75f;
+    *oSamples = (StkFloat) std::pow( *oSamples, (StkFloat) -4.0f);
     if ( *oSamples > 1.0f) *oSamples = 1.0f;
   }
 

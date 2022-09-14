@@ -155,7 +155,7 @@ StkFloat Whistle :: tick( unsigned int )
       pea_.tick( tickSize_ );
     }
 
-    mod  = exp(-temp * 0.01f);	  // exp. distance falloff of fipple/pea effect
+    mod  = std::exp(-temp * 0.01f);	  // exp. distance falloff of fipple/pea effect
     temp = onepole_.tick(mod);	// smooth it a little
     gain = (1.0f - (fippleGainMod_*0.5f)) + (2.0f * fippleGainMod_ * temp);
     gain *= gain;	              // squared distance/gain
@@ -175,10 +175,10 @@ StkFloat Whistle :: tick( unsigned int )
       pea_.getVelocity( &tempVector_ );  // This is the can/pea collision
       tempX = tempVectorP_->getX();     // calculation.  Could probably
       tempY = tempVectorP_->getY();     // simplify using tables, etc.
-      phi = -atan2(tempY,tempX);
+      phi = -std::atan2(tempY,tempX);
 
-      cosphi = cos(phi);
-      sinphi = sin(phi);
+      cosphi = std::cos(phi);
+      sinphi = std::sin(phi);
       temp1 = (cosphi*tempVector_.getX()) - (sinphi*tempVector_.getY());
       temp2 = (sinphi*tempVector_.getX()) + (cosphi*tempVector_.getY());
       temp1 = -temp1;
@@ -194,10 +194,10 @@ StkFloat Whistle :: tick( unsigned int )
     if (temp > 0.01f) {
       tempX = tempVectorP_->getX();
       tempY = tempVectorP_->getY();
-      phi = atan2f( tempY, tempX );
+      phi = std::atan2( tempY, tempX );
       phi += 0.3f * temp / CAN_RADIUS;
-      cosphi = cos(phi);
-      sinphi = sin(phi);
+      cosphi = std::cos(phi);
+      sinphi = std::sin(phi);
       tempX = 3.0f * temp * cosphi;
       tempY = 3.0f * temp * sinphi;
     }

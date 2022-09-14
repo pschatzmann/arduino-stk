@@ -89,7 +89,7 @@ inline StkFloat Cubic :: tick( StkFloat input )
   lastFrame_[0] = gain_ * (a1_ * input + a2_ * inSquared + a3_ * inCubed);
 
   // Apply threshold if we are out of range.
-  if ( fabs( lastFrame_[0] ) > threshold_ ) {
+  if ( std::fabs( lastFrame_[0] ) > threshold_ ) {
     lastFrame_[0] = ( lastFrame_[0] < 0 ? -threshold_ : threshold_ );
   }
 

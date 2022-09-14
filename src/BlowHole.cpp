@@ -61,7 +61,7 @@ BlowHole :: BlowHole( StkFloat lowestFrequency )
   // Calculate the initial tonehole three-port scattering coefficient
   StkFloat rb = 0.0075;    // main bore radius
   StkFloat rth = 0.003;    // tonehole radius
-  scatter_ = -pow(rth,2) / ( pow(rth,2) + 2*pow(rb,2) );
+  scatter_ = -std::pow(rth,2) / ( std::pow(rth,2) + 2*std::pow(rb,2) );
 
   // Calculate tonehole coefficients and set for initially open.
   StkFloat te = 1.4f * rth;    // effective length of the open hole

@@ -97,7 +97,7 @@ void Drummer :: noteOn( StkFloat instrument, StkFloat amplitude )
   }
 
   // Yes, this is tres kludgey.
-  int noteNumber = (int) ( ( 12 * log( instrument / 220.0f ) / log( 2.0f ) ) + 57.01f );
+  int noteNumber = (int) ( ( 12 * std::log( instrument / 220.0f ) / std::log( 2.0f ) ) + 57.01f );
 
   // If we already have a wave of this note number loaded, just reset
   // it.  Otherwise, look first for an unused wave or preempt the

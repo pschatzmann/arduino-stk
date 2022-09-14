@@ -123,8 +123,8 @@ inline StkFloat BlitSquare :: tick( void )
 
   // Avoid a divide by zero, or use of a denomralized divisor
   // at the sinc peak, which has a limiting value of 1.0.
-  StkFloat denominator = sin( phase_ );
-  if ( fabs( denominator )  < std::numeric_limits<StkFloat>::epsilon() ) {
+  StkFloat denominator = std::sin( phase_ );
+  if ( std::fabs( denominator )  < std::numeric_limits<StkFloat>::epsilon() ) {
     // Inexact comparison safely distinguishes betwen *close to zero*, and *close to PI*.
     if ( phase_ < 0.1f || phase_ > STK_TWO_PI - 0.1f )
       lastBlitOutput_ = a_;
@@ -132,7 +132,7 @@ inline StkFloat BlitSquare :: tick( void )
       lastBlitOutput_ = -a_;
   }
   else {
-    lastBlitOutput_ =  sin( m_ * phase_ );
+    lastBlitOutput_ =  std::sin( m_ * phase_ );
     lastBlitOutput_ /= p_ * denominator;
   }
 
