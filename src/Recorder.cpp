@@ -41,7 +41,7 @@ const stk::StkFloat din = 0.0030;  // end correction
 const stk::StkFloat dout = 0.0063; // end correction
 const stk::StkFloat dm = din + dout;  // end correction of mouth
 const stk::StkFloat dd = 0.0035;   // acoustic distance between Q1 and Q2
-const stk::StkFloat rp = sqrt(Sp / stk::STK_PI);
+const stk::StkFloat rp = std::sqrt(Sp / stk::STK_PI);
 const stk::StkFloat b = 0.4f * h;   // jet width
 
 // Calculation coefficients
@@ -272,7 +272,7 @@ StkFloat Recorder::tick( unsigned int )
   Qj_ = h * H * Uj_;
 
   // Jet drive
-  StkFloat Uj_steady = std::fmax(sqrt(2 * pf / rho), 0.1f);
+  StkFloat Uj_steady = std::max(std::sqrt(2.0f * pf / rho), 0.1f);
   StkFloat fc_jet = 0.36f / W * Uj_steady;
   StkFloat g_jet = 0.002004f * std::exp(-0.06046f * Uj_steady);
   StkFloat r_jet = 0.95f - Uj_steady * 0.015f;
