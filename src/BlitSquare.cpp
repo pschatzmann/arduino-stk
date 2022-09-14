@@ -83,7 +83,7 @@ void BlitSquare :: updateHarmonics( void )
 {
   // Make sure we end up with an even value of the parameter M here.
   if ( nHarmonics_ <= 0 ) {
-    unsigned int maxHarmonics = (unsigned int) floor( 0.5f * p_ );
+    unsigned int maxHarmonics = (unsigned int) std::floor( 0.5f * p_ );
     m_ = 2 * (maxHarmonics + 1);
   }
   else

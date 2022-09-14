@@ -91,10 +91,10 @@ bool VoicForm :: setPhoneme( const char *phoneme )
   while( i < 32 && !found ) {
     if ( !strcmp( Phonemes::name(i), phoneme ) ) {
       found = true;
-      filters_[0].setTargets( Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), pow(10.0f, Phonemes::formantGain(i, 0 ) / 20.0f) );
-      filters_[1].setTargets( Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), pow(10.0f, Phonemes::formantGain(i, 1 ) / 20.0f) );
-      filters_[2].setTargets( Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), pow(10.0f, Phonemes::formantGain(i, 2 ) / 20.0f) );
-      filters_[3].setTargets( Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), pow(10.0f, Phonemes::formantGain(i, 3 ) / 20.0f) );
+      filters_[0].setTargets( Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), std::pow(10.0f, Phonemes::formantGain(i, 0 ) / 20.0f) );
+      filters_[1].setTargets( Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), std::pow(10.0f, Phonemes::formantGain(i, 1 ) / 20.0f) );
+      filters_[2].setTargets( Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), std::pow(10.0f, Phonemes::formantGain(i, 2 ) / 20.0f) );
+      filters_[3].setTargets( Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), std::pow(10.0f, Phonemes::formantGain(i, 3 ) / 20.0f) );
       this->setVoiced( Phonemes::voiceGain( i ) );
       this->setUnVoiced( Phonemes::noiseGain( i ) );
     }
@@ -168,10 +168,10 @@ void VoicForm :: controlChange( int number, StkFloat value )
       i = 0;
       temp = 1.4;
     }
-    filters_[0].setTargets( temp * Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), pow(10.0f, Phonemes::formantGain(i, 0 ) / 20.0f) );
-    filters_[1].setTargets( temp * Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), pow(10.0f, Phonemes::formantGain(i, 1 ) / 20.0f) );
-    filters_[2].setTargets( temp * Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), pow(10.0f, Phonemes::formantGain(i, 2 ) / 20.0f) );
-    filters_[3].setTargets( temp * Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), pow(10.0f, Phonemes::formantGain(i, 3 ) / 20.0f) );
+    filters_[0].setTargets( temp * Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), std::pow(10.0f, Phonemes::formantGain(i, 0 ) / 20.0f) );
+    filters_[1].setTargets( temp * Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), std::pow(10.0f, Phonemes::formantGain(i, 1 ) / 20.0f) );
+    filters_[2].setTargets( temp * Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), std::pow(10.0f, Phonemes::formantGain(i, 2 ) / 20.0f) );
+    filters_[3].setTargets( temp * Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), std::pow(10.0f, Phonemes::formantGain(i, 3 ) / 20.0f) );
     this->setVoiced( Phonemes::voiceGain( i ) );
     this->setUnVoiced( Phonemes::noiseGain( i ) );
   }

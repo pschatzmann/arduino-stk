@@ -94,7 +94,7 @@ void Guitar :: setBodyFile( std::string bodyfile )
     // Smooth the start and end of the noise.
     unsigned int N = (unsigned int) M * 0.2; // arbitrary value
     for ( unsigned int n=0; n<N; n++ ) {
-      StkFloat weight = 0.5f * ( 1.0f - cos( n * STK_PI / (N-1) ) );
+      StkFloat weight = 0.5f * ( 1.0f - std::cos( n * STK_PI / (N-1) ) );
       excitation_[n] *= weight;
       excitation_[M-n-1] *= weight;
     }

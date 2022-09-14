@@ -86,7 +86,7 @@ void Voicer :: removeInstrument( Instrmnt *instrument )
 long Voicer :: noteOn(StkFloat noteNumber, StkFloat amplitude, int group )
 {
   unsigned int i;
-  StkFloat frequency = (StkFloat) 220.0f * pow( 2.0f, (noteNumber - 57.0f) / 12.0f );
+  StkFloat frequency = (StkFloat) 220.0f * std::pow( 2.0f, (noteNumber - 57.0f) / 12.0f );
   for ( i=0; i<voices_.size(); i++ ) {
     if (voices_[i].noteNumber < 0 && voices_[i].group == group) {
       voices_[i].tag = tags_++;
@@ -144,7 +144,7 @@ void Voicer :: noteOff( long tag, StkFloat amplitude )
 
 void Voicer :: setFrequency( StkFloat noteNumber, int group )
 {
-  StkFloat frequency = (StkFloat) 220.0f * pow( 2.0f, (noteNumber - 57.0f) / 12.0f );
+  StkFloat frequency = (StkFloat) 220.0f * std::pow( 2.0f, (noteNumber - 57.0f) / 12.0f );
   for ( unsigned int i=0; i<voices_.size(); i++ ) {
     if ( voices_[i].group == group ) {
       voices_[i].noteNumber = noteNumber;
@@ -156,7 +156,7 @@ void Voicer :: setFrequency( StkFloat noteNumber, int group )
 
 void Voicer :: setFrequency( long tag, StkFloat noteNumber )
 {
-  StkFloat frequency = (StkFloat) 220.0f * pow( 2.0f, (noteNumber - 57.0f) / 12.0f );
+  StkFloat frequency = (StkFloat) 220.0f * std::pow( 2.0f, (noteNumber - 57.0f) / 12.0f );
   for ( unsigned int i=0; i<voices_.size(); i++ ) {
     if ( voices_[i].tag == tag ) {
       voices_[i].noteNumber = noteNumber;
@@ -171,9 +171,9 @@ void Voicer :: pitchBend( StkFloat value, int group )
 {
   StkFloat pitchScaler;
   if ( value < 8192.0f )
-    pitchScaler = pow( 0.5f, (8192.0f-value) / 8192.0f );
+    pitchScaler = std::pow( 0.5f, (8192.0f-value) / 8192.0f );
   else
-    pitchScaler = pow( 2.0f, (value-8192.0f) / 8192.0f );
+    pitchScaler = std::pow( 2.0f, (value-8192.0f) / 8192.0f );
   for ( unsigned int i=0; i<voices_.size(); i++ ) {
     if ( voices_[i].group == group )
       voices_[i].instrument->setFrequency( (StkFloat) (voices_[i].frequency * pitchScaler) );
@@ -184,9 +184,9 @@ void Voicer :: pitchBend( long tag, StkFloat value )
 {
   StkFloat pitchScaler;
   if ( value < 8192.0f )
-    pitchScaler = pow( 0.5f, (8192.0f-value) / 8192.0f );
+    pitchScaler = std::pow( 0.5f, (8192.0f-value) / 8192.0f );
   else
-    pitchScaler = pow( 2.0f, (value-8192.0f) / 8192.0f );
+    pitchScaler = std::pow( 2.0f, (value-8192.0f) / 8192.0f );
   for ( unsigned int i=0; i<voices_.size(); i++ ) {
     if ( voices_[i].tag == tag ) {
       voices_[i].instrument->setFrequency( (StkFloat) (voices_[i].frequency * pitchScaler) );

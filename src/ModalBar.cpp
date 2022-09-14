@@ -69,7 +69,7 @@ void ModalBar :: setStickHardness( StkFloat hardness )
   }
 
   stickHardness_ = hardness;
-  wave_->setRate( (0.25f * pow(4.0f, stickHardness_) ) );
+  wave_->setRate( (0.25f * std::pow(4.0f, stickHardness_) ) );
   masterGain_ = 0.1f + (1.8f * stickHardness_);
 }
 
@@ -87,10 +87,10 @@ void ModalBar :: setStrikePosition( StkFloat position )
   StkFloat temp = sin(temp2);                                       
   this->setModeGain(0, 0.12f * temp);
 
-  temp = sin(0.05f + (3.9f * temp2));
+  temp = std::sin(0.05f + (3.9f * temp2));
   this->setModeGain(1, -0.03f * temp);
 
-  temp = sin(-0.05f + (11 * temp2));
+  temp = std::sin(-0.05f + (11 * temp2));
   this->setModeGain(2, 0.11f * temp);
 }
 

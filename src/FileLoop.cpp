@@ -97,7 +97,7 @@ void FileLoop :: setRate( StkFloat rate )
 {
   rate_ = rate;
 
-  if ( fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
+  if ( std::fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
   else interpolate_ = false;
 }
 

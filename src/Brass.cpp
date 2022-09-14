@@ -136,7 +136,7 @@ void Brass :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_LipTension_)	{ // 2
-    StkFloat temp = lipTarget_ * pow( 4.0f, (2.0f * normalizedValue) - 1.0f );
+    StkFloat temp = lipTarget_ * std::pow( 4.0f, (2.0f * normalizedValue) - 1.0f );
     this->setLip( temp );
   }
   else if (number == __SK_SlideLength_) // 4

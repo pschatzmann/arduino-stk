@@ -106,7 +106,7 @@ inline StkFloat Filter :: phaseDelay( StkFloat frequency )
   real *= gain_;
   imag *= gain_;
 
-  StkFloat phase = atan2( imag, real );
+  StkFloat phase = std::atan2( imag, real );
 
   real = 0.0, imag = 0.0;
   for ( unsigned int i=0; i<a_.size(); i++ ) {

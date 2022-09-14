@@ -51,12 +51,12 @@ FreeVerb::FreeVerb( void )
   if ( fsScale != 1.0f ) {
     // scale comb filter delay lines
     for ( int i = 0; i < nCombs; i++ ) {
-      cDelayLengths[i] = (int) floor(fsScale * cDelayLengths[i]);
+      cDelayLengths[i] = (int) std::floor(fsScale * cDelayLengths[i]);
     }
 
     // Scale allpass filter delay lines
     for ( int i = 0; i < nAllpasses; i++ ) {
-      aDelayLengths[i] = (int) floor(fsScale * aDelayLengths[i]);
+      aDelayLengths[i] = (int) std::floor(fsScale * aDelayLengths[i]);
     }
   }
 

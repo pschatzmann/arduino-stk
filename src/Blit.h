@@ -118,7 +118,7 @@ inline StkFloat Blit :: tick( void )
   if ( denominator <= std::numeric_limits<StkFloat>::epsilon() )
     tmp = 1.0;
   else {
-    tmp =  sin( m_ * phase_ );
+    tmp =  std::sin( m_ * phase_ );
     tmp /= m_ * denominator;
   }
 

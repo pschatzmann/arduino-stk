@@ -149,7 +149,7 @@ class Shakers : public Instrmnt
 
 inline void Shakers :: setResonance( BiQuad &filter, StkFloat frequency, StkFloat radius )
 {
-  filter.a[1] = -2.0f * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate());
+  filter.a[1] = -2.0f * radius * std::cos( STK_TWO_PI * frequency / Stk::sampleRate());
   filter.a[2] = radius * radius;
 }
 
@@ -203,15 +203,15 @@ inline void Shakers :: waterDrop( void )
     unsigned int j = randomInt( 3 );
     if ( j == 0 && filters_[0].gain == 0.0f ) { // don't change unless fully decayed
       tempFrequencies_[0] = baseFrequencies_[1] * (0.75f + (0.25f * noise()));
-      filters_[0].gain = fabs( noise() );
+      filters_[0].gain = std::fabs( noise() );
     }
     else if (j == 1 && filters_[1].gain == 0.0f) {
       tempFrequencies_[1] = baseFrequencies_[1] * (1.0f + (0.25f * noise()));
-      filters_[1].gain = fabs( noise() );
+      filters_[1].gain = std::fabs( noise() );
     }
     else if ( filters_[2].gain == 0.0f ) {
       tempFrequencies_[2] = baseFrequencies_[1] * (1.25f + (0.25f * noise()));
-      filters_[2].gain = fabs( noise() );
+      filters_[2].gain = std::fabs( noise() );
     }
   }
 
@@ -220,7 +220,7 @@ inline void Shakers :: waterDrop( void )
     filters_[i].gain *= baseRadii_[i];
     if ( filters_[i].gain > 0.001f ) {
       tempFrequencies_[i] *= WATER_FREQ_SWEEP;
-      filters_[i].a[1] = -2.0f * baseRadii_[i] * cos( STK_TWO_PI * tempFrequencies_[i] / Stk::sampleRate() );
+      filters_[i].a[1] = -2.0f * baseRadii_[i] * std::cos( STK_TWO_PI * tempFrequencies_[i] / Stk::sampleRate() );
     }
     else
       filters_[i].gain = 0.0;
@@ -265,7 +265,7 @@ inline StkFloat Shakers :: tick( unsigned int )
         for ( unsigned int i=0; i<nResonances_; i++ ) {
           if ( doVaryFrequency_[i] ) {
             StkFloat tempRand = baseFrequencies_[i] * ( 1.0f + ( varyFactor_ * noise() ) );
-            filters_[i].a[1] = -2.0f * baseRadii_[i] * cos( STK_TWO_PI * tempRand / Stk::sampleRate() );
+            filters_[i].a[1] = -2.0f * baseRadii_[i] * std::cos( STK_TWO_PI * tempRand / Stk::sampleRate() );
           }
         }
         if ( shakerType_ == 22 ) iTube = randomInt( 7 ); // ANGKLUNG_RESONANCES

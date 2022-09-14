@@ -33,7 +33,7 @@ NRev :: NRev( StkFloat T60 )
 
   int delay, i;
   for ( i=0; i<15; i++ ) {
-    delay = (int) floor(scaler * lengths[i]);
+    delay = (int) std::floor(scaler * lengths[i]);
     if ( (delay & 1) == 0) delay++;
     while ( !this->isPrime(delay) ) delay += 2;
     lengths[i] = delay;
@@ -42,7 +42,7 @@ NRev :: NRev( StkFloat T60 )
   for ( i=0; i<6; i++ ) {
     combDelays_[i].setMaximumDelay( lengths[i] );
     combDelays_[i].setDelay( lengths[i] );
-    combCoefficient_[i] = pow(10.0, (-3 * lengths[i] / (T60 * Stk::sampleRate())));
+    combCoefficient_[i] = std::pow(10.0, (-3 * lengths[i] / (T60 * Stk::sampleRate())));
   }
 
   for ( i=0; i<8; i++ ) {
@@ -74,7 +74,7 @@ void NRev :: setT60( StkFloat T60 )
   }
 
   for ( int i=0; i<6; i++ )
-    combCoefficient_[i] = pow(10.0f, (-3.0f * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
+    combCoefficient_[i] = std::pow(10.0f, (-3.0f * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
 }
 
 StkFrames& NRev :: tick( StkFrames& frames, unsigned int channel )

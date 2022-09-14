@@ -142,8 +142,8 @@ void FileWvIn :: normalize( StkFloat peak )
   StkFloat max = 0.0;
 
   for ( i=0; i<data_.size(); i++ ) {
-    if ( fabs( data_[i] ) > max )
-      max = (StkFloat) fabs((float) data_[i]);
+    if ( std::fabs( data_[i] ) > max )
+      max = (StkFloat) std::fabs((float) data_[i]);
   }
 
   if ( max > 0.0f ) {
@@ -162,7 +162,7 @@ void FileWvIn :: setRate( StkFloat rate )
   // of sound.
   if ( (rate_ < 0) && (time_ == 0.0f) ) time_ = fileSize_ - 1.0;
 
-  if ( fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
+  if ( std::fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
   else interpolate_ = false;
 }
 
