@@ -62,8 +62,8 @@
 //  #define __MIDI__            // support Midi 
     #define __ARDUINO__  // exclude standard c++ h files
     #define __STREAMS__  // output to Ardiono Streams
-    #define _STK_DEBUG_
-//  #define __NO_EXCEPTIONS__   // comment out exceptions
+//  #define _STK_DEBUG_
+    #define __NO_EXCEPTIONS__   // comment out exceptions
 //    #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
 //    #define __NO_RT__           // no STK RT functions
 
