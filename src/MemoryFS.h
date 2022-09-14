@@ -18,6 +18,10 @@
 #  include <pgmspace.h>
 #endif
 
+#ifndef USE_RAM_DEFAUT
+#  define USE_RAM_DEFAUT false
+#endif
+
 #define VFS_INC_SIZE 10
 #ifndef MIN
 #define MIN(a,b) ((a) < (b) ? (a) : (b))

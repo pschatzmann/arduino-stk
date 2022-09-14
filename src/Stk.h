@@ -2,6 +2,7 @@
 #define STK_STK_H
 
 #include "ArdConfig.h"
+#include "ArdStkLogger.h"
 #include <string>
 #include <cstring>
 #include <vector>
@@ -143,7 +144,6 @@ public:
 class Stk
 {
 public:
-
   typedef unsigned long StkFormat;
   static const StkFormat STK_SINT8;   /*!< -128 to +127 */
   static const StkFormat STK_SINT16;  /*!< -32768 to +32767 */
@@ -432,6 +432,7 @@ public:
   StkFloat dataRate( void ) const { return dataRate_; };
 
 private:
+  StkFloat EMPTY_RESULT = 0.0f; // returned result if data_ is null
 
   StkFloat *data_;
   StkFloat dataRate_;
@@ -458,7 +459,7 @@ inline StkFloat& StkFrames :: operator[] ( size_t n )
   }
 #endif
 
-  return data_[n];
+  return data_==nullptr ? EMPTY_RESULT : data_[n];
 }
 
 inline StkFloat StkFrames :: operator[] ( size_t n ) const
@@ -471,7 +472,7 @@ inline StkFloat StkFrames :: operator[] ( size_t n ) const
   }
 #endif
 
-  return data_[n];
+  return data_==nullptr ? EMPTY_RESULT : data_[n];
 }
 
 inline StkFloat& StkFrames :: operator() ( size_t frame, unsigned int channel )
@@ -484,7 +485,7 @@ inline StkFloat& StkFrames :: operator() ( size_t frame, unsigned int channel )
   }
 #endif
 
-  return data_[ frame * nChannels_ + channel ];
+  return data_==nullptr? EMPTY_RESULT : data_[ frame * nChannels_ + channel ];
 }
 
 inline StkFloat StkFrames :: operator() ( size_t frame, unsigned int channel ) const
@@ -497,7 +498,7 @@ inline StkFloat StkFrames :: operator() ( size_t frame, unsigned int channel ) c
   }
 #endif
 
-  return data_[ frame * nChannels_ + channel ];
+  return data_==nullptr ? EMPTY_RESULT : data_[ frame * nChannels_ + channel ];
 }
     
 inline StkFrames StkFrames::operator+(const StkFrames &f) const

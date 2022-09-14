@@ -1,9 +1,13 @@
 #pragma once 
-
+#if defined(IS_DESKTOP)
+#  define PROGMEM
+#else
+#  include "pgmspace.h"
+#endif
 extern const unsigned char bassdrum_raw[];
 extern const unsigned char britestk_raw[];
 extern const unsigned char cowbell1_raw[];
-extern const unsigned char crashcym_raw[] ;
+extern const unsigned char crashcym_raw[];
 extern const unsigned char dope_raw[];
 extern const unsigned char eee_raw[];
 extern const unsigned char fwavblnk_raw[];
