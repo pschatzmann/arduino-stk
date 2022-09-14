@@ -59,7 +59,7 @@ inline StkFloat Vector3D :: getLength( void )
   temp = X_ * X_;
   temp += Y_ * Y_;
   temp += Z_ * Z_;
-  temp = sqrt( temp );
+  temp = std::sqrt( temp );
   return temp;
 }
 
