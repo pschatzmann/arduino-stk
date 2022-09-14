@@ -28,7 +28,7 @@ InstrumentInfo instrumentArray[] = {
     {"BlowHole", []() { return new BlowHole(200); }},
     {"Bowed", []() { return new Bowed(); }},
     {"Clarinet", []() { return new Clarinet(); }},
-    {"Drummer", []() { return new Drummer(); }},  // comment out for STM32
+    {"Drummer", []() { return new Drummer(); }},  // comment out for STM32 or ESP8266
     {"Flute", []() { return new Flute(200); }},
     {"Rhodey", []() { return new Rhodey(); }},
     {"TubeBell", []() { return new TubeBell(); }},
@@ -62,6 +62,8 @@ void measure(const char*title, Instrmnt *src) {
     // pull samples for 10 seconds at 44100 
     for (int j=0;j<sampleRate*sec;j++){
         float f = src->tick();
+        // for ESP8266 to feed the watchdog
+        if (j%5000==0) yield(); 
     }
     snprintf(msg, 80, "%s: %f sec",title, static_cast<float>(millis()-start)/1000.0);
     Serial.println(msg);

@@ -314,6 +314,9 @@ void StkFrames :: resize( size_t nFrames, unsigned int nChannels )
   if ( size_ > bufferSize_ ) {
     if ( data_ ) free( data_ );
     data_ = (StkFloat *) malloc( size_ * sizeof( StkFloat ) );
+    if (data_==nullptr){
+      STK_LOGE("resize: Not enough memory for %lu frames", nFrames);
+    }
 #if defined(_STK_DEBUG_)
     if ( data_ == NULL ) {
       std::string error = "StkFrames::resize: memory allocation error!";
@@ -327,8 +330,9 @@ void StkFrames :: resize( size_t nFrames, unsigned int nChannels )
 void StkFrames :: resize( size_t nFrames, unsigned int nChannels, StkFloat value )
 {
   this->resize( nFrames, nChannels );
-
-  for ( size_t i=0; i<size_; i++ ) data_[i] = value;
+  if (data_ !=nullptr) {
+    for ( size_t i=0; i<size_; i++ ) data_[i] = value;
+  }
 }
     
 StkFrames& StkFrames::getChannel(unsigned int sourceChannel,StkFrames& destinationFrames, unsigned int destinationChannel) const

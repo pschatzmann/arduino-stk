@@ -9,6 +9,7 @@ namespace stk {
 //! Simulated File Descriptor of registered virtual "Memory" files
 struct VFS_FD {
   VFS_FD() = default;
+
   ~VFS_FD(){
     if (is_ram) delete[] data;
   }
@@ -24,7 +25,7 @@ const char *APP_VFS ="MemoryFS";
 static const int registry_size = 30;
 VFS_FD **registry = nullptr;
 int registry_last_entry = 0;
-bool registry_use_ram = false;
+bool registry_use_ram = USE_RAM_DEFAUT;
 
 MemoryFS :: MemoryFS(const unsigned char *raw, unsigned int size, int bytesPerSample, bool swapBytes) {
   if (raw!=nullptr){
@@ -80,6 +81,11 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
   // data is available as array of uint16_t
   bool is_finished = false;
 
+  if (data_==nullptr){
+    STK_LOGE("data is null");
+    return false;
+  }
+
   // calculate max size of next batch
   this->current_pos_ = startFrame;
   int result_size = MIN(frames.size() , this->getSize() - startFrame);
@@ -89,6 +95,20 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
       frames.resize( result_size, 1 );
     }
 
+#ifdef ESP8266
+    // we need to access the progmem on 4byte boundries
+    for (int j=0; j<result_size; j+=2) {
+      int16_t tmp[2];
+      memcmp_P(tmp,(PGM_P) data_+j, 4);
+
+      if (this->swapBytes){
+        Stk::swap16((unsigned char *) &tmp[0]);
+        Stk::swap16((unsigned char *) &tmp[1]);
+      }
+      frames[j] = static_cast<float>(tmp[0]) / 32768.0f;
+      frames[j+1] = static_cast<float>(tmp[1]) / 32768.0f;
+    }   
+#else
     for (int j=0; j<result_size; j++) {
       int16_t tmp = data_[current_pos_];
       if (this->swapBytes){
@@ -97,6 +117,7 @@ bool MemoryFS :: fileRead( StkFrames& frames, unsigned long startFrame, bool doN
       frames[j] = static_cast<float>(tmp) / 32768.0f;
       this->current_pos_++;
     }   
+#endif
 
   } else {
       is_finished = true;

@@ -16,6 +16,7 @@
 #if defined(ESP32)    
 //  #define __MIDI__            // support Midi 
     #define __I2S__
+    #define __NO_EXCEPTIONS__
     #define __STREAMS__         // output to Ardiono Streams
     #define __RTOS__            // supports Free RTOS
     #define __LWIP__            // use lwip socket implementation
@@ -61,6 +62,7 @@
 //  #define __MIDI__            // support Midi 
     #define __ARDUINO__  // exclude standard c++ h files
     #define __STREAMS__  // output to Ardiono Streams
+    #define _STK_DEBUG_
 //  #define __NO_EXCEPTIONS__   // comment out exceptions
 //    #define __NO_FSTREAM__      // No Messanger, MidiFileIn and Skini and FileRead
 //    #define __NO_RT__           // no STK RT functions
