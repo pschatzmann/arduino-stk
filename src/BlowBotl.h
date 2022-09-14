@@ -104,10 +104,10 @@ inline StkFloat BlowBotl :: tick( unsigned int )
 
   randPressure = noiseGain_ * noise_.tick();
   randPressure *= breathPressure;
-  randPressure *= (1.0 + pressureDiff);
+  randPressure *= (1.0f + pressureDiff);
 
   resonator_.tick( breathPressure + randPressure - ( jetTable_.tick( pressureDiff ) * pressureDiff ) );
-  lastFrame_[0] = 0.2 * outputGain_ * dcBlock_.tick( pressureDiff );
+  lastFrame_[0] = 0.2f * outputGain_ * dcBlock_.tick( pressureDiff );
 
   return lastFrame_[0];
 }

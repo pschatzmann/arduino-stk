@@ -31,7 +31,7 @@ namespace stk {
 
 Bowed :: Bowed( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Bowed::Bowed: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -52,7 +52,7 @@ Bowed :: Bowed( StkFloat lowestFrequency )
   vibrato_.setFrequency( 6.12723 );
   vibratoGain_ = 0.0;
 
-  stringFilter_.setPole( 0.75 - (0.2 * 22050.0 / Stk::sampleRate()) );
+  stringFilter_.setPole( 0.75f - (0.2f * 22050.0f / Stk::sampleRate()) );
   stringFilter_.setGain( 0.95 );
 
   // Old single body filter
@@ -98,28 +98,28 @@ void Bowed :: setFrequency( StkFloat frequency )
 #endif
 
   // Delay = length - approximate filter delay.
-  baseDelay_ = Stk::sampleRate() / frequency - 4.0;
-  if ( baseDelay_ <= 0.0 ) baseDelay_ = 0.3;
+  baseDelay_ = Stk::sampleRate() / frequency - 4.0f;
+  if ( baseDelay_ <= 0.0f ) baseDelay_ = 0.3;
   bridgeDelay_.setDelay( baseDelay_ * betaRatio_ ); 	     // bow to bridge length
-  neckDelay_.setDelay( baseDelay_ * (1.0 - betaRatio_) );  // bow to nut (finger) length
+  neckDelay_.setDelay( baseDelay_ * (1.0f - betaRatio_) );  // bow to nut (finger) length
 }
 
 void Bowed :: startBowing( StkFloat amplitude, StkFloat rate )
 {
-  if ( amplitude <= 0.0 || rate <= 0.0 ) {
+  if ( amplitude <= 0.0f || rate <= 0.0f ) {
     oStream_ << "Bowed::startBowing: one or more arguments is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
 
   adsr_.setAttackRate( rate );
   adsr_.keyOn();
-  maxVelocity_ = 0.03 + ( 0.2 * amplitude );
+  maxVelocity_ = 0.03f + ( 0.2f  * amplitude );
   bowDown_ = true;
 }
 
 void Bowed :: stopBowing( StkFloat rate )
 {
-  if ( rate <= 0.0 ) {
+  if ( rate <= 0.0f ) {
     oStream_ << "Bowed::stopBowing: argument is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -130,13 +130,13 @@ void Bowed :: stopBowing( StkFloat rate )
 
 void Bowed :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
-  this->startBowing( amplitude, amplitude * 0.001 );
+  this->startBowing( amplitude, amplitude * 0.001f );
   this->setFrequency( frequency );
 }
 
 void Bowed :: noteOff( StkFloat amplitude )
 {
-  this->stopBowing( (1.0 - amplitude) * 0.005 );
+  this->stopBowing( (1.0f - amplitude) * 0.005f );
 }
 
 void Bowed :: controlChange( int number, StkFloat value )
@@ -150,19 +150,19 @@ void Bowed :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if ( number == __SK_BowPressure_ ) { // 2
-		if ( normalizedValue > 0.0 ) bowDown_ = true;
+		if ( normalizedValue > 0.0f ) bowDown_ = true;
 		else bowDown_ = false;
-		bowTable_.setSlope( 5.0 - (4.0 * normalizedValue) );
+		bowTable_.setSlope( 5.0f - (4.0f * normalizedValue) );
   }
   else if ( number == __SK_BowPosition_ ) { // 4
     betaRatio_ = normalizedValue;
     bridgeDelay_.setDelay( baseDelay_ * betaRatio_ );
-    neckDelay_.setDelay( baseDelay_ * (1.0 - betaRatio_) );
+    neckDelay_.setDelay( baseDelay_ * (1.0f - betaRatio_) );
   }
   else if ( number == __SK_ModFrequency_ ) // 11
-    vibrato_.setFrequency( normalizedValue * 12.0 );
+    vibrato_.setFrequency( normalizedValue * 12.0f );
   else if ( number == __SK_ModWheel_ ) // 1
-    vibratoGain_ = ( normalizedValue * 0.4 );
+    vibratoGain_ = ( normalizedValue * 0.4f );
   else if ( number == 100 ) // 100: set instantaneous bow velocity
     adsr_.setTarget( normalizedValue );
 	else if ( number == 101 ) // 101: set instantaneous value of frequency

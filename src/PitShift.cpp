@@ -38,14 +38,14 @@ void PitShift :: clear()
 
 void PitShift :: setShift( StkFloat shift )
 {
-  if ( shift < 1.0 ) {
-    rate_ = 1.0 - shift; 
+  if ( shift < 1.0f ) {
+    rate_ = 1.0f - shift; 
   }
-  else if ( shift > 1.0 ) {
-    rate_ = 1.0 - shift;
+  else if ( shift > 1.0f ) {
+    rate_ = 1.0f - shift;
   }
   else {
-    rate_ = 0.0;
+    rate_ = 0.0f;
     delay_[0] = halfLength_ + 12;
   }
 }

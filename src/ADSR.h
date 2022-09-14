@@ -148,8 +148,8 @@ inline StkFloat ADSR :: tick( void )
 
   case RELEASE:
     value_ -= releaseRate_;
-    if ( value_ <= 0.0 ) {
-      value_ = 0.0;
+    if ( value_ <= 0.0f ) {
+      value_ = 0.0f;
       state_ = IDLE;
     }
     lastFrame_[0] = value_;

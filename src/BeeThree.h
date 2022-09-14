@@ -75,8 +75,8 @@ inline StkFloat BeeThree :: tick( unsigned int )
 {
   StkFloat temp;
 
-  if ( modDepth_ > 0.0 )	{
-    temp = 1.0 + ( modDepth_ * vibrato_.tick() * 0.1 );
+  if ( modDepth_ > 0.0f )	{
+    temp = 1.0f + ( modDepth_ * vibrato_.tick() * 0.1f );
     waves_[0]->setFrequency( baseFrequency_ * temp * ratios_[0] );
     waves_[1]->setFrequency( baseFrequency_ * temp * ratios_[1] );
     waves_[2]->setFrequency( baseFrequency_ * temp * ratios_[2] );
@@ -84,14 +84,14 @@ inline StkFloat BeeThree :: tick( unsigned int )
   }
 
   waves_[3]->addPhaseOffset( twozero_.lastOut() );
-  temp = control1_ * 2.0 * gains_[3] * adsr_[3]->tick() * waves_[3]->tick();
+  temp = control1_ * 2.0f * gains_[3] * adsr_[3]->tick() * waves_[3]->tick();
   twozero_.tick( temp );
 
-  temp += control2_ * 2.0 * gains_[2] * adsr_[2]->tick() * waves_[2]->tick();
+  temp += control2_ * 2.0f * gains_[2] * adsr_[2]->tick() * waves_[2]->tick();
   temp += gains_[1] * adsr_[1]->tick() * waves_[1]->tick();
   temp += gains_[0] * adsr_[0]->tick() * waves_[0]->tick();
 
-  lastFrame_[0] = temp * 0.125;
+  lastFrame_[0] = temp * 0.125f;
   return lastFrame_[0];
 }
 

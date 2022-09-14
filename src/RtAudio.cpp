@@ -443,8 +443,8 @@ void RtApi :: tickStreamTime( void )
   stream_.streamTime += ( stream_.bufferSize * 1.0 / stream_.sampleRate );
 
 #if defined( HAVE_GETTIMEOFDAY )
-#endif
   gettimeofday( &stream_.lastTickTimestamp, NULL );
+#endif
 }
 
 long RtApi :: getStreamLatency( void )
@@ -10336,7 +10336,7 @@ void RtApi :: convertBuffer( char *outBuffer, char *inBuffer, ConvertInfo &info 
       Float32 *in = (Float32 *)inBuffer;
       for (unsigned int i=0; i<stream_.bufferSize; i++) {
         for (j=0; j<info.channels; j++) {
-          out[info.outOffset[j]] = (Int32) (in[info.inOffset[j]] * 2147483647.5 - 0.5);
+          out[info.outOffset[j]] = (Int32) (in[info.inOffset[j]] * 2147483647.5f - 0.5f);
         }
         in += info.inJump;
         out += info.outJump;
@@ -10403,7 +10403,7 @@ void RtApi :: convertBuffer( char *outBuffer, char *inBuffer, ConvertInfo &info 
       Float32 *in = (Float32 *)inBuffer;
       for (unsigned int i=0; i<stream_.bufferSize; i++) {
         for (j=0; j<info.channels; j++) {
-          out[info.outOffset[j]] = (Int32) (in[info.inOffset[j]] * 8388607.5 - 0.5);
+          out[info.outOffset[j]] = (Int32) (in[info.inOffset[j]] * 8388607.5f - 0.5f);
         }
         in += info.inJump;
         out += info.outJump;
@@ -10468,7 +10468,7 @@ void RtApi :: convertBuffer( char *outBuffer, char *inBuffer, ConvertInfo &info 
       Float32 *in = (Float32 *)inBuffer;
       for (unsigned int i=0; i<stream_.bufferSize; i++) {
         for (j=0; j<info.channels; j++) {
-          out[info.outOffset[j]] = (Int16) (in[info.inOffset[j]] * 32767.5 - 0.5);
+          out[info.outOffset[j]] = (Int16) (in[info.inOffset[j]] * 32767.5f - 0.5f);
         }
         in += info.inJump;
         out += info.outJump;
@@ -10532,7 +10532,7 @@ void RtApi :: convertBuffer( char *outBuffer, char *inBuffer, ConvertInfo &info 
       Float32 *in = (Float32 *)inBuffer;
       for (unsigned int i=0; i<stream_.bufferSize; i++) {
         for (j=0; j<info.channels; j++) {
-          out[info.outOffset[j]] = (signed char) (in[info.inOffset[j]] * 127.5 - 0.5);
+          out[info.outOffset[j]] = (signed char) (in[info.inOffset[j]] * 127.5f - 0.5f);
         }
         in += info.inJump;
         out += info.outJump;

@@ -117,13 +117,13 @@ void FMVoices :: setFrequency( StkFloat frequency )
   else return;
 
   baseFrequency_ = frequency;
-  temp = (temp2 * Phonemes::formantFrequency(i, 0) / baseFrequency_) + 0.5;
+  temp = (temp2 * Phonemes::formantFrequency(i, 0) / baseFrequency_) + 0.5f;
   tempi = (int) temp;
   this->setRatio( 0, (StkFloat) tempi );
-  temp = (temp2 * Phonemes::formantFrequency(i, 1) / baseFrequency_) + 0.5;
+  temp = (temp2 * Phonemes::formantFrequency(i, 1) / baseFrequency_) + 0.5f;
   tempi = (int) temp;
   this->setRatio( 1, (StkFloat) tempi );
-  temp = (temp2 * Phonemes::formantFrequency(i, 2) / baseFrequency_) + 0.5;
+  temp = (temp2 * Phonemes::formantFrequency(i, 2) / baseFrequency_) + 0.5f;
   tempi = (int) temp;
   this->setRatio( 2, (StkFloat) tempi );    
   gains_[0] = 1.0;
@@ -151,13 +151,13 @@ void FMVoices :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_Breath_) // 2
-    gains_[3] = fmGains_[(int) ( normalizedValue * 99.9 )];
+    gains_[3] = fmGains_[(int) ( normalizedValue * 99.9f )];
   else if (number == __SK_FootControl_)	{ // 4
-    currentVowel_ = (int) (normalizedValue * 127.0);
+    currentVowel_ = (int) (normalizedValue * 127.0f);
     this->setFrequency(baseFrequency_);
   }
   else if (number == __SK_ModFrequency_) // 11
-    this->setModulationSpeed( normalizedValue * 12.0);
+    this->setModulationSpeed( normalizedValue * 12.0f);
   else if (number == __SK_ModWheel_) // 1
     this->setModulationDepth( normalizedValue );
   else if (number == __SK_AfterTouch_Cont_)	{ // 128

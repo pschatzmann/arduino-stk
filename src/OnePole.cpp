@@ -31,23 +31,23 @@ OnePole :: ~OnePole()
 
 void OnePole :: setPole( StkFloat thePole )
 {
-  if ( std::abs( thePole ) >= 1.0 ) {
+  if ( std::abs( thePole ) >= 1.0f ) {
     oStream_ << "OnePole::setPole: argument (" << thePole << ") should be less than 1.0!";
     handleError( StkError::WARNING ); return;
   }
 
   // Normalize coefficients for peak unity gain.
-  if ( thePole > 0.0 )
-    b_[0] = (StkFloat) (1.0 - thePole);
+  if ( thePole > 0.0f )
+    b_[0] = (StkFloat) (1.0f - thePole);
   else
-    b_[0] = (StkFloat) (1.0 + thePole);
+    b_[0] = (StkFloat) (1.0f + thePole);
 
   a_[1] = -thePole;
 }
 
 void OnePole :: setCoefficients( StkFloat b0, StkFloat a1, bool clearState )
 {
-  if ( std::abs( a1 ) >= 1.0 ) {
+  if ( std::abs( a1 ) >= 1.0f ) {
     oStream_ << "OnePole::setCoefficients: a1 argument (" << a1 << ") should be less than 1.0!";
     handleError( StkError::WARNING ); return;
   }

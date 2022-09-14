@@ -60,7 +60,7 @@ void BlowBotl :: setFrequency( StkFloat frequency )
 
 void BlowBotl :: startBlowing( StkFloat amplitude, StkFloat rate )
 {
-  if ( amplitude <= 0.0 || rate <= 0.0 ) {
+  if ( amplitude <= 0.0f || rate <= 0.0f ) {
     oStream_ << "BlowBotl::startBowing: one or more arguments is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -72,7 +72,7 @@ void BlowBotl :: startBlowing( StkFloat amplitude, StkFloat rate )
 
 void BlowBotl :: stopBlowing( StkFloat rate )
 {
-  if ( rate <= 0.0 ) {
+  if ( rate <= 0.0f) {
     oStream_ << "BlowBotl::stopBowing: argument is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -84,13 +84,13 @@ void BlowBotl :: stopBlowing( StkFloat rate )
 void BlowBotl :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   this->setFrequency( frequency );
-  startBlowing( 1.1 + (amplitude * 0.20), amplitude * 0.02);
-  outputGain_ = amplitude + 0.001;
+  startBlowing( 1.1f + (amplitude * 0.20f), amplitude * 0.02f);
+  outputGain_ = amplitude + 0.001f;
 }
 
 void BlowBotl :: noteOff( StkFloat amplitude )
 {
-  this->stopBlowing( amplitude * 0.02 );
+  this->stopBlowing( amplitude * 0.02f );
 }
 
 void BlowBotl :: controlChange( int number, StkFloat value )
@@ -104,11 +104,11 @@ void BlowBotl :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_NoiseLevel_) // 4
-    noiseGain_ = normalizedValue * 30.0;
+    noiseGain_ = normalizedValue * 30.0f;
   else if (number == __SK_ModFrequency_) // 11
-    vibrato_.setFrequency( normalizedValue * 12.0 );
+    vibrato_.setFrequency( normalizedValue * 12.0f );
   else if (number == __SK_ModWheel_) // 1
-    vibratoGain_ = normalizedValue * 0.4;
+    vibratoGain_ = normalizedValue * 0.4f;
   else if (number == __SK_AfterTouch_Cont_) // 128
     adsr_.setTarget( normalizedValue );
 #if defined(_STK_DEBUG_)

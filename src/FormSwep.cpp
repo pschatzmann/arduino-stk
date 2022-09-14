@@ -68,10 +68,10 @@ void FormSwep :: setResonance( StkFloat frequency, StkFloat radius )
   frequency_ = frequency;
 
   a_[2] = radius * radius;
-  a_[1] = -2.0 * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate() );
+  a_[1] = -2.0f * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate() );
 
   // Use zeros at +- 1 and normalize the filter peak gain.
-  b_[0] = 0.5 - 0.5 * a_[2];
+  b_[0] = 0.5f - 0.5f * a_[2];
   b_[1] = 0.0;
   b_[2] = -b_[0];
 }
@@ -91,11 +91,11 @@ void FormSwep :: setStates( StkFloat frequency, StkFloat radius, StkFloat gain )
 
 void FormSwep :: setTargets( StkFloat frequency, StkFloat radius, StkFloat gain )
 {
-  if ( frequency < 0.0 || frequency > 0.5 * Stk::sampleRate() ) {
+  if ( frequency < 0.0f || frequency > 0.5f * Stk::sampleRate() ) {
     oStream_ << "FormSwep::setTargets: frequency argument (" << frequency << ") is out of range!";
     handleError( StkError::WARNING ); return;
   }
-  if ( radius < 0.0 || radius >= 1.0 ) {
+  if ( radius < 0.0f || radius >= 1.0f ) {
     oStream_ << "FormSwep::setTargets: radius argument (" << radius << ") is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -115,7 +115,7 @@ void FormSwep :: setTargets( StkFloat frequency, StkFloat radius, StkFloat gain 
 
 void FormSwep :: setSweepRate( StkFloat rate )
 {
-  if ( rate < 0.0 || rate > 1.0 ) {
+  if ( rate < 0.0f || rate > 1.0f ) {
     oStream_ << "FormSwep::setSweepRate: argument (" << rate << ") is out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -125,12 +125,12 @@ void FormSwep :: setSweepRate( StkFloat rate )
 
 void FormSwep :: setSweepTime( StkFloat time )
 {
-  if ( time <= 0.0 ) {
+  if ( time <= 0.0f ) {
     oStream_ << "FormSwep::setSweepTime: argument (" << time << ") must be > 0.0!";
     handleError( StkError::WARNING ); return;
   }
 
-  this->setSweepRate( 1.0 / ( time * Stk::sampleRate() ) );
+  this->setSweepRate( 1.0f / ( time * Stk::sampleRate() ) );
 }
 
 } // stk namespace

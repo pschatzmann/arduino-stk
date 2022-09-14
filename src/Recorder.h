@@ -98,7 +98,7 @@ class Recorder : public Instrmnt
 
     //StkFloat M{ 0 };
     //StkFloat maxPressure_( 0 );
-    double maxPressure_;
+    StkFloat maxPressure_;
     //StkFloat blow{ 0 };
     StkFloat vibratoGain_;
     StkFloat noiseGain_;

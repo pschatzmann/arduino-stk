@@ -71,7 +71,7 @@ void Moog :: setFrequency( StkFloat frequency )
 #endif
 
   baseFrequency_ = frequency;
-  StkFloat rate = attacks_[0]->getSize() * 0.01 * baseFrequency_ / Stk::sampleRate();
+  StkFloat rate = attacks_[0]->getSize() * 0.01f * baseFrequency_ / Stk::sampleRate();
   attacks_[0]->setRate( rate );
   loops_[0]->setFrequency( baseFrequency_ );
 }
@@ -82,19 +82,19 @@ void Moog :: noteOn( StkFloat frequency, StkFloat amplitude )
     
   this->setFrequency( frequency );
   this->keyOn();
-  attackGain_ = amplitude * 0.5;
+  attackGain_ = amplitude * 0.5f;
   loopGain_ = amplitude;
 
-  temp = filterQ_ + 0.05;
+  temp = filterQ_ + 0.05f;
   filters_[0].setStates( 2000.0, temp );
   filters_[1].setStates( 2000.0, temp );
 
-  temp = filterQ_ + 0.099;
+  temp = filterQ_ + 0.099f;
   filters_[0].setTargets( frequency, temp );
   filters_[1].setTargets( frequency, temp );
 
-  filters_[0].setSweepRate( filterRate_ * 22050.0 / Stk::sampleRate() );
-  filters_[1].setSweepRate( filterRate_ * 22050.0 / Stk::sampleRate() );
+  filters_[0].setSweepRate( filterRate_ * 22050.0f / Stk::sampleRate() );
+  filters_[1].setSweepRate( filterRate_ * 22050.0f / Stk::sampleRate() );
 }
 
 void Moog :: controlChange( int number, StkFloat value )
@@ -108,11 +108,11 @@ void Moog :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_FilterQ_) // 2
-    filterQ_ = 0.80 + ( 0.1 * normalizedValue );
+    filterQ_ = 0.80f + ( 0.1f * normalizedValue );
   else if (number == __SK_FilterSweepRate_) // 4
-    filterRate_ = normalizedValue * 0.0002;
+    filterRate_ = normalizedValue * 0.0002f;
   else if (number == __SK_ModFrequency_) // 11
-    this->setModulationSpeed( normalizedValue * 12.0 );
+    this->setModulationSpeed( normalizedValue * 12.0f );
   else if (number == __SK_ModWheel_)  // 1
     this->setModulationDepth( normalizedValue );
   else if (number == __SK_AfterTouch_Cont_) // 128

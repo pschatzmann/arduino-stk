@@ -36,7 +36,7 @@
 
 namespace stk {
 
-#define BASE_COUPLING_GAIN 0.01
+#define BASE_COUPLING_GAIN 0.01f
 
 Guitar :: Guitar( unsigned int nStrings, std::string bodyfile )
 {
@@ -74,7 +74,7 @@ void Guitar :: setBodyFile( std::string bodyfile )
   
       // Fill the StkFrames variable with the (possibly interpolated)
       // file data.
-      excitation_.resize( (unsigned long) ( 0.5 + ( file.getSize() * Stk::sampleRate() / file.getFileRate() ) ) );
+      excitation_.resize( (unsigned long) ( 0.5f + ( file.getSize() * Stk::sampleRate() / file.getFileRate() ) ) );
       file.tick( excitation_ );
       fileLoaded = true;
 #ifndef __NO_EXCEPTIONS__
@@ -94,7 +94,7 @@ void Guitar :: setBodyFile( std::string bodyfile )
     // Smooth the start and end of the noise.
     unsigned int N = (unsigned int) M * 0.2; // arbitrary value
     for ( unsigned int n=0; n<N; n++ ) {
-      StkFloat weight = 0.5 * ( 1.0 - cos( n * STK_PI / (N-1) ) );
+      StkFloat weight = 0.5f * ( 1.0f - cos( n * STK_PI / (N-1) ) );
       excitation_[n] *= weight;
       excitation_[M-n-1] *= weight;
     }
@@ -120,7 +120,7 @@ void Guitar :: setBodyFile( std::string bodyfile )
 
 void Guitar :: setPluckPosition( StkFloat position, int string )
 {
-  if ( position < 0.0 || position > 1.0 ) {
+  if ( position < 0.0f || position > 1.0f ) {
     oStream_ << "Guitar::setPluckPosition: position parameter out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -139,7 +139,7 @@ void Guitar :: setPluckPosition( StkFloat position, int string )
 
 void Guitar :: setLoopGain( StkFloat gain, int string )
 {
-  if ( gain < 0.0 || gain > 1.0 ) {
+  if ( gain < 0.0f || gain > 1.0f ) {
     oStream_ << "Guitar::setLoopGain: gain parameter out of range!";
     handleError( StkError::WARNING ); return;
   }
@@ -208,7 +208,7 @@ void Guitar :: noteOff( StkFloat amplitude, unsigned int string )
   }
 #endif
 
-  strings_[string].setLoopGain( (1.0 - amplitude) * 0.9 );
+  strings_[string].setLoopGain( (1.0f - amplitude) * 0.9f );
   stringState_[string] = 1;
 }
 
@@ -228,15 +228,15 @@ void Guitar :: controlChange( int number, StkFloat value, int string )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if ( number == 2 )
-    couplingGain_ = 1.5 * BASE_COUPLING_GAIN * normalizedValue;
+    couplingGain_ = 1.5f * BASE_COUPLING_GAIN * normalizedValue;
   else if ( number == __SK_PickPosition_ ) // 4
     this->setPluckPosition( normalizedValue, string );
   else if ( number == __SK_StringDamping_ ) // 11
-    this->setLoopGain( 0.97 + (normalizedValue * 0.03), string );
+    this->setLoopGain( 0.97f + (normalizedValue * 0.03f), string );
   else if ( number == __SK_ModWheel_ ) // 1
-    couplingFilter_.setPole( 0.98 * normalizedValue );
+    couplingFilter_.setPole( 0.98f * normalizedValue );
   else if (number == __SK_AfterTouch_Cont_) // 128
-    pickFilter_.setPole( 0.95 * normalizedValue );
+    pickFilter_.setPole( 0.95f * normalizedValue );
 #if defined(_STK_DEBUG_)
   else {
     oStream_ << "Guitar::controlChange: undefined control number (" << number << ")!";

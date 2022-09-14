@@ -26,7 +26,7 @@ namespace stk {
 
 JCRev :: JCRev( StkFloat T60 )
 {
-  if ( T60 <= 0.0 ) {
+  if ( T60 <= 0.0f ) {
     oStream_ << "JCRev::JCRev: argument (" << T60 << ") must be positive!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -35,10 +35,10 @@ JCRev :: JCRev( StkFloat T60 )
 
   // Delay lengths for 44100 Hz sample rate.
   int lengths[9] = {1116, 1356, 1422, 1617, 225, 341, 441, 211, 179};
-  double scaler = Stk::sampleRate() / 44100.0;
+  StkFloat scaler = Stk::sampleRate() / 44100.0f;
 
   int delay, i;
-  if ( scaler != 1.0 ) {
+  if ( scaler != 1.0f ) {
     for ( i=0; i<9; i++ ) {
       delay = (int) floor( scaler * lengths[i] );
       if ( (delay & 1) == 0) delay++;
@@ -85,13 +85,13 @@ void JCRev :: clear()
 
 void JCRev :: setT60( StkFloat T60 )
 {
-  if ( T60 <= 0.0 ) {
+  if ( T60 <= 0.0f ) {
     oStream_ << "JCRev::setT60: argument (" << T60 << ") must be positive!";
     handleError( StkError::WARNING ); return;
   }
 
   for ( int i=0; i<4; i++ )
-    combCoefficient_[i] = pow(10.0, (-3.0 * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
+    combCoefficient_[i] = pow(10.0f, (-3.0f * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
 }
 
 StkFrames& JCRev :: tick( StkFrames& frames, unsigned int channel )

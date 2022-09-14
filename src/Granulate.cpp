@@ -99,10 +99,10 @@ void Granulate :: setGrainParameters( unsigned int duration, unsigned int rampPe
 
 void Granulate :: setRandomFactor( StkFloat randomness )
 {
-  if ( randomness < 0.0 ) gRandomFactor_ = 0.0;
-  else if ( randomness > 1.0 ) gRandomFactor_ = 0.97;
+  if ( randomness < 0.0f ) gRandomFactor_ = 0.0;
+  else if ( randomness > 1.0f ) gRandomFactor_ = 0.97;
 
-  gRandomFactor_ = 0.97 * randomness;
+  gRandomFactor_ = 0.97f * randomness;
 };
 
 void Granulate :: openFile( std::string fileName, bool typeRaw )
@@ -132,7 +132,7 @@ void Granulate :: reset( void )
   size_t nVoices = (unsigned int)grains_.size();
   for ( unsigned int i=0; i<grains_.size(); i++ ) {
     grains_[i].repeats = 0;
-    count = ( i * gDuration_ * 0.001 * Stk::sampleRate() / nVoices );
+    count = ( i * gDuration_ * 0.001f * Stk::sampleRate() / nVoices );
     grains_[i].counter = count;
     grains_[i].state = GRAIN_STOPPED;
   }
@@ -156,7 +156,7 @@ void Granulate :: setVoices( unsigned int nVoices )
   size_t count;
   for ( size_t i=oldSize; i<nVoices; i++ ) {
     grains_[i].repeats = 0;
-    count = ( i * gDuration_ * 0.001 * Stk::sampleRate() / nVoices );
+    count = ( i * gDuration_ * 0.001f * Stk::sampleRate() / nVoices );
     grains_[i].counter = count;
     grains_[i].pointer = gPointer_;
     grains_[i].state = GRAIN_STOPPED;
@@ -216,7 +216,7 @@ void Granulate :: calculateGrain( Granulate::Grain& grain )
   int offset = (int) ( seconds * Stk::sampleRate() );
 
   // Add some randomization to the pointer start position.
-  seconds = gDuration_ * 0.001 * gRandomFactor_ * noise.tick();
+  seconds = gDuration_ * 0.001f * gRandomFactor_ * noise.tick();
   offset += (int) ( seconds * Stk::sampleRate() );
   grain.pointer += offset;
   while ( grain.pointer >= data_.frames() ) grain.pointer -= data_.frames();

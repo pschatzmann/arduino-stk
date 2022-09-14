@@ -28,7 +28,7 @@ namespace stk {
 
 Brass :: Brass( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Brass::Brass: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -72,7 +72,7 @@ void Brass :: setFrequency( StkFloat frequency )
 #endif
 
   // Fudge correction for filter delays.
-  slideTarget_ = ( Stk::sampleRate() / frequency * 2.0 ) + 3.0;
+  slideTarget_ = ( Stk::sampleRate() / frequency * 2.0f ) + 3.0f;
   delayLine_.setDelay( slideTarget_ ); // play a harmonic
 
   lipTarget_ = frequency;
@@ -93,7 +93,7 @@ void Brass :: setLip( StkFloat frequency )
 
 void Brass :: startBlowing( StkFloat amplitude, StkFloat rate )
 {
-  if ( amplitude <= 0.0 || rate <= 0.0 ) {
+  if ( amplitude <= 0.0f || rate <= 0.0f ) {
     oStream_ << "Brass::startBlowing: one or more arguments is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -105,7 +105,7 @@ void Brass :: startBlowing( StkFloat amplitude, StkFloat rate )
 
 void Brass :: stopBlowing( StkFloat rate )
 {
-  if ( rate <= 0.0 ) {
+  if ( rate <= 0.0f ) {
     oStream_ << "Brass::stopBlowing: argument is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
@@ -117,12 +117,12 @@ void Brass :: stopBlowing( StkFloat rate )
 void Brass :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   this->setFrequency( frequency );
-  this->startBlowing( amplitude, amplitude * 0.001 );
+  this->startBlowing( amplitude, amplitude * 0.001f );
 }
 
 void Brass :: noteOff( StkFloat amplitude )
 {
-  this->stopBlowing( amplitude * 0.005 );
+  this->stopBlowing( amplitude * 0.005f );
 }
 
 void Brass :: controlChange( int number, StkFloat value )
@@ -136,15 +136,15 @@ void Brass :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_LipTension_)	{ // 2
-    StkFloat temp = lipTarget_ * pow( 4.0, (2.0 * normalizedValue) - 1.0 );
+    StkFloat temp = lipTarget_ * pow( 4.0f, (2.0f * normalizedValue) - 1.0f );
     this->setLip( temp );
   }
   else if (number == __SK_SlideLength_) // 4
-    delayLine_.setDelay( slideTarget_ * (0.5 + normalizedValue) );
+    delayLine_.setDelay( slideTarget_ * (0.5f + normalizedValue) );
   else if (number == __SK_ModFrequency_) // 11
-    vibrato_.setFrequency( normalizedValue * 12.0 );
+    vibrato_.setFrequency( normalizedValue * 12.0f );
   else if (number == __SK_ModWheel_ ) // 1
-    vibratoGain_ = normalizedValue * 0.4;
+    vibratoGain_ = normalizedValue * 0.4f;
   else if (number == __SK_AfterTouch_Cont_) // 128
     adsr_.setTarget( normalizedValue );
 #if defined(_STK_DEBUG_)

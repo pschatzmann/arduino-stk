@@ -24,7 +24,7 @@ namespace stk {
 
 DelayA :: DelayA( StkFloat delay, unsigned long maxDelay )
 {
-  if ( delay < 0.5 ) {
+  if ( delay < 0.5f) {
     oStream_ << "DelayA::DelayA: delay must be >= 0.5!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -70,12 +70,12 @@ void DelayA :: setDelay( StkFloat delay )
     handleError( StkError::WARNING ); return;
   }
 
-  if ( delay < 0.5 ) {
+  if ( delay < 0.5f ) {
     oStream_ << "DelayA::setDelay: argument (" << delay << ") less than 0.5 not possible!";
     handleError( StkError::WARNING );
   }
 
-  StkFloat outPointer = inPoint_ - delay + 1.0;     // outPoint chases inpoint
+  StkFloat outPointer = inPoint_ - delay + 1.0f;     // outPoint chases inpoint
   delay_ = delay;
 
   while ( outPointer < 0 )
@@ -83,9 +83,9 @@ void DelayA :: setDelay( StkFloat delay )
 
   outPoint_ = (long) outPointer;         // integer part
   if ( outPoint_ == length ) outPoint_ = 0;
-  alpha_ = 1.0 + outPoint_ - outPointer; // fractional part
+  alpha_ = 1.0f + outPoint_ - outPointer; // fractional part
 
-  if ( alpha_ < 0.5 ) {
+  if ( alpha_ < 0.5f ) {
     // The optimal range for alpha is about 0.5 - 1.5 in order to
     // achieve the flattest phase delay response.
     outPoint_ += 1;
@@ -93,7 +93,7 @@ void DelayA :: setDelay( StkFloat delay )
     alpha_ += (StkFloat) 1.0;
   }
 
-  coeff_ = (1.0 - alpha_) / (1.0 + alpha_);  // coefficient for allpass
+  coeff_ = (1.0f - alpha_) / (1.0f + alpha_);  // coefficient for allpass
 }
 
 StkFloat DelayA :: tapOut( unsigned long tapDelay )

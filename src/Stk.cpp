@@ -79,7 +79,7 @@ Stk :: ~Stk( void )
 
 void Stk :: setSampleRate( StkFloat rate )
 {
-  if ( rate > 0.0 && rate != srate_ ) {
+  if ( rate > 0.0f && rate != srate_ ) {
     StkFloat oldRate = srate_;
     srate_ = rate;
 
@@ -406,7 +406,7 @@ StkFloat StkFrames :: interpolate( StkFloat frame, unsigned int channel ) const
 
   iIndex = iIndex * nChannels_ + channel;
   output = data_[ iIndex ];
-  if ( alpha > 0.0 )
+  if ( alpha > 0.0f)
     output += ( alpha * ( data_[ iIndex + nChannels_ ] - output ) );
 
   return output;

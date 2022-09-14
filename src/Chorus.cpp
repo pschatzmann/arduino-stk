@@ -16,9 +16,9 @@ namespace stk {
 Chorus :: Chorus( StkFloat baseDelay )
 {
   lastFrame_.resize( 1, 2, 0.0 ); // resize lastFrame_ for stereo output
-  delayLine_[0].setMaximumDelay( (unsigned long) (baseDelay * 1.414) + 2);
+  delayLine_[0].setMaximumDelay( (unsigned long) (baseDelay * 1.414f) + 2);
   delayLine_[0].setDelay( baseDelay );
-  delayLine_[1].setMaximumDelay( (unsigned long) (baseDelay * 1.414) + 2);
+  delayLine_[1].setMaximumDelay( (unsigned long) (baseDelay * 1.414f) + 2);
   delayLine_[1].setDelay( baseDelay );
   baseLength_ = baseDelay;
 
@@ -39,7 +39,7 @@ void Chorus :: clear( void )
 
   void Chorus :: setModDepth( StkFloat depth )
 {
-  if ( depth < 0.0 || depth > 1.0 ) {
+  if ( depth < 0.0f || depth > 1.0f ) {
     oStream_ << "Chorus::setModDepth(): depth argument must be between 0.0 - 1.0!";
     handleError( StkError::WARNING ); return;
   }
@@ -50,7 +50,7 @@ void Chorus :: clear( void )
 void Chorus :: setModFrequency( StkFloat frequency )
 {
   mods_[0].setFrequency( frequency );
-  mods_[1].setFrequency( frequency * 1.1111 );
+  mods_[1].setFrequency( frequency * 1.1111f );
 }
 
 } // stk namespace

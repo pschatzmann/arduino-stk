@@ -36,7 +36,7 @@ namespace stk {
 
 BlitSquare:: BlitSquare( StkFloat frequency )
 {
-  if ( frequency <= 0.0 ) {
+  if ( frequency <= 0.0f ) {
     oStream_ << "BlitSquare::BlitSquare: argument (" << frequency << ") must be positive!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -60,7 +60,7 @@ void BlitSquare :: reset()
 
 void BlitSquare :: setFrequency( StkFloat frequency )
 {
-  if ( frequency <= 0.0 ) {
+  if ( frequency <= 0.0f ) {
     oStream_ << "BlitSquare::setFrequency: argument (" << frequency << ") must be positive!";
     handleError( StkError::WARNING ); return;
   }
@@ -68,7 +68,7 @@ void BlitSquare :: setFrequency( StkFloat frequency )
   // By using an even value of the parameter M, we get a bipolar blit
   // waveform at half the blit frequency.  Thus, we need to scale the
   // frequency value here by 0.5. (GPS, 2006).
-  p_ = 0.5 * Stk::sampleRate() / frequency;
+  p_ = 0.5f * Stk::sampleRate() / frequency;
   rate_ = STK_PI / p_;
   this->updateHarmonics();
 }
@@ -83,7 +83,7 @@ void BlitSquare :: updateHarmonics( void )
 {
   // Make sure we end up with an even value of the parameter M here.
   if ( nHarmonics_ <= 0 ) {
-    unsigned int maxHarmonics = (unsigned int) floor( 0.5 * p_ );
+    unsigned int maxHarmonics = (unsigned int) floor( 0.5f * p_ );
     m_ = 2 * (maxHarmonics + 1);
   }
   else

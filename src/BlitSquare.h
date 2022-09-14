@@ -139,7 +139,7 @@ inline StkFloat BlitSquare :: tick( void )
   lastBlitOutput_ += temp;
 
   // Now apply DC blocker.
-  lastFrame_[0] = lastBlitOutput_ - dcbState_ + 0.999 * lastFrame_[0];
+  lastFrame_[0] = lastBlitOutput_ - dcbState_ + 0.999f * lastFrame_[0];
   dcbState_ = lastBlitOutput_;
 
   phase_ += rate_;

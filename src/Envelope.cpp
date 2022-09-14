@@ -49,7 +49,7 @@ void Envelope :: sampleRateChanged( StkFloat newRate, StkFloat oldRate )
 
 void Envelope :: setRate( StkFloat rate )
 {
-  if ( rate < 0.0 ) {
+  if ( rate < 0.0f ) {
     oStream_ << "Envelope::setRate: argument must be >= 0.0!";
     handleError( StkError::WARNING ); return;
   }
@@ -59,12 +59,12 @@ void Envelope :: setRate( StkFloat rate )
 
 void Envelope :: setTime( StkFloat time )
 {
-  if ( time <= 0.0 ) {
+  if ( time <= 0.0f ) {
     oStream_ << "Envelope::setTime: argument must be > 0.0!";
     handleError( StkError::WARNING ); return;
   }
 
-  rate_ = 1.0 / ( time * Stk::sampleRate() );
+  rate_ = 1.0f / ( time * Stk::sampleRate() );
 }
 
 void Envelope :: setTarget( StkFloat target )

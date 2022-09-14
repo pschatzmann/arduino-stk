@@ -14,7 +14,7 @@
 namespace stk {
 
 LentPitShift::LentPitShift( StkFloat periodRatio, int tMax )
-  : inputFrames(0.,tMax,1), outputFrames(0.,tMax,1), ptrFrames(0), inputPtr(0), outputPtr(0.), tMax_(tMax), periodRatio_(periodRatio), zeroFrame(0., tMax, 1)
+  : inputFrames(0.,tMax,1), outputFrames(0.,tMax,1), ptrFrames(0), inputPtr(0), outputPtr(0.), tMax_(tMax), periodRatio_(periodRatio), zeroFrame(0.f, tMax, 1)
 {
 	window = new StkFloat[2*tMax_]; // Allocation of the array for the hamming window
 	threshold_ = 0.1;               // Default threshold for pitch tracking
@@ -45,8 +45,8 @@ void LentPitShift :: clear()
 
 void LentPitShift :: setShift( StkFloat shift )
 {
-  if ( shift <= 0.0 ) periodRatio_ = 1.0;
-  periodRatio_ = 1.0 / shift; 
+  if ( shift <= 0.0f ) periodRatio_ = 1.0;
+  periodRatio_ = 1.0f / shift; 
 }
 
 } // stk namespace

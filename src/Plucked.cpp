@@ -26,7 +26,7 @@ namespace stk {
 
 Plucked :: Plucked( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Plucked::Plucked: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -34,7 +34,7 @@ Plucked :: Plucked( StkFloat lowestFrequency )
   unsigned long delays = (unsigned long) ( Stk::sampleRate() / lowestFrequency );
   delayLine_.setMaximumDelay( delays + 1 );
 
-  this->setFrequency( 220.0 );
+  this->setFrequency( 220.0f );
 }
 
 Plucked :: ~Plucked( void )
@@ -61,22 +61,22 @@ void Plucked :: setFrequency( StkFloat frequency )
   StkFloat delay = ( Stk::sampleRate() / frequency ) - loopFilter_.phaseDelay( frequency );
   delayLine_.setDelay( delay );
 
-  loopGain_ = 0.995 + (frequency * 0.000005);
-  if ( loopGain_ >= 1.0 ) loopGain_ = 0.99999;
+  loopGain_ = 0.995f + (frequency * 0.000005f);
+  if ( loopGain_ >= 1.0f ) loopGain_ = 0.99999f;
 }
 
 void Plucked :: pluck( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Plucked::pluck: amplitude is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
-  pickFilter_.setPole( 0.999 - (amplitude * 0.15) );
-  pickFilter_.setGain( amplitude * 0.5 );
+  pickFilter_.setPole( 0.999f - (amplitude * 0.15f) );
+  pickFilter_.setGain( amplitude * 0.5f );
   for ( unsigned long i=0; i<delayLine_.getDelay(); i++ )
     // Fill delay with noise additively with current contents.
-    delayLine_.tick( 0.6 * delayLine_.lastOut() + pickFilter_.tick( noise_.tick() ) );
+    delayLine_.tick( 0.6f * delayLine_.lastOut() + pickFilter_.tick( noise_.tick() ) );
 }
 
 void Plucked :: noteOn( StkFloat frequency, StkFloat amplitude )
@@ -87,12 +87,12 @@ void Plucked :: noteOn( StkFloat frequency, StkFloat amplitude )
 
 void Plucked :: noteOff( StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Plucked::noteOff: amplitude is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
-  loopGain_ = 1.0 - amplitude;
+  loopGain_ = 1.0f - amplitude;
 }
 
 } // stk namespace

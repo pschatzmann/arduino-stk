@@ -65,11 +65,11 @@ void BiQuad :: setResonance( StkFloat frequency, StkFloat radius, bool normalize
 #endif
 
   a_[2] = radius * radius;
-  a_[1] = -2.0 * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate() );
+  a_[1] = -2.0f   * radius * cos( STK_TWO_PI * frequency / Stk::sampleRate() );
 
   if ( normalize ) {
     // Use zeros at +- 1 and normalize the filter peak gain.
-    b_[0] = 0.5 - 0.5 * a_[2];
+    b_[0] = 0.5f - 0.5f   * a_[2];
     b_[1] = 0.0;
     b_[2] = -b_[0];
   }

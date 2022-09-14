@@ -115,12 +115,12 @@ inline StkFloat Bowed :: tick( unsigned int )
   neckDelay_.tick( bridgeReflection + newVelocity);      // Do string propagations
   bridgeDelay_.tick(nutReflection + newVelocity);
     
-  if ( vibratoGain_ > 0.0 )  {
-    neckDelay_.setDelay( (baseDelay_ * (1.0 - betaRatio_) ) + 
+  if ( vibratoGain_ > 0.0f )  {
+    neckDelay_.setDelay( (baseDelay_ * (1.0f - betaRatio_) ) + 
                          (baseDelay_ * vibratoGain_ * vibrato_.tick()) );
   }
 
-  lastFrame_[0] = 0.1248 * bodyFilters_[5].tick( bodyFilters_[4].tick( bodyFilters_[3].tick( bodyFilters_[2].tick( bodyFilters_[1].tick( bodyFilters_[0].tick( bridgeDelay_.lastOut() ) ) ) ) ) );
+  lastFrame_[0] = 0.1248f * bodyFilters_[5].tick( bodyFilters_[4].tick( bodyFilters_[3].tick( bodyFilters_[2].tick( bodyFilters_[1].tick( bodyFilters_[0].tick( bridgeDelay_.lastOut() ) ) ) ) ) );
 
   return lastFrame_[0];
 }

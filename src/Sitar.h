@@ -82,11 +82,11 @@ class Sitar : public Instrmnt
 
 inline StkFloat Sitar :: tick( unsigned int )
 {
-  if ( fabs(targetDelay_ - delay_) > 0.001 ) {
+  if ( fabs(targetDelay_ - delay_) > 0.001f ) {
     if ( targetDelay_ < delay_ )
-      delay_ *= 0.99999;
+      delay_ *= 0.99999f;
     else
-      delay_ *= 1.00001;
+      delay_ *= 1.00001f;
     delayLine_.setDelay( delay_ );
   }
 

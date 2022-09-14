@@ -27,7 +27,7 @@ namespace stk {
 
 Twang :: Twang( StkFloat lowestFrequency )
 {
-  if ( lowestFrequency <= 0.0 ) {
+  if ( lowestFrequency <= 0.0f ) {
     oStream_ << "Twang::Twang: argument is less than or equal to zero!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -74,25 +74,25 @@ void Twang :: setFrequency( StkFloat frequency )
   this->setLoopGain( loopGain_ );
 
   // Set the pluck position, which puts zeroes at position * length.
-  combDelay_.setDelay( 0.5 * pluckPosition_ * delay );
+  combDelay_.setDelay( 0.5f * pluckPosition_ * delay );
 }
 
 void Twang :: setLoopGain( StkFloat loopGain )
 {
-  if ( loopGain < 0.0 || loopGain >= 1.0 ) {
+  if ( loopGain < 0.0f || loopGain >= 1.0f ) {
     oStream_ << "Twang::setLoopGain: parameter is out of range!";
     handleError( StkError::WARNING ); return;
   }
 
   loopGain_ = loopGain;
-  StkFloat gain = loopGain_ + (frequency_ * 0.000005);
-  if ( gain >= 1.0 ) gain = 0.99999;
+  StkFloat gain = loopGain_ + (frequency_ * 0.000005f);
+  if ( gain >= 1.0f ) gain = 0.99999;
   loopFilter_.setGain( gain );
 }
 
 void Twang :: setPluckPosition( StkFloat position )
 {
-  if ( position < 0.0 || position > 1.0 ) {
+  if ( position < 0.0f || position > 1.0f ) {
     oStream_ << "Twang::setPluckPosition: argument (" << position << ") is out of range!";
     handleError( StkError::WARNING ); return;
   }

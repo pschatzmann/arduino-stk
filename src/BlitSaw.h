@@ -116,7 +116,7 @@ inline StkFloat BlitSaw :: tick( void )
   }
 
   tmp += state_ - C2_;
-  state_ = tmp * 0.995;
+  state_ = tmp * 0.995f ;
 
   phase_ += rate_;
   if ( phase_ >= STK_PI ) phase_ -= STK_PI;

@@ -23,7 +23,7 @@ namespace stk {
 
 DelayL :: DelayL( StkFloat delay, unsigned long maxDelay )
 {
-  if ( delay < 0.0 ) {
+  if ( delay < 0.0f ) {
     oStream_ << "DelayL::DelayL: delay must be >= 0.0!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }

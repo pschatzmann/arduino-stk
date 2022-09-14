@@ -91,13 +91,13 @@ Drummer :: ~Drummer( void )
 
 void Drummer :: noteOn( StkFloat instrument, StkFloat amplitude )
 {
-  if ( amplitude < 0.0 || amplitude > 1.0 ) {
+  if ( amplitude < 0.0f || amplitude > 1.0f ) {
     oStream_ << "Drummer::noteOn: amplitude parameter is out of bounds!";
     handleError( StkError::WARNING ); return;
   }
 
   // Yes, this is tres kludgey.
-  int noteNumber = (int) ( ( 12 * log( instrument / 220.0 ) / log( 2.0 ) ) + 57.01 );
+  int noteNumber = (int) ( ( 12 * log( instrument / 220.0f ) / log( 2.0f ) ) + 57.01f );
 
   // If we already have a wave of this note number loaded, just reset
   // it.  Otherwise, look first for an unused wave or preempt the
@@ -110,7 +110,7 @@ void Drummer :: noteOn( StkFloat instrument, StkFloat amplitude )
         nSounding_++;
       }
       waves_[iWave].reset();
-      filters_[iWave].setPole( 0.999 - (amplitude * 0.6) );
+      filters_[iWave].setPole( 0.999f - (amplitude * 0.6f) );
       filters_[iWave].setGain( amplitude );
       break;
     }
@@ -137,9 +137,9 @@ void Drummer :: noteOn( StkFloat instrument, StkFloat amplitude )
 
     // Concatenate the STK rawwave path to the rawwave file
     waves_[iWave].openFile( (Stk::rawwavePath() + waveNames[ genMIDIMap[ noteNumber ] ]).c_str(), true );
-    if ( Stk::sampleRate() != 22050.0 )
-      waves_[iWave].setRate( 22050.0 / Stk::sampleRate() );
-    filters_[iWave].setPole( 0.999 - (amplitude * 0.6) );
+    if ( Stk::sampleRate() != 22050.0f )
+      waves_[iWave].setRate( 22050.0f / Stk::sampleRate() );
+    filters_[iWave].setPole( 0.999f - (amplitude * 0.6f) );
     filters_[iWave].setGain( amplitude );
   }
 
@@ -157,7 +157,7 @@ void Drummer :: noteOff( StkFloat amplitude )
 {
   // Set all sounding wave filter gains low.
   int i = 0;
-  while ( i < nSounding_ ) filters_[i++].setGain( amplitude * 0.01 );
+  while ( i < nSounding_ ) filters_[i++].setGain( amplitude * 0.01f );
 }
 
 } // stk namespace

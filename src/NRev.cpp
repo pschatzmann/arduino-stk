@@ -21,7 +21,7 @@ namespace stk {
 
 NRev :: NRev( StkFloat T60 )
 {
-  if ( T60 <= 0.0 ) {
+  if ( T60 <= 0.0f ) {
     oStream_ << "NRev::NRev: argument (" << T60 << ") must be positive!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -29,7 +29,7 @@ NRev :: NRev( StkFloat T60 )
   lastFrame_.resize( 1, 2, 0.0 ); // resize lastFrame_ for stereo output
 
   int lengths[15] = {1433, 1601, 1867, 2053, 2251, 2399, 347, 113, 37, 59, 53, 43, 37, 29, 19};
-  double scaler = Stk::sampleRate() / 25641.0;
+  float scaler = Stk::sampleRate() / 25641.0f;
 
   int delay, i;
   for ( i=0; i<15; i++ ) {
@@ -68,13 +68,13 @@ void NRev :: clear()
 
 void NRev :: setT60( StkFloat T60 )
 {
-  if ( T60 <= 0.0 ) {
+  if ( T60 <= 0.0f ) {
     oStream_ << "NRev::setT60: argument (" << T60 << ") must be positive!";
     handleError( StkError::WARNING ); return;
   }
 
   for ( int i=0; i<6; i++ )
-    combCoefficient_[i] = pow(10.0, (-3.0 * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
+    combCoefficient_[i] = pow(10.0f, (-3.0f * combDelays_[i].getDelay() / (T60 * Stk::sampleRate())));
 }
 
 StkFrames& NRev :: tick( StkFrames& frames, unsigned int channel )

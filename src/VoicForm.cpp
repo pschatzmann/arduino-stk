@@ -91,10 +91,10 @@ bool VoicForm :: setPhoneme( const char *phoneme )
   while( i < 32 && !found ) {
     if ( !strcmp( Phonemes::name(i), phoneme ) ) {
       found = true;
-      filters_[0].setTargets( Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), pow(10.0, Phonemes::formantGain(i, 0 ) / 20.0) );
-      filters_[1].setTargets( Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), pow(10.0, Phonemes::formantGain(i, 1 ) / 20.0) );
-      filters_[2].setTargets( Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), pow(10.0, Phonemes::formantGain(i, 2 ) / 20.0) );
-      filters_[3].setTargets( Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), pow(10.0, Phonemes::formantGain(i, 3 ) / 20.0) );
+      filters_[0].setTargets( Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), pow(10.0f, Phonemes::formantGain(i, 0 ) / 20.0f) );
+      filters_[1].setTargets( Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), pow(10.0f, Phonemes::formantGain(i, 1 ) / 20.0f) );
+      filters_[2].setTargets( Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), pow(10.0f, Phonemes::formantGain(i, 2 ) / 20.0f) );
+      filters_[3].setTargets( Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), pow(10.0f, Phonemes::formantGain(i, 3 ) / 20.0f) );
       this->setVoiced( Phonemes::voiceGain( i ) );
       this->setUnVoiced( Phonemes::noiseGain( i ) );
     }
@@ -129,7 +129,7 @@ void VoicForm :: noteOn( StkFloat frequency, StkFloat amplitude )
 {
   this->setFrequency( frequency );
   voiced_->setGainTarget( amplitude );
-  onepole_.setPole( 0.97 - (amplitude * 0.2) );
+  onepole_.setPole( 0.97f - (amplitude * 0.2f) );
 }
 
 void VoicForm :: controlChange( int number, StkFloat value )
@@ -143,8 +143,8 @@ void VoicForm :: controlChange( int number, StkFloat value )
 
   StkFloat normalizedValue = value * ONE_OVER_128;
   if (number == __SK_Breath_)	{ // 2
-    this->setVoiced( 1.0 - normalizedValue );
-    this->setUnVoiced( 0.01 * normalizedValue );
+    this->setVoiced( 1.0f - normalizedValue );
+    this->setUnVoiced( 0.01f * normalizedValue );
   }
   else if (number == __SK_FootControl_)	{ // 4
     StkFloat temp = 0.0;
@@ -168,20 +168,20 @@ void VoicForm :: controlChange( int number, StkFloat value )
       i = 0;
       temp = 1.4;
     }
-    filters_[0].setTargets( temp * Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), pow(10.0, Phonemes::formantGain(i, 0 ) / 20.0) );
-    filters_[1].setTargets( temp * Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), pow(10.0, Phonemes::formantGain(i, 1 ) / 20.0) );
-    filters_[2].setTargets( temp * Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), pow(10.0, Phonemes::formantGain(i, 2 ) / 20.0) );
-    filters_[3].setTargets( temp * Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), pow(10.0, Phonemes::formantGain(i, 3 ) / 20.0) );
+    filters_[0].setTargets( temp * Phonemes::formantFrequency(i, 0), Phonemes::formantRadius(i, 0), pow(10.0f, Phonemes::formantGain(i, 0 ) / 20.0f) );
+    filters_[1].setTargets( temp * Phonemes::formantFrequency(i, 1), Phonemes::formantRadius(i, 1), pow(10.0f, Phonemes::formantGain(i, 1 ) / 20.0f) );
+    filters_[2].setTargets( temp * Phonemes::formantFrequency(i, 2), Phonemes::formantRadius(i, 2), pow(10.0f, Phonemes::formantGain(i, 2 ) / 20.0f) );
+    filters_[3].setTargets( temp * Phonemes::formantFrequency(i, 3), Phonemes::formantRadius(i, 3), pow(10.0f, Phonemes::formantGain(i, 3 ) / 20.0f) );
     this->setVoiced( Phonemes::voiceGain( i ) );
     this->setUnVoiced( Phonemes::noiseGain( i ) );
   }
   else if (number == __SK_ModFrequency_) // 11
-    voiced_->setVibratoRate( normalizedValue * 12.0);  // 0 to 12 Hz
+    voiced_->setVibratoRate( normalizedValue * 12.0f);  // 0 to 12 Hz
   else if (number == __SK_ModWheel_) // 1
-    voiced_->setVibratoGain( normalizedValue * 0.2);
+    voiced_->setVibratoGain( normalizedValue * 0.2f);
   else if (number == __SK_AfterTouch_Cont_)	{ // 128
     this->setVoiced( normalizedValue );
-    onepole_.setPole( 0.97 - ( normalizedValue * 0.2) );
+    onepole_.setPole( 0.97f - ( normalizedValue * 0.2f) );
   }
 #if defined(_STK_DEBUG_)
   else {

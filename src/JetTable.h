@@ -56,11 +56,11 @@ inline StkFloat JetTable :: tick( StkFloat input )
   // Perform "table lookup" using a polynomial
   // calculation (x^3 - x), which approximates
   // the jet sigmoid behavior.
-  lastFrame_[0] = input * (input * input - 1.0);
+  lastFrame_[0] = input * (input * input - 1.0f);
 
   // Saturate at +/- 1.0.
-  if ( lastFrame_[0] > 1.0 ) lastFrame_[0] = 1.0;
-  if ( lastFrame_[0] < -1.0 ) lastFrame_[0] = -1.0; 
+  if ( lastFrame_[0] > 1.0f ) lastFrame_[0] = 1.0f;
+  if ( lastFrame_[0] < -1.0f ) lastFrame_[0] = -1.0f; 
   return lastFrame_[0];
 }
 
@@ -76,9 +76,9 @@ inline StkFrames& JetTable :: tick( StkFrames& frames, unsigned int channel )
   StkFloat *samples = &frames[channel];
   unsigned int hop = frames.channels();
   for ( unsigned int i=0; i<frames.frames(); i++, samples += hop ) {
-    *samples = *samples * (*samples * *samples - 1.0);
-    if ( *samples > 1.0) *samples = 1.0;
-    if ( *samples < -1.0) *samples = -1.0;
+    *samples = *samples * (*samples * *samples - 1.0f);
+    if ( *samples > 1.0f) *samples = 1.0f;
+    if ( *samples < -1.0f) *samples = -1.0f;
   }
 
   lastFrame_[0] = *(samples-hop);
@@ -98,9 +98,9 @@ inline StkFrames& JetTable :: tick( StkFrames& iFrames, StkFrames& oFrames, unsi
   StkFloat *oSamples = &oFrames[oChannel];
   unsigned int iHop = iFrames.channels(), oHop = oFrames.channels();
   for ( unsigned int i=0; i<iFrames.frames(); i++, iSamples += iHop, oSamples += oHop ) {
-    *oSamples = *oSamples * (*oSamples * *oSamples - 1.0);
-    if ( *oSamples > 1.0) *oSamples = 1.0;
-    if ( *oSamples < -1.0) *oSamples = -1.0;
+    *oSamples = *oSamples * (*oSamples * *oSamples - 1.0f);
+    if ( *oSamples > 1.0f) *oSamples = 1.0f;
+    if ( *oSamples < -1.0f) *oSamples = -1.0f;
   }
 
   lastFrame_[0] = *(oSamples-oHop);

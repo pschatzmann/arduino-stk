@@ -114,9 +114,9 @@ inline StkFloat Modal :: tick( unsigned int )
   temp2  -= temp2 * directGain_;
   temp2 += directGain_ * temp;
 
-  if ( vibratoGain_ != 0.0 ) {
+  if ( vibratoGain_ != 0.0f   ) {
     // Calculate AM and apply to master out
-    temp = 1.0 + ( vibrato_.tick() * vibratoGain_ );
+    temp = 1.0f + ( vibrato_.tick() * vibratoGain_ );
     temp2 = temp * temp2;
   }
     

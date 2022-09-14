@@ -30,10 +30,10 @@ OneZero :: ~OneZero( void )
 void OneZero :: setZero( StkFloat theZero )
 {
   // Normalize coefficients for unity gain.
-  if ( theZero > 0.0 )
-    b_[0] = 1.0 / ((StkFloat) 1.0 + theZero);
+  if ( theZero > 0.0f )
+    b_[0] = 1.0f / ((StkFloat) 1.0f + theZero);
   else
-    b_[0] = 1.0 / ((StkFloat) 1.0 - theZero);
+    b_[0] = 1.0f / ((StkFloat) 1.0f - theZero);
 
   b_[1] = -theZero * b_[0];
 }

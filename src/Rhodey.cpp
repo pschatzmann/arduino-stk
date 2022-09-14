@@ -80,13 +80,13 @@ Rhodey :: ~Rhodey( void )
 void Rhodey :: setFrequency( StkFloat frequency )
 {
 #if defined(_STK_DEBUG_)
-  if ( frequency <= 0.0 ) {
+  if ( frequency <= 0.0f ) {
     oStream_ << "Rhodey::setFrequency: argument is less than or equal to zero!";
     handleError( StkError::WARNING ); return;
   }
 #endif
 
-  baseFrequency_ = frequency * 2.0;
+  baseFrequency_ = frequency * 2.0f;
 
   for (unsigned int i=0; i<nOperators_; i++ )
     waves_[i]->setFrequency( baseFrequency_ * ratios_[i] );

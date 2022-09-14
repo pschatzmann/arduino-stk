@@ -211,7 +211,7 @@ inline StkFloat FreeVerb::tick( StkFloat inputL, StkFloat inputR, unsigned int c
     allPassDelayL_[i].tick(vn);
         
     // calculate output
-    outL = -vn + (1.0 + g_)*vn_m;
+    outL = -vn + (1.0f + g_)*vn_m;
 
     // Right channel
     //vn_m = FreeVerb::undenormalize(allPassDelayR_[i].nextOut());
@@ -220,7 +220,7 @@ inline StkFloat FreeVerb::tick( StkFloat inputL, StkFloat inputR, unsigned int c
     allPassDelayR_[i].tick(vn);
 
     // calculate output
-    outR = -vn + (1.0 + g_)*vn_m;
+    outR = -vn + (1.0f + g_)*vn_m;
   }
 
   // Mix output

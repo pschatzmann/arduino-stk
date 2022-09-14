@@ -21,7 +21,7 @@ namespace stk {
 
 PRCRev :: PRCRev( StkFloat T60 )
 {
-  if ( T60 <= 0.0 ) {
+  if ( T60 <= 0.0f ) {
     oStream_ << "PRCRev::PRCRev: argument (" << T60 << ") must be positive!";
     handleError( StkError::FUNCTION_ARGUMENT );
   }
@@ -30,11 +30,11 @@ PRCRev :: PRCRev( StkFloat T60 )
 
   // Delay lengths for 44100 Hz sample rate.
   int lengths[4]= {341, 613, 1557, 2137};
-  double scaler = Stk::sampleRate() / 44100.0;
+  StkFloat scaler = Stk::sampleRate() / 44100.0f;
 
   // Scale the delay lengths if necessary.
   int delay, i;
-  if ( scaler != 1.0 ) {
+  if ( scaler != 1.0f ) {
     for (i=0; i<4; i++)	{
       delay = (int) floor(scaler * lengths[i]);
       if ( (delay & 1) == 0) delay++;
@@ -69,13 +69,13 @@ void PRCRev :: clear( void )
 
 void PRCRev :: setT60( StkFloat T60 )
 {
-  if ( T60 <= 0.0 ) {
+  if ( T60 <= 0.0f ) {
     oStream_ << "PRCRev::setT60: argument (" << T60 << ") must be positive!";
     handleError( StkError::WARNING ); return;
   }
 
-  combCoefficient_[0] = pow(10.0, (-3.0 * combDelays_[0].getDelay() / (T60 * Stk::sampleRate())));
-  combCoefficient_[1] = pow(10.0, (-3.0 * combDelays_[1].getDelay() / (T60 * Stk::sampleRate())));
+  combCoefficient_[0] = pow(10.0f, (-3.0f * combDelays_[0].getDelay() / (T60 * Stk::sampleRate())));
+  combCoefficient_[1] = pow(10.0f, (-3.0f * combDelays_[1].getDelay() / (T60 * Stk::sampleRate())));
 }
 
 StkFrames& PRCRev :: tick( StkFrames& frames, unsigned int channel )

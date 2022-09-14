@@ -19,7 +19,7 @@ Modulate :: Modulate( void )
   vibrato_.setFrequency( 6.0 );
   vibratoGain_ = 0.04;
 
-  noiseRate_ = (unsigned int) ( 330.0 * Stk::sampleRate() / 22050.0 );
+  noiseRate_ = (unsigned int) ( 330.0f * Stk::sampleRate() / 22050.0f );
   noiseCounter_ = noiseRate_;
 
   randomGain_ = 0.05;
