@@ -13,9 +13,9 @@ This project has been implemented as Arduino Library and runs on ESP32 processor
 
 ## Getting Help
 
-Here is the link to the [generated class documentation](https://pschatzmann.github.io/Arduino-STK/html/index.html).
+Here is the link to the [generated class documentation](https://pschatzmann.github.io/arduino-stk/html/index.html).
 
-Further information can be found in [the Wiki](https://github.com/pschatzmann/Arduino-STK/wiki) and in [my Blogs](https://www.pschatzmann.ch/home/tag/stk/)
+Further information can be found in [the Wiki](https://github.com/pschatzmann/arduino-stk/wiki) and in [my Blogs](https://www.pschatzmann.ch/home/tag/stk/)
 
 ## Namespaces
 
@@ -28,7 +28,7 @@ The library uses the namespace __stk__: This is autamatically defined if you sta
 Download the project as zip and install the file in the Arduino IDE via -> Sketch -> Include Library -> Add ZIP Library or execute the following command in the Arduino Library Folder
 
 ```
-git clone https://github.com/pschatzmann/Arduino-STK.git
+git clone https://github.com/pschatzmann/arduino-stk.git
 ```
 
 
