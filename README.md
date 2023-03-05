@@ -32,7 +32,7 @@ git clone https://github.com/pschatzmann/arduino-stk.git
 ```
 
 
-## Additinal Libraries
+## Additional Libraries
 
 If you want to use the Midi integration please install the related [arduino-midi](https://github.com/pschatzmann/arduino-midi) library. You find additional examples in this project.
 
