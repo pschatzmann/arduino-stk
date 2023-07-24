@@ -1,13 +1,12 @@
 #include "ArdStreamOut.h"
 #include "MemoryLoop.h"
-#include "MemoryFS.h"
 
 using namespace stk;
 
 extern const unsigned char sinewave_raw[];
 extern unsigned int sinewave_raw_len;
 
-MemoryLoop input(new MemoryFS(sinewave_raw, sinewave_raw_len));
+MemoryLoop input(Stk::rawwavePath() + "sinewave.raw", sinewave_raw, sinewave_raw_len);
 ArdStreamOut output(Serial);
 
 void setup() {
