@@ -39,6 +39,9 @@ class LentPitShift : public Effect
   //! Input one sample to the filter and return one output.
   StkFloat tick( StkFloat input );
 
+  // prevent compile errors
+  StkFloat tick( StkFloat input, unsigned int channel) { return tick(input); }
+
   //! Take a channel of the StkFrames object as inputs to the filter and replace with corresponding outputs.
   /*!
     The StkFrames argument reference is returned.  The \c channel
