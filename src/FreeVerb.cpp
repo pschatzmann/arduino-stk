@@ -181,6 +181,20 @@ void FreeVerb::clear()
   lastFrame_[1] = 0.0;
 }
 
+
+StkFloat FreeVerb :: lastOut( unsigned int channel )
+{
+#if defined(_STK_DEBUG_)
+  if ( channel > 1 ) {
+    oStream_ << "FreeVerb::lastOut(): channel argument must be less than 2!";
+    handleError( StkError::FUNCTION_ARGUMENT );
+  }
+#endif
+
+  return lastFrame_[channel];
+}
+
+
 StkFrames& FreeVerb::tick( StkFrames& frames, unsigned int channel )
 {
 #if defined(_STK_DEBUG_)
@@ -224,4 +238,76 @@ StkFrames& FreeVerb::tick( StkFrames& iFrames, StkFrames &oFrames, unsigned int 
   }
 
   return oFrames;
+}
+
+StkFloat FreeVerb::tick( StkFloat inputL, StkFloat inputR, unsigned int channel )
+{
+#if defined(_STK_DEBUG_)
+  if ( channel > 1 ) {
+    oStream_ << "FreeVerb::tick(): channel argument must be less than 2!";
+    handleError(StkError::FUNCTION_ARGUMENT);
+  }
+#endif
+
+  StkFloat fInput = (inputL + inputR) * gain_;
+  StkFloat outL = 0.0;
+  StkFloat outR = 0.0;
+
+  // Parallel LBCF filters
+  for ( int i = 0; i < nCombs; i++ ) {
+    // Left channel
+    //StkFloat yn = fInput + (roomSize_ * FreeVerb::undenormalize(combLPL_[i].tick(FreeVerb::undenormalize(combDelayL_[i].nextOut()))));
+    StkFloat yn = fInput + (roomSize_ * combLPL_[i].tick( combDelayL_[i].nextOut() ) );
+    combDelayL_[i].tick(yn);
+    outL += yn;
+
+    // Right channel
+    //yn = fInput + (roomSize_ * FreeVerb::undenormalize(combLPR_[i].tick(FreeVerb::undenormalize(combDelayR_[i].nextOut()))));
+    yn = fInput + (roomSize_ * combLPR_[i].tick( combDelayR_[i].nextOut() ) );
+    combDelayR_[i].tick(yn);
+    outR += yn;
+  }
+
+  // Series allpass filters
+  for ( int i = 0; i < nAllpasses; i++ ) {
+    // Left channel
+    //StkFloat vn_m = FreeVerb::undenormalize(allPassDelayL_[i].nextOut());
+    StkFloat vn_m = allPassDelayL_[i].nextOut();
+    StkFloat vn = outL + (g_ * vn_m);
+    allPassDelayL_[i].tick(vn);
+        
+    // calculate output
+    outL = -vn + (1.0f + g_)*vn_m;
+
+    // Right channel
+    //vn_m = FreeVerb::undenormalize(allPassDelayR_[i].nextOut());
+    vn_m = allPassDelayR_[i].nextOut();
+    vn = outR + (g_ * vn_m);
+    allPassDelayR_[i].tick(vn);
+
+    // calculate output
+    outR = -vn + (1.0f + g_)*vn_m;
+  }
+
+  // Mix output
+  lastFrame_[0] = outL*wet1_ + outR*wet2_ + inputL*dry_;
+  lastFrame_[1] = outR*wet1_ + outL*wet2_ + inputR*dry_;
+
+  /*
+  // Hard limiter ... there's not much else we can do at this point
+  if ( lastFrame_[0] >= 1.0 ) {
+    lastFrame_[0] = 0.9999;
+  }
+  if ( lastFrame_[0] <= -1.0 ) {
+    lastFrame_[0] = -0.9999;
+  }
+  if ( lastFrame_[1] >= 1.0 ) {
+    lastFrame_[1] = 0.9999;
+  }
+  if ( lastFrame_[1] <= -1.0 ) {
+    lastFrame_[1] = -0.9999;
+  }
+  */
+
+  return lastFrame_[channel];
 }
