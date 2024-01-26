@@ -1,17 +1,20 @@
+#pragma once
 #include "ArdConfig.h"
-#ifdef __I2S__
 
-#ifndef ARDI2SOUT_H
-#define ARDI2SOUT_H
 
 #include "Stk.h"
 #include "WvOut.h"
 #include "ArdCommonOut.h"
 #ifdef ESP32
-#include "driver/i2s.h"
+#  include "esp_idf_version.h"
+#  if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 0 , 0)
+#    include "driver/i2s.h"
+#    define ARD_USE_I2S
+#  endif
 #endif
 #ifdef ESP8266
-#include "I2S.h"
+#  include "I2S.h"
+#  define ARD_USE_I2S
 #endif
 
 #define SAMPLE_RATE     ((int)stk::SRATE)
@@ -28,6 +31,8 @@
 #  define ESP32S3
 #  define ESP32X
 #endif
+
+#ifdef ARD_USE_I2S
 
 // Legacy support: We allow only the Standard ESP32 
 #ifndef ESP32X
@@ -108,6 +113,7 @@ class ArdI2SOut: public ArdCommonOut {
 };
 
 }; //stk
+
 #endif
 #endif
-#endif
+

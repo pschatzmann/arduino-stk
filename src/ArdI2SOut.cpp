@@ -1,6 +1,5 @@
 #include "ArdI2SOut.h"
-#ifdef ARDI2SOUT_H
-#ifndef ESP32X
+#if defined(ARD_USE_I2S)
 
 #include "ArdStkLogger.h"
 
@@ -61,5 +60,6 @@ void ArdI2SOut::write(int16_t value) {
 
 
 }; //STK
+ 
  #endif
- #endif
+ 
