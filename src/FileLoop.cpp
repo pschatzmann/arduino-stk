@@ -97,8 +97,10 @@ void FileLoop :: setRate( StkFloat rate )
 {
   rate_ = rate;
 
-  if ( std::fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
-  else interpolate_ = false;
+  // if ( std::fmod( rate_, 1.0 ) != 0.0 ) interpolate_ = true;
+  // else interpolate_ = false;
+    interpolate_ = false; // added by mk, helps remove FM fizz
+
 }
 
 void FileLoop :: addTime( StkFloat time )
