@@ -13,7 +13,7 @@ This project has been implemented as Arduino Library and runs on ESP32 processor
 
 ## Getting Help
 
-Here is the link to the [generated class documentation](https://pschatzmann.github.io/arduino-stk/html/index.html).
+Here is the link to the [Generated Class Documentation](https://pschatzmann.github.io/arduino-stk/).
 
 Further information can be found in [the Wiki](https://github.com/pschatzmann/arduino-stk/wiki) and in [my Blogs](https://www.pschatzmann.ch/home/tag/stk/)
 
